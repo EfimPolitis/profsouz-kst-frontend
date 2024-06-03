@@ -1,0 +1,99 @@
+.header {
+  height: 80px;
+  width: 100%;
+  padding: 0px 150px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 100px;
+  color: #005ab8;
+  background-color: #f2f8fd;
+  z-index: 1;
+
+  .menu_icon {
+    display: none;
+
+    svg {
+      width: 40px;
+      height: 40px;
+    }
+
+    @media (max-width: 1600px) {
+      display: block;
+    }
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+
+    .alpha {
+      position: absolute;
+      font-size: 16px;
+      font-weight: bold;
+      top: 0px;
+      right: -40px;
+      transform: rotate(15deg);
+    }
+  }
+
+  .menu {
+    display: flex;
+    gap: 40px;
+    z-index: 2;
+
+    li {
+      list-style-type: none;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 30px;
+        height: 2px;
+        width: 0px;
+        border-radius: 10px;
+        opacity: 0;
+        background-color: #005ab8;
+        transition: all linear 0.4s;
+      }
+
+      &:hover {
+        &::before {
+          opacity: 1;
+          width: 100%;
+        }
+      }
+    }
+
+    @media (max-width: 1600px) {
+      display: none;
+    }
+  }
+
+  .profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+
+    &_icon {
+      width: 45px;
+      height: 45px;
+      background-color: #fff;
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+  }
+
+  .login {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}

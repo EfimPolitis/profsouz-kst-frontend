@@ -1,0 +1,127 @@
+.info {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0px;
+
+  .container {
+    max-width: 1200px;
+
+    .wrapper_info {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+
+      .info_box {
+        width: 100%;
+
+        h1 {
+          position: relative;
+          transition: all 0.8s ease;
+          color: #fc6f1a;
+
+          &:after {
+            display: block;
+            position: absolute;
+            bottom: 0px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            border-radius: 3px;
+            background-color: #fc6f1a;
+            content: '';
+            transition: width 0.3s ease-out;
+          }
+        }
+
+        .info_content {
+          padding: 10px 0;
+
+          p {
+            padding: 7px 0;
+            // transform: translate(-150%, 0px);
+            // opacity: 0;
+            transition: all 0.7s ease;
+          }
+        }
+      }
+
+      .tasks_box {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        background: url('/bg-footer.png');
+        padding: 10px 40px;
+        border-radius: 20px;
+
+        h1 {
+          color: #fc6f1a;
+        }
+
+        .task_box {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 11px;
+          height: auto;
+          padding: 10px;
+          border-radius: 20px;
+          background: #f2f8fd;
+          box-shadow:
+            -5px -4px 10px #feffff,
+            3px 4px 10px #ddeaf4;
+
+          p {
+            font-size: 15px;
+            text-align: center;
+            line-height: 1.2rem;
+          }
+
+          h4 {
+            font-size: 20px;
+            text-align: center;
+          }
+        }
+
+        .main {
+          width: 100%;
+          height: 100px;
+          align-items: center;
+          justify-content: center;
+          display: flex;
+
+          h4 {
+            text-align: center;
+          }
+        }
+
+        .inner_task_box {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          gap: 13px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1135px) {
+}
+@media screen and (max-width: 720px) {
+  .wrapper_info {
+    flex-direction: column;
+  }
+  .tasks_box {
+    padding: 20px 15px;
+  }
+  .task_box {
+    width: 100%;
+    padding: 7px;
+  }
+  .inner_task_box {
+    flex-direction: column;
+  }
+}

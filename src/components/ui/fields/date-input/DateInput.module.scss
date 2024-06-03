@@ -1,0 +1,17 @@
+.datetime_input {
+  width: 240px;
+  height: 40px;
+  padding: 5px 10px;
+  border: 2px solid #000;
+  border-radius: 8px;
+  outline: none;
+  font-size: 20px;
+}
+
+.error {
+  padding-top: 15px;
+  display: block;
+  color: red;
+  margin-top: 5px;
+  margin-left: 10px;
+}

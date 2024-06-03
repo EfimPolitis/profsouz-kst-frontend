@@ -1,0 +1,28 @@
+.page {
+  height: 100svh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 60px;
+
+  .top {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 50px;
+
+    .getReport {
+      border: none;
+      padding: 5px;
+      border-radius: 5px;
+      background-color: #fff;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #eee;
+      }
+    }
+  }
+}

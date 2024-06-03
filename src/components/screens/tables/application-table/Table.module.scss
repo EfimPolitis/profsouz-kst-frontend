@@ -1,0 +1,92 @@
+.table_container {
+  position: relative;
+  height: 650px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .table {
+    width: 1400px;
+    background-color: #fff;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+    border-collapse: collapse;
+
+    thead {
+      tr {
+        height: 50px;
+
+        td {
+          font-weight: bold;
+          text-align: left;
+          border: none;
+          font-size: 18px;
+          padding: 10px 15px;
+          background: #e4e4e4;
+
+          &:first-child {
+            border-radius: 8px 0 0 8px;
+          }
+
+          &:last-child {
+            border-radius: 0 8px 8px 0;
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        height: 50px;
+
+        td {
+          text-align: left;
+          border: none;
+          padding: 10px 15px;
+          font-size: 20px;
+          vertical-align: top;
+        }
+
+        .menu {
+          width: 80px;
+          display: flex;
+          gap: 10px;
+          padding: 5px;
+
+          .btn {
+            padding: 5px;
+            border: none;
+            background-color: #fff;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all linear 0.2s;
+
+            svg {
+              width: 24px;
+              height: 24px;
+            }
+
+            &:hover {
+              background-color: #e5e5e5;
+            }
+          }
+
+          .approve:hover {
+            color: #65ff2d;
+          }
+
+          .reject:hover {
+            color: #ff3636;
+          }
+        }
+      }
+    }
+  }
+
+  .loader {
+    margin-top: 50px;
+    display: inline-block;
+    font-size: 24px;
+  }
+}

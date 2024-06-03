@@ -1,0 +1,109 @@
+.table_container {
+  position: relative;
+  height: 650px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .table {
+    width: 1400px;
+    background-color: #fff;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+    border-collapse: collapse;
+
+    thead {
+      tr {
+        height: 50px;
+
+        td {
+          font-weight: bold;
+          text-align: left;
+          border: none;
+          font-size: 18px;
+          padding: 10px 15px;
+          background: #e4e4e4;
+
+          &:first-child {
+            border-radius: 8px 0 0 8px;
+          }
+
+          &:last-child {
+            border-radius: 0 8px 8px 0;
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        height: 50px;
+
+        &:hover .ellipsis {
+          opacity: 1;
+        }
+
+        td {
+          text-align: left;
+          border: none;
+          padding: 10px 15px;
+          font-size: 20px;
+          vertical-align: top;
+
+          .ellipsis {
+            margin-top: 2px;
+            color: #5d5d5d;
+            cursor: pointer;
+            opacity: 0;
+          }
+        }
+
+        .menu_block {
+          position: relative;
+
+          .menu {
+            position: absolute;
+            right: 0px;
+            width: 220px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 1;
+            padding: 5px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.25);
+            transform: translateY(-1000px);
+            opacity: 0;
+
+            div {
+              border-radius: 8px;
+              height: 50px;
+              display: flex;
+              align-items: center;
+              gap: 10px;
+              padding: 5px 10px;
+              cursor: pointer;
+
+              &:hover {
+                background-color: #e4e4e4;
+              }
+            }
+          }
+
+          .open {
+            transform: none;
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  .loader {
+    margin-top: 50px;
+    display: inline-block;
+    font-size: 24px;
+  }
+}

@@ -1,0 +1,27 @@
+.not_found {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  //   justify-content: center;
+  flex-direction: column;
+  margin-top: 15%;
+
+  .error {
+    font-size: 250px;
+    font-weight: 700;
+    color: rgb(0, 90, 184);
+    vertical-align: top;
+    margin-top: -50px;
+    margin-bottom: -50px;
+  }
+
+  .text {
+    font-size: 28px;
+  }
+
+  .to_home {
+    margin-top: 20px;
+    font-size: 28px;
+    color: rgb(0, 90, 184);
+  }
+}

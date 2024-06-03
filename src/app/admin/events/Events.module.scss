@@ -1,0 +1,67 @@
+.event_page {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 50px;
+  position: relative;
+
+  .top {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 40px;
+
+    .create_event {
+      display: flex;
+      align-items: center;
+      margin-left: 20px;
+      padding: 5px;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: #eee;
+      }
+    }
+
+    .getReport {
+      border: none;
+      padding: 5px;
+      border-radius: 5px;
+      background-color: #fff;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #eee;
+      }
+    }
+  }
+
+  .events_block {
+    padding: 5px 10px 0px 5px;
+    // min-width: 1450px;
+    min-height: 800px;
+    max-height: 900px;
+    display: grid;
+    grid-template-rows: min-content min-content min-content;
+    grid-template-columns: auto auto auto;
+    gap: 40px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    @media (max-width: 1150px) {
+      grid-template-columns: auto;
+    }
+  }
+
+  .not_found {
+    display: inline-block;
+    position: absolute;
+    inset: 0;
+    top: 100px;
+    left: calc(50% - 200px);
+  }
+}

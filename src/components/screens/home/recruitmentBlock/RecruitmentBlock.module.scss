@@ -1,0 +1,106 @@
+.recruitment_block {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0px;
+
+  .container {
+    max-width: 1200px;
+
+    .steps_wrapper {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+
+      .steps_container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 20px;
+
+        .line_nums {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-direction: column;
+          background-color: #ddeaf4;
+          width: 65px;
+          height: 360px;
+          padding: 5px;
+          border-radius: 40px;
+
+          .num {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            font-size: 28px;
+            font-weight: 900;
+            border-radius: 50%;
+            box-shadow:
+              inset -3px -4px 20px #f0f8fe,
+              inset 5px 4px 10px #b5d0e7;
+          }
+        }
+
+        .discriptions {
+          display: flex;
+          justify-content: space-between;
+          flex-direction: column;
+          height: 360px;
+          width: 500px;
+          padding: 13px 0;
+
+          .discription {
+            font-size: 1rem;
+            font-weight: 700;
+          }
+        }
+      }
+
+      .inner_docs {
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        gap: 20px;
+        width: 400px;
+        background-color: #ddeaf4;
+        padding: 40px;
+
+        .docs_btn {
+          padding: 10px 20px;
+          font-size: 15px;
+          font-weight: 600;
+          border-radius: 20px;
+          background-color: inherit;
+          box-shadow:
+            -3px -4px 20px #f0f8fe,
+            5px 4px 10px #b5d0e7;
+
+          &:hover {
+            border-radius: 20px;
+            box-shadow:
+              inset -3px -4px 20px #f0f8fe,
+              inset 5px 4px 10px #b5d0e7;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1135px) {
+}
+@media screen and (max-width: 720px) {
+  .steps_wrapper {
+    flex-direction: column;
+  }
+  .inner_docs {
+    width: 100%;
+  }
+  .discriptions {
+    padding: 10px 0;
+  }
+}

@@ -1,0 +1,29 @@
+.event_page {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 50px;
+
+  .top {
+    margin-bottom: 40px;
+    display: flex;
+    gap: 50px;
+    align-items: center;
+  }
+
+  .events_block {
+    min-height: 720px;
+    display: grid;
+    grid-template-rows: min-content min-content min-content;
+    grid-template-columns: auto auto auto;
+    row-gap: 50px;
+    column-gap: 50px;
+
+    @media (max-width: 1150px) {
+      grid-template-columns: auto;
+    }
+  }
+}

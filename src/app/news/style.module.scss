@@ -1,0 +1,108 @@
+// .news-container {
+//   display: flex;
+//   flex-wrap: wrap;
+//   gap: 1rem;
+//   align-items: center;
+//   justify-content: center;
+// }
+
+// .paggination {
+//   display: flex;
+//   align-items: center;
+//   gap: 17px;
+//   padding: 0.5rem;
+//   justify-content: center;
+// }
+
+// .pag-btn {
+//   min-width: 50px;
+//   min-height: 50px;
+//   border-radius: 20px;
+//   font-size: 24px;
+//   font-weight: 900;
+// }
+
+// .pag-arrow {
+//   width: 100px;
+//   border-radius: 70px 20px 70px 20px;
+// }
+
+// .neumorphic {
+//   list-style: none;
+//   border: none;
+//   background: inherit;
+//   box-shadow:
+//     -5px -4px 10px #feffff,
+//     3px 4px 10px #ddeaf4;
+// }
+
+// .neumorphic-revers {
+//   list-style: none;
+//   border: none;
+//   background: inherit;
+//   box-shadow:
+//     inset -3px -4px 20px #feffff,
+//     inset 5px 4px 10px #ddeaf4;
+// }
+
+// .neumorphic-hover {
+//   list-style: none;
+//   color: #003f81;
+//   border: none;
+//   background-color: inherit;
+//   box-shadow:
+//     -5px -4px 10px #feffff,
+//     3px 4px 10px #ddeaf4;
+// }
+
+// .neumorphic-hover:hover {
+//   box-shadow:
+//     inset 7px 7px 5px rgb(199, 220, 247),
+//     inset -2px -2px 15px rgb(252, 254, 255);
+// }
+
+// @media screen and (max-width: 720px) {
+//   .neumorphic {
+//     list-style: none;
+//     color: #003f81;
+//     border: none;
+//     background: linear-gradient(
+//       to bottom right,
+//       rgb(237, 246, 255),
+//       rgb(239, 248, 255)
+//     );
+//     box-shadow:
+//       5px 5px 3px rgb(199, 220, 247),
+//       -3px -3px 5px rgb(252, 254, 255),
+//       inset 3px 3px 7px rgb(235, 245, 255),
+//       inset -5px -5px 7px rgb(244, 250, 255);
+//   }
+
+//   .neumorphic-hover {
+//     list-style: none;
+//     color: #003f81;
+//     border: none;
+//     background: linear-gradient(
+//       to bottom right,
+//       rgb(237, 246, 255),
+//       rgb(239, 248, 255)
+//     );
+//     box-shadow:
+//       5px 5px 3px rgb(199, 220, 247),
+//       -3px -3px 5px rgb(252, 254, 255),
+//       inset 3px 3px 7px rgb(235, 245, 255),
+//       inset -5px -5px 7px rgb(244, 250, 255);
+//   }
+
+//   .neumorphic-hover:hover {
+//     background: linear-gradient(
+//       to bottom right,
+//       rgb(231, 244, 255),
+//       rgb(244, 250, 255)
+//     );
+//     box-shadow:
+//       inset 5px 5px 3px rgb(199, 220, 247),
+//       inset -2px -2px 5px rgb(252, 254, 255);
+//     color: #003f81;
+//   }
+// }

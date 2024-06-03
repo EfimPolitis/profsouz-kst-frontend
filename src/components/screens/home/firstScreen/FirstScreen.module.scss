@@ -1,0 +1,139 @@
+.mainscreen {
+  display: flex;
+  justify-content: center;
+  font-weight: 500;
+
+  .container {
+    max-width: 1200px;
+    z-index: -1;
+    background: url('/bg-mainscreen.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: calc(100vh - 80px);
+    width: 100%;
+    position: relative;
+
+    .bubbles_container {
+      .bubble {
+        width: min-content;
+        white-space: nowrap;
+        background-color: #f2f8fd;
+        border-radius: 15px;
+        padding: 10px 25px;
+        position: absolute;
+        animation-name: bubble-animate;
+
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        color: #004896;
+      }
+
+      .bubble1 {
+        top: 5%;
+        left: 0;
+        animation-duration: 1.1s;
+      }
+      .bubble2 {
+        top: 30%;
+        left: 20%;
+        animation-duration: 1.2s;
+      }
+      .bubble3 {
+        top: 45%;
+        left: 50%;
+        animation-duration: 1.3s;
+      }
+      .bubble4 {
+        top: 30%;
+        left: 68%;
+        animation-duration: 1.25s;
+      }
+    }
+  }
+}
+
+.mainscreen_lenta {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  width: 90%;
+  transform: translate(-50%, 0%);
+
+  h2 {
+    color: #fc6f1a;
+    margin-bottom: 10px;
+  }
+
+  .main_lenta_content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+    border-radius: 20px;
+    height: 50px;
+
+    .lenta_col1,
+    .lenta_col2 {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+
+      .block_arrow {
+        height: 60px;
+        width: 95%;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        position: relative;
+        background: url('/bg-footer.png');
+        background-position: center;
+        background-size: cover;
+        border-radius: 30px 5px;
+        transition: all 0.7s;
+
+        h4 {
+          font-size: 18px;
+          line-height: normal;
+          text-align: center;
+          color: #004896;
+        }
+      }
+    }
+  }
+}
+
+@keyframes bubble-animate {
+  0% {
+    transform: translateY(0.1rem);
+  }
+  100% {
+    transform: translateY(-0.3rem);
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .mainscreen .container {
+    background-image: url('/bg-mainscreen-500.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-color: transparent;
+    transition: 0.5s ease;
+    height: calc(70vh - 80px);
+  }
+  .block_arrow {
+    height: 50px;
+
+    h4 {
+      font-size: 0.7rem;
+    }
+  }
+  .main_lenta_content {
+    flex-direction: column;
+    height: max-content;
+  }
+}
