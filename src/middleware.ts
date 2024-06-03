@@ -28,11 +28,11 @@ export async function middleware(request: NextRequest, response: NextResponse) {
     return redirectToHome(isAdminPage, request)
   }
 
-  if (refreshToken) {
-    Cookies.set(EnumTokens.REFRESH_TOKEN, refreshToken, {
-      domain: 'localhost'
-    })
-  }
+  // if (refreshToken) {
+  //   Cookies.set(EnumTokens.REFRESH_TOKEN, refreshToken, {
+  //     domain: 'localhost'
+  //   })
+  // }
 
   if (!accessToken && refreshToken) {
     try {
