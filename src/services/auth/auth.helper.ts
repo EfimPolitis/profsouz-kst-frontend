@@ -10,7 +10,6 @@ export const getAccessToken = () => {
 export const saveTokenStorage = (accessToken: string) => {
   const date = new Date(Date.now() + 3600e3)
   Cookies.set(EnumTokens.ACCESS_TOKEN, accessToken, {
-    domain: 'localhost',
     sameSite: 'strict',
     expires: date
   })
