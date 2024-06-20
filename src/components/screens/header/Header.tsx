@@ -1,6 +1,5 @@
 'use client'
 
-import Cookies from 'js-cookie'
 import { LogIn, MenuIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -27,7 +26,8 @@ export const Header = () => {
 
   useLayoutEffect(() => {
     if (getAccessToken()) return setAccessToken(getAccessToken())
-  }, [isFetching])
+    else return setAccessToken(null)
+  }, [isFetching, accessToken])
 
   return (
     <>
@@ -52,7 +52,7 @@ export const Header = () => {
             </p>
           </Link>
         </div>
-        <div>
+        <nav>
           <ul className={styles.menu}>
             {MENU_PAGES.map(({ url, title }) => (
               <li key={url}>
@@ -60,7 +60,7 @@ export const Header = () => {
               </li>
             ))}
           </ul>
-        </div>
+        </nav>
         {accessToken ? (
           isLoading ? (
             <Loader />

@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import { EventForm } from '@/components/screens/form/event-form/EventForm'
 import { UndoBtn } from '@/components/ui/buttons/undo/UndoBtn'
 
-import styles from './CreateEvent.module.scss'
+import styles from '@/scss/admin/events/create-event.module.scss'
 
 export const metadata: Metadata = {
   title: 'Создание мероприятия',

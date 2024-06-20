@@ -5,7 +5,7 @@ import Loader from '@/components/ui/loader/Loader'
 
 import { useGetCategories } from '@/hooks/category/useGetCategories'
 
-import styles from './Category.module.scss'
+import styles from '@/scss/admin/category/category.module.scss'
 
 const CategoryPage = () => {
   const { categories, setCategories, isLoading, error } = useGetCategories()

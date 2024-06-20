@@ -15,7 +15,7 @@ import { EType } from '@/types/sort.types'
 import { useGetReservation } from '@/hooks/reservation/useGetReservation'
 import { useDebounce } from '@/hooks/useDebounce'
 
-import styles from './Reservations.module.scss'
+import styles from '@/scss/admin/reservations/reservations.module.scss'
 
 const ReservationsPage = () => {
   const [type, setType] = useState<EType>(EType.asc)

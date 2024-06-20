@@ -4,7 +4,7 @@ import { BuildPage } from '@/components/screens/build/BuildPage'
 
 import { NO_INDEX_PAGE } from '@/constants/seo.constants'
 
-import styles from './News.module.scss'
+import styles from '@/scss/admin/news/news.module.scss'
 
 export const metadata: Metadata = {
   title: '',

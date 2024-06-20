@@ -1,4 +1,4 @@
-import { Check, Trash2 } from 'lucide-react'
+import { Trash2 } from 'lucide-react'
 import type { Dispatch, SetStateAction } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 
@@ -9,7 +9,6 @@ import { SingleSelect } from '@/components/ui/single-select/SingleSelect'
 import type { IResponseCategories } from '@/types/category.types'
 
 import { useCategoryDebounce } from '@/hooks/category/useCategoryDebounce'
-import { useCreateCategory } from '@/hooks/category/useCreateCategory'
 import { useDeleteCategory } from '@/hooks/category/useDeleteCategory'
 
 import styles from './LlistRow.module.scss'

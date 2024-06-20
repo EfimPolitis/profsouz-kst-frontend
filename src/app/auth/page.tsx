@@ -1,6 +1,6 @@
 import { AuthForm } from '@/components/screens/form/auth-form/AuthForm'
 
-import styles from './auth.module.scss'
+import styles from '@/scss/auth/auth.module.scss'
 
 export default function AuthPage() {
   return (

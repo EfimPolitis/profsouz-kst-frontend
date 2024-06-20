@@ -18,7 +18,7 @@ import { DASHBOARD_PAGES } from '@/config/page-url.config'
 import { useDebounce } from '@/hooks/useDebounce'
 import { useGetUsers } from '@/hooks/user/useGetUsers'
 
-import styles from './Users.module.scss'
+import styles from '@/scss/admin/users/users.module.scss'
 
 const ManageUser = () => {
   const [type, setType] = useState<EType>(EType.asc)

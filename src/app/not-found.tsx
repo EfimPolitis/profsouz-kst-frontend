@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import styles from './(styles)/not-found.module.scss'
+import styles from '@/scss/not-found.module.scss'
 
 const NotFound = () => {
   return (

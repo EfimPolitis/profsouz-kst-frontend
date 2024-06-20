@@ -15,7 +15,7 @@ import { EType } from '@/types/sort.types'
 import { useApplications } from '@/hooks/application/useApplications'
 import { useDebounce } from '@/hooks/useDebounce'
 
-import styles from './Applications.module.scss'
+import styles from '@/scss/admin/application/applications.module.scss'
 
 const ApplicationPage = () => {
   const [type, setType] = useState<EType>(EType.asc)

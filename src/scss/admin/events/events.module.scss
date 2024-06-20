@@ -1,12 +1,15 @@
 .event_page {
-  margin-top: 50px;
-  margin-bottom: 50px;
+  padding-top: 50px;
+  padding-bottom: 50px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
   gap: 50px;
   position: relative;
+  font-size: 20px;
+  height: 100svh;
+  overflow-y: scroll;
 
   .top {
     display: flex;
@@ -14,6 +17,7 @@
     align-items: center;
     justify-content: flex-start;
     margin-bottom: 40px;
+    flex-wrap: wrap;
 
     .create_event {
       display: flex;
@@ -41,20 +45,16 @@
   }
 
   .events_block {
-    padding: 5px 10px 0px 5px;
-    // min-width: 1450px;
+    padding: 5px 0px 0px 5px;
+    max-width: 1450px;
     min-height: 800px;
-    max-height: 900px;
+    max-height: 2000px;
     display: grid;
     grid-template-rows: min-content min-content min-content;
     grid-template-columns: auto auto auto;
     gap: 40px;
-    overflow-y: scroll;
-    overflow-x: hidden;
-
-    @media (max-width: 1150px) {
-      grid-template-columns: auto;
-    }
+    // overflow-y: scroll;
+    // overflow-x: hidden;
   }
 
   .not_found {
@@ -63,5 +63,22 @@
     inset: 0;
     top: 100px;
     left: calc(50% - 200px);
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .top {
+    width: 480px;
+    gap: 20px !important;
+    margin-bottom: 20px !important;
+  }
+}
+
+@media (max-width: 1280px) {
+  .events_block {
+    // max-height: 2000px !important;
+    display: grid;
+    grid-template-columns: auto !important;
+    // overflow-y: hidden !important;
   }
 }

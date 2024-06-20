@@ -81,7 +81,7 @@ export const AuthForm = ({ isLogin, isEditing }: AuthFormProps) => {
   const isSuccess = isSuccessAuth || isSuccessUpdate
 
   if (isSuccess) {
-    push('/')
+    isLogin ? push(DASHBOARD_PAGES.HOME) : push(DASHBOARD_PAGES.MANAGE_USERS)
   }
 
   const onSubmit: SubmitHandler<IFormData> = data => {

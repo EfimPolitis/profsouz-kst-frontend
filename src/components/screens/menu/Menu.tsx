@@ -7,9 +7,8 @@ import {
   LogOut,
   SquareGanttChart
 } from 'lucide-react'
-import { getDisplayName } from 'next/dist/shared/lib/utils'
 import Link from 'next/link'
-import { Dispatch, FC, RefObject, SetStateAction, forwardRef } from 'react'
+import { Dispatch, RefObject, SetStateAction, forwardRef } from 'react'
 
 import { DASHBOARD_PAGES } from '@/config/page-url.config'
 

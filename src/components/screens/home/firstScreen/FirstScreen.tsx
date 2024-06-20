@@ -26,7 +26,7 @@ export const FirstScreen = () => {
             <div className={styles.main_lenta_content}>
               <div className={styles.lenta_col1}>
                 <div className={styles.block_arrow}>
-                  <h4>Комфортные условия труда</h4>
+                  <h4>Коллективный договор</h4>
                 </div>
                 <div className={styles.block_arrow}>
                   <h4>Опора и защита</h4>

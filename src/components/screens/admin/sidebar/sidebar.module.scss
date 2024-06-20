@@ -1,8 +1,10 @@
-.submenu {
-  width: 250px;
-  min-height: 100svh;
+.sidebar {
+  height: 100svh;
   border-right: 2px solid #ededed;
   background-color: #fff;
+  font-size: 20px;
+  position: relative;
+  transition: width ease 0.4s;
 
   ul {
     display: flex;
@@ -11,11 +13,12 @@
     gap: 5px;
 
     li {
-      width: 240px;
       list-style-type: none;
+      width: 100%;
 
       a {
         display: flex;
+        gap: 10px;
         align-items: center;
         justify-content: space-between;
         padding: 0px 20px;
@@ -30,24 +33,12 @@
       .active {
         background-color: #ededed;
       }
-    }
-  }
 
-  .home {
-    border-radius: 8px;
-    height: 50px;
-    width: 240px;
-    padding: 0px 20px;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    justify-content: space-between;
-    position: absolute;
-    bottom: 20px;
-    left: 5px;
-
-    &:hover {
-      background-color: #ededed;
+      &:nth-last-child(-n + 1) {
+        width: 225px;
+        position: absolute;
+        bottom: 10px;
+      }
     }
   }
 }
