@@ -37,15 +37,13 @@ export const applicationService = {
   },
 
   async sendStatus(status: string, id: string) {
-    const response = await axiosWithAuth.patch(
-      `${API_URL}/application/${id}`,
-      //  {
-      //   path: '/status',
-      //   op: 'replace',
-      //   value: status
-      // }
-      { status }
-    )
+    const response = await axiosWithAuth.patch(`${API_URL}/application/${id}`, [
+      {
+        path: '/status',
+        op: 'replace',
+        value: status
+      }
+    ])
     return response
   }
 }

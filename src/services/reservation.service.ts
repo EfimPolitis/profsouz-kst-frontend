@@ -1,9 +1,6 @@
 import { API_URL } from '@/constants/api.constants'
 
-import type {
-  IReservation,
-  IResponseReservations
-} from '@/types/reservation.types'
+import type { IResponseReservations } from '@/types/reservation.types'
 import { IGetData } from '@/types/sort.types'
 
 import { getUrlForRequest } from '@/hooks/getUrlForRequest'
