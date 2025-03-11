@@ -50,7 +50,7 @@ export const NewsCard: FC<INewsCard> = ({ data }) => {
         {user?.role === 'ADMIN' || user?.role === 'MODER' ? (
           <div className={styles.menu}>
             <Link
-              href={`/news/edit/${newsId}`}
+              href={`/admin/news/edit/${newsId}`}
               title='Редактировать'
               className={styles.edit}
             >
@@ -87,7 +87,7 @@ export const NewsCard: FC<INewsCard> = ({ data }) => {
               : description}
           </p>
           <Link
-            href={`/news/${newsId}`}
+            href={`/admin/news/${newsId}`}
             className={styles.details}
           >
             Подробнее

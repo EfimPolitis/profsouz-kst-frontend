@@ -1,7 +1,8 @@
-build
+node_modules
+.next/cache
 dist
 Dockerfile
-todo.txt
+docker-compose.yml
 .dockerignore
 .git
 .gitignore

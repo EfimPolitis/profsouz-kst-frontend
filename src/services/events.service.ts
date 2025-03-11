@@ -31,7 +31,9 @@ export const eventService = {
   },
 
   async delete(eventId: string) {
-    await axiosWithAuth.delete(`/event/${eventId}`)
+    const response = await axiosWithAuth.delete(`/event/${eventId}`)
+
+    return response
   },
 
   async getReport() {

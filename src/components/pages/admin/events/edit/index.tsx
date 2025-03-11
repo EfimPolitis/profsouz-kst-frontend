@@ -1,8 +1,6 @@
 import { EventForm } from '@/components/frames'
 import { UndoBtn } from '@/components/ui'
 
-import { URL_PAGES } from '@/config/url.config'
-
 import styles from './index.module.scss'
 
 const EditEventPage = () => {

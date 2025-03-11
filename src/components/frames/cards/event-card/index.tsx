@@ -40,7 +40,7 @@ export const EventCard: FC<IEventCard> = ({ data, takePlaces }) => {
       <div className={styles.card}>
         <Link
           className={styles.card_link}
-          href={`/events/${eventId}`}
+          href={`/admin/events/${eventId}`}
         />
         {user?.role === 'ADMIN' || user?.role === 'MODER' ? (
           <>
@@ -51,7 +51,7 @@ export const EventCard: FC<IEventCard> = ({ data, takePlaces }) => {
             )}
             <div className={styles.menu}>
               <Link
-                href={`/events/edit/${eventId}`}
+                href={`/admin/events/edit/${eventId}`}
                 title='Редактировать'
                 className={styles.edit}
               >

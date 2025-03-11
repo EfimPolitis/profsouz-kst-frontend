@@ -39,7 +39,7 @@ export const NewsForm = ({ isEditing }: INewsForm) => {
     []
   )
 
-  const { data } = useGetNewsById(isEditing ? newsId : '')
+  const { data } = useGetNewsById(newsId)
 
   const [values, setValues] = useState<INewsFormData>(initialValues)
   const [images, setImages] = useState<TypeImage[]>([])
