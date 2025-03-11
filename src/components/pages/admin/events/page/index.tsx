@@ -1,0 +1,133 @@
+'use client'
+
+import cn from 'clsx'
+import { CalendarPlus, FileText, Filter } from 'lucide-react'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+
+import {
+  EventCard,
+  EventCardSkeleton,
+  FilterComponent,
+  Sort
+} from '@/components/frames'
+import { Pagination, Search } from '@/components/ui'
+
+import { eventSortList } from '@/constants/sort.constants'
+
+import { URL_PAGES } from '@/config/url.config'
+
+import { useFiltersStore } from '@/store/store'
+
+import { useGetEvents } from '@/hooks/event/useGetEvents'
+
+import styles from './index.module.scss'
+import { eventService } from '@/services/events.service'
+
+const EventsPage = () => {
+  const {
+    queryParams,
+    isFilterUpdated,
+    isFilterReset,
+    updateQueryParam,
+    reset
+  } = useFiltersStore()
+
+  const { data, isFetching, refetch } = useGetEvents(
+    queryParams,
+    isFilterUpdated
+  )
+
+  useEffect(() => {
+    reset()
+  }, [])
+
+  useEffect(() => {
+    refetch()
+  }, [queryParams])
+
+  const events = data?.data?.items
+  const countPage = data?.data?.countPage
+
+  const [isOpenFilter, setIsOpenFilter] = useState(false)
+
+  const handleResetFilter = () => {
+    reset()
+  }
+
+  return (
+    <div className={styles.page}>
+      <div className={styles.wrap}>
+        <div className={styles.top}>
+          <Search
+            placeholder='Поиск...'
+            queryParams={queryParams}
+            updateQueryParam={updateQueryParam}
+            isFilterReset={isFilterReset}
+          />
+          <Sort
+            data={eventSortList}
+            queryParams={queryParams}
+            updateQueryParam={updateQueryParam}
+            isFilterReset={isFilterReset}
+          />
+          <button
+            className={cn(styles.filter, {
+              [styles.active]: isOpenFilter
+            })}
+            title={isOpenFilter ? 'Закрыть фильтры' : 'Открыть фильтры'}
+            onClick={() => setIsOpenFilter(!isOpenFilter)}
+          >
+            <Filter size={30} />
+          </button>
+          <Link
+            href={URL_PAGES.CREATE_EVENT}
+            className={styles.create_event}
+            title='Новое мероприятие'
+          >
+            <CalendarPlus size={30} />
+          </Link>
+          <button
+            className={styles.getReport}
+            title='Скачать отчёт'
+            onClick={() => eventService.getReport()}
+          >
+            <FileText size={30} />
+          </button>
+        </div>
+        <FilterComponent
+          isOpen={isOpenFilter}
+          type='event'
+          updateQueryParam={updateQueryParam}
+          handleResetFilter={handleResetFilter}
+          isFilterReset={isFilterReset}
+        />
+        <div className={styles.events_block}>
+          {isFetching
+            ? [...new Array(12)].map((_, i) => <EventCardSkeleton key={i} />)
+            : !!events?.length &&
+              events.map(event => (
+                <EventCard
+                  key={event.eventId}
+                  data={event}
+                />
+              ))}
+        </div>
+        {!isFetching && !events?.length && (
+          <h3
+            className={styles.not_found}
+            style={{ position: 'relative', top: '0px' }}
+          >
+            Мероприятия не были найденны
+          </h3>
+        )}
+      </div>
+      <Pagination
+        countPage={countPage || 0}
+        updateQueryParam={updateQueryParam}
+      />
+    </div>
+  )
+}
+
+export default EventsPage

@@ -1,4 +1,9 @@
-import { IResponseCategories } from './category.types'
+import type { IResponseCategory } from './category.types'
+
+export enum EStatus {
+  INTERNAL = 'INTERNAL',
+  EVERYONE = 'EVERYONE'
+}
 
 export type TypeImage = {
   id: string
@@ -9,13 +14,14 @@ export type TypeImage = {
 export interface IEvent {
   eventId: string
   images: TypeImage[]
+  categories: IResponseCategory[]
   title: string
   description: string
-  categories: IResponseCategories[]
-  eventDate: string
+  date: string
   organizer: string
   link: string
-  totalTickets: number
+  status: EStatus
+  places: number
   createdAt: string
   updatedAt: string
 }
@@ -25,20 +31,27 @@ export interface IResponseEvents {
   countPage: number
 }
 
+export interface IResponseEventsByUserId {
+  items: {
+    event: IEvent
+    takePlaces: number
+  }[]
+  countPage: number
+}
+
 export interface IEventCard {
-  ticketsCount?: number
-  isSmall?: boolean
-  type: string
+  takePlaces?: number
   data: IEvent
 }
 
 export interface IEventFormData {
   title: string
   description: string
+  imagesId: string[]
   categoriesId: string[]
   organizer: string
-  imagesId: string[]
-  eventDate: string
+  date: string
   link?: string
-  totalTickets?: number
+  places?: number
+  status: EStatus
 }

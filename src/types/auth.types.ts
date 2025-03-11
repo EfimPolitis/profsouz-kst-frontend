@@ -1,4 +1,4 @@
-import { IUser } from './user.types'
+import type { IUser } from './user.types'
 
 export interface IAuthForm {
   userName: string
@@ -10,7 +10,7 @@ export interface IAuthResponse {
   user: IUser
 }
 
-export interface IFormData {
+export interface IAuthFormData {
   userName: string
   firstName: string
   lastName: string

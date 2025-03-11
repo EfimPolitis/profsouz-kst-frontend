@@ -1,25 +1,16 @@
 import type { Metadata } from 'next'
 
-import { EventForm } from '@/components/screens/form/event-form/EventForm'
-import { UndoBtn } from '@/components/ui/buttons/undo/UndoBtn'
+import { EventForm } from '@/components/frames'
+import EditEventPage from '@/components/pages/admin/events/edit'
+import { UndoBtn } from '@/components/ui'
 
-import styles from '@/scss/admin/events/edit-event.module.scss'
+import styles from '@/styles/admin/events/edit-event.module.scss'
 
 export const metadata: Metadata = {
   title: 'Редактирование мероприятия',
   description: ''
 }
 
-const EditEventPage = () => {
-  return (
-    <div className={styles.page}>
-      <UndoBtn
-        size={30}
-        style={{ position: 'absolute', top: '10px', left: '10px' }}
-      />
-      <EventForm isEditing />
-    </div>
-  )
-}
+const Page = () => <EditEventPage />
 
-export default EditEventPage
+export default Page

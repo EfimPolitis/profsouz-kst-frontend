@@ -19,15 +19,23 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@companents/*": ["./src/companents/*"],
+      "@components/*": ["./src/components/*"],
       "@constants/*": ["./src/constants/*"],
       "@services/*": ["./src/services/*"],
       "@config/*": ["./src/config/*"],
+      "@styles/*": ["./src/styles/*"],
       "@hooks/*": ["./src/hooks/*"],
-      "@types/*": ["./src/types/*"],
-      "@scss/*": ["./src/scss"]
+      "@types/*": ["./src/types/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/screens/card/EventCardSkeleton.jsx", "server.mts", "server.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/components/frames/card/EventCardSkeleton.jsx",
+    "server.mts",
+    "server.js"
+  ],
   "exclude": ["node_modules"]
 }

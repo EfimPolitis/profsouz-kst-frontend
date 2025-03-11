@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie'
 import { NextRequest, NextResponse } from 'next/server'
 
-import { DASHBOARD_PAGES } from './config/page-url.config'
+import { URL_PAGES } from './config/url.config'
 import { API_URL } from './constants/api.constants'
 import { EnumTokens } from './services/auth/auth.service'
 
@@ -93,5 +93,5 @@ export const config = {
 const redirectToHome = (isAdminPage: boolean, request: NextRequest) => {
   return isAdminPage
     ? NextResponse.rewrite(new URL('404', request.url))
-    : NextResponse.redirect(new URL(DASHBOARD_PAGES.HOME, request.url))
+    : NextResponse.redirect(new URL(URL_PAGES.HOME, request.url))
 }

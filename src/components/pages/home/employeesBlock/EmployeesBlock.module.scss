@@ -1,0 +1,15 @@
+.employees {
+  background-color: rgb(var(--secondary-color));
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+
+  .container {
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+  }
+}

@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import toast from 'react-hot-toast'
 
-import { TanStackQueryKey } from '@/constants/queryKey.constants'
+import { TanStackQueryKey } from '@/constants/query-key.constants'
 
 import { userService } from '@/services/user.service'
 
@@ -11,10 +12,20 @@ export const useDeleteUser = () => {
     isPending,
     error
   } = useMutation({
-    mutationKey: TanStackQueryKey.deleteUser,
-    mutationFn: (id: string) => userService.deleteUser(id),
-    onSuccess: () =>
-      queryClient.invalidateQueries({ queryKey: TanStackQueryKey.getUsers })
+    mutationKey: [TanStackQueryKey.deleteUser],
+    mutationFn: (userId: string) => userService.delete(userId),
+    onMutate: () => {
+      toast.loading('Загрузка...')
+    },
+    onSuccess: () => {
+      toast.dismiss()
+      toast.success('Пользователь успешно удалён')
+      queryClient.invalidateQueries({ queryKey: [TanStackQueryKey.getUsers] })
+    },
+    onError: () => {
+      toast.dismiss()
+      toast.error('При удалении произошла ошибка')
+    }
   })
 
   return { deleteUser, isPending, error }

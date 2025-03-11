@@ -28,5 +28,5 @@ export interface IProfileResponse {
   firstName: string
   lastName: string
   middleName?: string
-  role: string
+  role: ERole
 }

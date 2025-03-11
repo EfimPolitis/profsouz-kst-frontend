@@ -1,8 +1,9 @@
+'use client'
+
 import {
-  Dispatch,
-  LegacyRef,
-  RefObject,
-  SetStateAction,
+  type Dispatch,
+  type RefObject,
+  type SetStateAction,
   useEffect,
   useRef,
   useState

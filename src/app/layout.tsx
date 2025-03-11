@@ -1,16 +1,17 @@
 import type { Metadata } from 'next'
-import { Noto_Sans } from 'next/font/google'
+import { Inter } from 'next/font/google'
 
 import { SITE_NAME } from '@/constants/seo.constants'
 
 import { Providers } from './providers'
-import '@/scss/globals.scss'
+import '@/styles/_variables.scss'
+import '@/styles/global.scss'
 
-const zen = Noto_Sans({
+const zen = Inter({
   subsets: ['cyrillic', 'latin'],
   weight: ['300', '400', '500', '600', '700'],
   display: 'swap',
-  variable: '--font-zen',
+  variable: '--font-stack',
   style: ['normal']
 })
 
@@ -21,10 +22,10 @@ export const metadata: Metadata = {
   },
   description: 'Сайт профсоюза Колледжа Современных Технологий',
   icons: {
-    icon: '/logo-profsouz-kst.png',
-    shortcut: '/logo-profsouz-kst.png',
+    icon: '/icon.png',
+    shortcut: '/icon.png',
     other: {
-      url: '/logo-profsouz-kst.png',
+      url: '/icon.png',
       sizes: '512x512',
       type: 'image/png'
     }
@@ -55,7 +56,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en'>
+    <html lang='ru'>
       <body className={zen.className}>
         <Providers>{children}</Providers>
       </body>

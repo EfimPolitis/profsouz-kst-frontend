@@ -1,4 +1,4 @@
-import Layout from '@/components/layout/Layout'
+import Layout from '@/components/layouts/home-layout'
 import {
   EmployeesBlock,
   FirstScreen,
@@ -8,7 +8,7 @@ import {
   StatisticBlock,
   TelegramBlock,
   WhatsappBlock
-} from '@/components/screens/home'
+} from '@/components/pages/home'
 
 export default function Home() {
   return (

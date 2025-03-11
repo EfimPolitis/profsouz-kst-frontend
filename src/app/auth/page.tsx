@@ -1,11 +1,5 @@
-import { AuthForm } from '@/components/screens/form/auth-form/AuthForm'
+import { LoginPage } from '@/components/pages'
 
-import styles from '@/scss/auth/auth.module.scss'
+const Page = () => <LoginPage />
 
-export default function AuthPage() {
-  return (
-    <div className={styles.page}>
-      <AuthForm isLogin />
-    </div>
-  )
-}
+export default Page

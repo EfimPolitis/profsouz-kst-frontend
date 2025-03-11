@@ -1,27 +1,7 @@
 'use client'
 
-import { ListRowParent } from '@/components/screens/list-view/list-row-parent/ListRowParent'
-import Loader from '@/components/ui/loader/Loader'
+import { CategoriesPage } from '@/components/pages'
 
-import { useGetCategories } from '@/hooks/category/useGetCategories'
+const Page = () => <CategoriesPage />
 
-import styles from '@/scss/admin/category/category.module.scss'
-
-const CategoryPage = () => {
-  const { categories, setCategories, isLoading, error } = useGetCategories()
-
-  return (
-    <div className={styles.page}>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <ListRowParent
-          categories={categories}
-          setCategories={setCategories}
-        />
-      )}
-    </div>
-  )
-}
-
-export default CategoryPage
+export default Page

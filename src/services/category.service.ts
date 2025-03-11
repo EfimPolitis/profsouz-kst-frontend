@@ -1,30 +1,29 @@
-import { API_URL } from '@/constants/api.constants'
-
-import { ICategory, IResponseCategories } from '@/types/category.types'
+import type { ICategory, IResponseCategory } from '@/types/category.types'
+import type { IQueryParam } from '@/types/query.types'
 
 import { axiosWithAuth } from '@/api/interseptors'
 
 export const categoryService = {
-  async getAll() {
-    const response = await axiosWithAuth.get<IResponseCategories[]>(
-      `${API_URL}/category`
-    )
+  async getAll(queryData = {} as IQueryParam) {
+    const response = await axiosWithAuth.get<IResponseCategory[]>('/category', {
+      params: queryData
+    })
 
     return response
   },
 
   async create(data: ICategory) {
-    const response = await axiosWithAuth.post<IResponseCategories>(
-      `${API_URL}/category`,
+    const response = await axiosWithAuth.post<IResponseCategory>(
+      '/category',
       data
     )
 
     return response
   },
 
-  async update(id: string, data: ICategory) {
-    const response = await axiosWithAuth.patch(
-      `${API_URL}/category/${id}`,
+  async update(data: ICategory, id: string) {
+    const response = await axiosWithAuth.patch<IResponseCategory>(
+      `/category/${id}`,
       data
     )
 
@@ -32,9 +31,7 @@ export const categoryService = {
   },
 
   async delete(categoryId: string) {
-    const response = await axiosWithAuth.delete(
-      `${API_URL}/category/${categoryId}`
-    )
+    const response = await axiosWithAuth.delete(`/category/${categoryId}`)
 
     return response
   }

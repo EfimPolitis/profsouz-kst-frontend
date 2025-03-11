@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { TanStackQueryKey } from '@/constants/queryKey.constants'
+import { TanStackQueryKey } from '@/constants/query-key.constants'
 
-import { ICategory } from '@/types/category.types'
+import type { ICategory } from '@/types/category.types'
 
 import { categoryService } from '@/services/category.service'
 
@@ -15,11 +15,11 @@ export const useCreateCategory = () => {
     isSuccess,
     error
   } = useMutation({
-    mutationKey: TanStackQueryKey.createCategory,
+    mutationKey: [TanStackQueryKey.createCategory],
     mutationFn: (data: ICategory) => categoryService.create(data),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: TanStackQueryKey.getCategories
+        queryKey: [TanStackQueryKey.getCategories]
       })
     }
   })

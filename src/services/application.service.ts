@@ -1,45 +1,42 @@
-import { API_URL } from '@/constants/api.constants'
-
-import {
+import type {
   IApplication,
   IApplicationData,
   IResponeApplications
 } from '@/types/application.types'
-import { IGetData } from '@/types/sort.types'
-
-import { getUrlForRequest } from '@/hooks/getUrlForRequest'
+import { IResponseEventsByUserId } from '@/types/event.types'
+import type { IQueryParam } from '@/types/query.types'
 
 import { axiosWithAuth } from '@/api/interseptors'
 
-export const applicationService = {
-  async getAll(data: IGetData) {
-    const { url } = getUrlForRequest(data)
+import { reportServise } from './report.sevice'
 
+export const applicationService = {
+  async getAll(queryData = {} as IQueryParam) {
     const response = await axiosWithAuth.get<IResponeApplications>(
-      `${API_URL}/application?${url}`
+      '/application',
+      {
+        params: queryData
+      }
     )
     return response
   },
 
   async getByUserId(userId: string) {
-    const response = await axiosWithAuth.get<IResponeApplications>(
-      `${API_URL}/application/${userId}`
+    const response = await axiosWithAuth.get<IResponseEventsByUserId>(
+      `/application/${userId}`
     )
     return response
   },
 
   async create(data: IApplicationData) {
     const response = await axiosWithAuth.post<IApplication>(
-      `${API_URL}/application`,
+      '/application',
       data
     )
     return response
   },
 
-  async sendStatus(status: string, id: string) {
-    const response = await axiosWithAuth.patch(`${API_URL}/application/${id}`, {
-      status
-    })
-    return response
+  async getReport() {
+    return reportServise.downloadReport('application')
   }
 }

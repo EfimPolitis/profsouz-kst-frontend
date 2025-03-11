@@ -1,11 +1,11 @@
 import cn from 'clsx'
 import Image from 'next/image'
 
-import Layout from '../../components/layout/Layout'
+import Layout from '@/components/layouts/home-layout'
 
-import styles from '@/scss/about/about.module.scss'
+import styles from '@/styles/about/about.module.scss'
 
-const About = () => {
+const Page = () => {
   return (
     <Layout>
       <div className={styles.wrapp}>
@@ -44,36 +44,52 @@ const About = () => {
             </h1>
             <div className={styles.history_content}>
               <p className={styles._animateItems}>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro,
-                commodi vero aspernatur facere pariatur cum magnam ullam harum
-                facilis, sunt tenetur. Praesentium dolorum corporis quo quis
-                placeat nostrum explicabo? Fugiat, alias amet aliquam eos
-                mollitia cum commodi ut? Culpa rerum animi perspiciatis harum,
-                deleniti enim laudantium dolores asperiores minus reiciendis.
+                Вплоть до конца ХIХ века в России создание профсоюзов не
+                допускалось. В имперский период в стране существовало небольшое
+                количество касс взаимопомощи, которые решали некоторые
+                материальные проблемы рабочих. Действовали также нелегальные
+                рабочие союзы. Первые легальные объединения рабочих – Общества
+                взаимного вспомоществования рабочих механического производства в
+                Москве и Санкт-Петербурге – были созданы по инициативе главы
+                Особого отдела Департамента полиции С.В. Зубатова в 1901-1903
+                годах. В 1904 г. по инициативе священника Г. Гапона в
+                Санкт-Петербурге было создано «Собрание русских
+                фабрично-заводских рабочих».
               </p>
               <p className={styles._animateItems}>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro,
-                commodi vero aspernatur facere pariatur cum magnam ullam harum
-                facilis, sunt tenetur. Praesentium dolorum corporis quo quis
-                placeat nostrum explicabo? Fugiat, alias amet aliquam eos
-                mollitia cum commodi ut? Culpa rerum animi perspiciatis harum,
-                deleniti enim laudantium dolores asperiores minus reiciendis.
+                Однако после события 9 января 1905 г., вошедших в историю под
+                названием «Кровавое воскресенье», Союз был распущен. В ходе
+                первой русской революции 1905-1907 гг. во многих городах были
+                созданы рабочие организации. Некоторые из них были легализованы,
+                однако затем закрыты. Новый подъем рабочего движения, что в
+                частности выразилось в создании профсоюзных объединений, начался
+                в 1910 г., который продолжался вплоть до 1917 года. Период
+                формирования и становления профсоюзных организаций в России
+                завершился к лету 1918 года.
               </p>
               <p className={styles._animateItems}>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro,
-                commodi vero aspernatur facere pariatur cum magnam ullam harum
-                facilis, sunt tenetur. Praesentium dolorum corporis quo quis
-                placeat nostrum explicabo? Fugiat, alias amet aliquam eos
-                mollitia cum commodi ut? Culpa rerum animi perspiciatis harum,
-                deleniti enim laudantium dolores asperiores minus reiciendis.
+                Первый учредительный съезд Всесоюзного центрального совета
+                профессиональных союзов (ВЦСПС), объединивших впоследствии все
+                профессиональные организации сначала России, затем СССР,
+                состоялся в январе 1918 года. Все годы существования советского
+                государства профсоюзы играли важную роль в организации
+                производства и быта рабочих и служащих, начиная от в ликвидации
+                безработицы и безграмотности, в обеспечении продовольствием и
+                топливом рабочих и их семей в первые послереволюционные годы и
+                заканчивая целым комплексом социальных гарантий и льгот,
+                предоставляемых по линии профсоюзов в позднесоветский период.
               </p>
               <p className={styles._animateItems}>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro,
-                commodi vero aspernatur facere pariatur cum magnam ullam harum
-                facilis, sunt tenetur. Praesentium dolorum corporis quo quis
-                placeat nostrum explicabo? Fugiat, alias amet aliquam eos
-                mollitia cum commodi ut? Culpa rerum animi perspiciatis harum,
-                deleniti enim laudantium dolores asperiores minus reiciendis.
+                Охват работающего населения советской страны имел массовый
+                характер. В СССР не было ни одного предприятия или учреждения,
+                где бы не работала профсоюзная организация. ВЦСПС владел
+                значительной собственностью, прежде всего, это объекты
+                недвижимости (учебные комплексы, гостиницы, санатории, детские
+                лагеря, профилактории, административные здания); имел
+                собственное печатное издание. Газета «Труд», издаваемая с 1921
+                г., была не только одной из самых популярных в СССР, но и одной
+                из самых многотиражных – к началу 1990-х годов тираж издания
+                составлял 21 млн 500 тыс. экземпляров.
               </p>
             </div>
           </div>
@@ -139,4 +155,4 @@ const About = () => {
   )
 }
 
-export default About
+export default Page

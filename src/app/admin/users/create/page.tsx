@@ -1,17 +1,4 @@
-import { AuthForm } from '@/components/screens/form/auth-form/AuthForm'
-import { UndoBtn } from '@/components/ui/buttons/undo/UndoBtn'
+import CreateUserPage from '@/components/pages/admin/users/create'
 
-import styles from '@/scss/admin/users/create-user.module.scss'
-
-const CreateUser = () => {
-  return (
-    <div className={styles.page}>
-      <UndoBtn
-        size={30}
-        style={{ position: 'absolute', top: '10px', left: '10px' }}
-      />
-      <AuthForm isLogin={false} />
-    </div>
-  )
-}
-export default CreateUser
+const Page = () => <CreateUserPage />
+export default Page

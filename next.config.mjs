@@ -3,9 +3,14 @@
 const nextConfig = {
   images: {
     remotePatterns: [
+      // {
+      //   protocol: 'https',
+      //   hostname: 'profunions.ru',
+      //   pathname: '/api/upload/**'
+      // },
       {
-        protocol: 'https',
-        hostname: 'profunions.ru',
+        protocol: 'http',
+        hostname: 'localhost:5000',
         pathname: '/api/upload/**'
       },
       {

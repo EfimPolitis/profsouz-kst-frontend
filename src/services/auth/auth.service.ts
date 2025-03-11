@@ -1,4 +1,4 @@
-import type { IAuthResponse, IFormData } from '@/types/auth.types'
+import type { IAuthFormData, IAuthResponse } from '@/types/auth.types'
 
 import { axiosClassic, axiosWithAuth } from '@/api/interseptors'
 
@@ -10,7 +10,7 @@ export enum EnumTokens {
 }
 
 export const authService = {
-  async main(type: 'login' | 'register', data: IFormData) {
+  async main(type: 'login' | 'register', data: IAuthFormData) {
     const response =
       type === 'login'
         ? await axiosClassic.post<IAuthResponse>(`/auth/login`, data)
@@ -33,8 +33,6 @@ export const authService = {
 
   async logout() {
     const response = await axiosClassic.post<boolean>('/auth/logout')
-
-    console.log(response)
 
     if (response.data) removeFromStorage()
 

@@ -1,11 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
+import toast from 'react-hot-toast'
 
-import { TanStackQueryKey } from '@/constants/queryKey.constants'
+import { TanStackQueryKey } from '@/constants/query-key.constants'
 
-import { IEventFormData } from '@/types/event.types'
+import type { IEventFormData } from '@/types/event.types'
 
-import { DASHBOARD_PAGES } from '@/config/page-url.config'
+import { URL_PAGES } from '@/config/url.config'
 
 import { eventService } from '@/services/events.service'
 
@@ -19,7 +20,7 @@ export const useUpdateEvent = () => {
     isSuccess: isSuccessUpdate,
     error: updateError
   } = useMutation({
-    mutationKey: TanStackQueryKey.updateEvent,
+    mutationKey: [TanStackQueryKey.updateEvent],
     mutationFn: ({
       data,
       eventId
@@ -27,9 +28,18 @@ export const useUpdateEvent = () => {
       data: IEventFormData
       eventId: string
     }) => eventService.update(data, eventId),
+    onMutate: () => {
+      toast.loading('Загрузка...')
+    },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: TanStackQueryKey.getEvents })
-      push(DASHBOARD_PAGES.MANAGE_EVENTS)
+      toast.dismiss()
+      toast.success('Мероприятие успешно обнавленно')
+      queryClient.invalidateQueries({ queryKey: [TanStackQueryKey.getEvents] })
+      push(URL_PAGES.MANAGE_EVENTS)
+    },
+    onError: () => {
+      toast.dismiss()
+      toast.error('Произошла ошибка')
     }
   })
 

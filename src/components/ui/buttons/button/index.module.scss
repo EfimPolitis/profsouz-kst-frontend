@@ -1,0 +1,46 @@
+.btn {
+  height: 60px;
+  font-size: 20px;
+  border-radius: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(var(--primary-color));
+  color: #d7d7d7;
+  transition: background-color 0.4s;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  p {
+    display: flex;
+    text-align: center;
+    gap: 10px;
+  }
+
+  &:hover {
+    background-color: rgb(var(--primary-color-hover));
+  }
+}
+
+.success {
+  background-color: #0c7400;
+
+  &:hover {
+    background-color: #158b07;
+  }
+}
+
+.error {
+  background-color: #ae0701;
+
+  &:hover {
+    background-color: #921915;
+  }
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  background-color: #888;
+}

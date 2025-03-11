@@ -1,37 +1,49 @@
-import { IFormData } from '@/types/auth.types'
-import type { IGetData } from '@/types/sort.types'
+import type { IAuthFormData } from '@/types/auth.types'
+import type { IQueryParam } from '@/types/query.types'
 import {
   type IProfileResponse,
   type IResponseUsers,
   IUser
 } from '@/types/user.types'
 
-import { getUrlForRequest } from '@/hooks/getUrlForRequest'
-
 import { axiosWithAuth } from '@/api/interseptors'
 
+import { reportServise } from './report.sevice'
+
 export const userService = {
-  async getUsers(data: IGetData) {
-    const { url } = getUrlForRequest(data)
-    return axiosWithAuth.get<IResponseUsers>(`/users?${url}`)
+  async getAll(queryData = {} as IQueryParam) {
+    const response = await axiosWithAuth.get<IResponseUsers>('/users', {
+      params: queryData
+    })
+
+    return response
   },
 
-  async getUser(userId: string) {
-    return axiosWithAuth.get<IUser>(`/users/${userId}`)
+  async getById(userId: string) {
+    const response = await axiosWithAuth.get<IUser>(`/users/${userId}`)
+
+    return response
   },
 
   async getProfile() {
     const response = await axiosWithAuth.get<IProfileResponse>('/users/profile')
+
     return response.data
   },
 
-  async updateUser(data: IFormData, id: string) {
+  async update(data: IAuthFormData, id: string) {
     const response = await axiosWithAuth.patch(`/users/${id}`, data)
+
     return response
   },
 
-  async deleteUser(id: string) {
+  async delete(id: string) {
     const response = await axiosWithAuth.delete(`/users/${id}`)
+
     return response
+  },
+
+  async getReport() {
+    return reportServise.downloadReport('users')
   }
 }

@@ -1,11 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
+import toast from 'react-hot-toast'
 
-import { TanStackQueryKey } from '@/constants/queryKey.constants'
+import { TanStackQueryKey } from '@/constants/query-key.constants'
 
-import { IFormData } from '@/types/auth.types'
+import type { IAuthFormData } from '@/types/auth.types'
 
-import { DASHBOARD_PAGES } from '@/config/page-url.config'
+import { URL_PAGES } from '@/config/url.config'
 
 import { userService } from '@/services/user.service'
 
@@ -18,12 +19,21 @@ export const useUpdateUser = () => {
     isSuccess: isSuccessUpdate,
     error
   } = useMutation({
-    mutationKey: TanStackQueryKey.updateUser,
-    mutationFn: ({ data, userId }: { data: IFormData; userId: string }) =>
-      userService.updateUser(data, userId),
+    mutationKey: [TanStackQueryKey.updateUser],
+    mutationFn: ({ data, userId }: { data: IAuthFormData; userId: string }) =>
+      userService.update(data, userId),
+    onMutate: () => {
+      toast.loading('Обработка...')
+    },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: TanStackQueryKey.getUsers })
-      push(DASHBOARD_PAGES.MANAGE_USERS)
+      toast.dismiss()
+      toast.success('Пользователь обнавлён успешно')
+      queryClient.invalidateQueries({ queryKey: [TanStackQueryKey.getUsers] })
+      push(URL_PAGES.MANAGE_USERS)
+    },
+    onError: () => {
+      toast.dismiss()
+      toast.error('При обнавлении пользователя произошла ошибка')
     }
   })
 

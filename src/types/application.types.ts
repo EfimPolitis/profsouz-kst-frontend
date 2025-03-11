@@ -1,14 +1,12 @@
-import { IEvent } from './event.types'
-import { IUser } from './user.types'
+import type { IEvent } from './event.types'
+import type { IUser } from './user.types'
 
 export interface IApplication {
   id: string
-  user: IUser
-  events: IEvent
-  ticketsCount: number
-  status: 'PENDING' | 'APPROVED' | 'REJECTED'
+  user: Pick<IUser, 'firstName' | 'lastName' | 'middleName'>
+  event: Pick<IEvent, 'title'>
+  places: number
   createdAt: string
-  updatedAt: string
 }
 
 export interface IResponeApplications {
@@ -19,11 +17,5 @@ export interface IResponeApplications {
 export interface IApplicationData {
   userId: string
   eventId: string
-  ticketsCount: number
-}
-
-export enum EStatus {
-  PENDING = 'В ожидании',
-  APPROVED = 'Принято',
-  REJECTED = 'Отклонено'
+  places: number
 }

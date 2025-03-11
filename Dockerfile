@@ -1,16 +1,13 @@
-# Install dependencies only when needed
 FROM node:20-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN yarn
 
-# Rebuild the source code only when needed
 FROM node:20-alpine AS builder
 WORKDIR /app
 COPY . .
 RUN yarn build
 
-# Production image, copy all the files and run next
 FROM node:20-alpine AS runner
 WORKDIR /app
 COPY --from=builder /app/next.config.mjs ./

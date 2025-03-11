@@ -1,5 +1,6 @@
 {
-  "name": "profsouz-kst",
+  "name": "profunion-kst-frontend",
+  "author": "Efim Politis",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -16,6 +17,7 @@
     "clsx": "^2.1.0",
     "debounce": "^2.0.0",
     "express": "^4.19.2",
+    "file-saver": "^2.0.5",
     "framer-motion": "^11.2.4",
     "fs": "^0.0.1-security",
     "https": "^1.0.0",
@@ -26,11 +28,14 @@
     "react-content-loader": "^7.0.0",
     "react-dom": "^18",
     "react-hook-form": "^7.51.1",
+    "react-hot-toast": "^2.5.2",
     "sass": "^1.72.0",
-    "yarn": "^1.22.22"
+    "yarn": "^1.22.22",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/file-saver": "^2.0.7",
     "@types/js-cookie": "^3.0.6",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -39,5 +44,6 @@
     "eslint-config-prettier": "^9.1.0",
     "prettier": "^3.2.5",
     "typescript": "^5"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

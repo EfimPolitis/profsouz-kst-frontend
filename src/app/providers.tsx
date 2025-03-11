@@ -2,7 +2,10 @@
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { LazyMotion, domAnimation } from 'framer-motion'
 import { PropsWithChildren, useState } from 'react'
+
+import { ThemeLayout } from '@/components/layouts/theme'
 
 export const Providers = ({ children }: PropsWithChildren) => {
   const [client] = useState(
@@ -16,9 +19,13 @@ export const Providers = ({ children }: PropsWithChildren) => {
   )
 
   return (
-    <QueryClientProvider client={client}>
-      {children}
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    <LazyMotion features={domAnimation}>
+      <QueryClientProvider client={client}>
+        <ThemeLayout>
+          {children}
+          <ReactQueryDevtools initialIsOpen={false} />
+        </ThemeLayout>
+      </QueryClientProvider>
+    </LazyMotion>
   )
 }

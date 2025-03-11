@@ -1,8 +1,10 @@
-import debounce from 'debounce'
-import { useCallback, useEffect, useMemo } from 'react'
-import { UseFormWatch } from 'react-hook-form'
+'use client'
 
-import { ICategory } from '@/types/category.types'
+import debounce from 'debounce'
+import { useCallback, useEffect } from 'react'
+import type { UseFormWatch } from 'react-hook-form'
+
+import type { ICategory } from '@/types/category.types'
 
 import { useCreateCategory } from './useCreateCategory'
 import { useUpdateCategory } from './useUpdateCategory'
@@ -21,28 +23,27 @@ export const useCategoryDebounce = ({ watch, id }: IUseCategoryDebounce) => {
   const watchValue = watch()
 
   const debouncedCreateCategory = useCallback(
-    debounce((formData: TypeCategoryFormState) => {
-      createCategory(formData as ICategory)
+    debounce((data: TypeCategoryFormState) => {
+      createCategory(data as ICategory)
     }, 2000),
     [createCategory]
   )
 
   const debouncedUpdateCategory = useCallback(
-    debounce((formData: TypeCategoryFormState) => {
-      updateCategory({ id, formData } as { id: string; formData: ICategory })
-    }, 500),
+    debounce((data: TypeCategoryFormState) => {
+      updateCategory({ data, id } as { data: ICategory; id: string })
+    }, 2000),
     [updateCategory, id]
   )
 
   useEffect(() => {
-    const subscription = watch(formData => {
+    const subscription = watch(data => {
       if (id) {
         debouncedUpdateCategory({
-          ...formData,
-          color: formData.color || undefined
+          ...data
         })
       } else {
-        debouncedCreateCategory(formData)
+        debouncedCreateCategory(data)
       }
     })
 

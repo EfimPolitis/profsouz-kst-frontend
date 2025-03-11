@@ -1,4 +1,4 @@
-export enum errorList {
-  ERR_NETWORK = 'Ошибка сети',
-  ERR_BAD_REQUEST = 'Неверное имя пользователя или пароль'
+export const errorList = {
+  'Network Error': 'Ошибка сети',
+  'Request failed with status code 404': 'Неверное имя пользователя или пароль'
 }

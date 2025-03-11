@@ -1,14 +1,14 @@
 import type { Metadata } from 'next'
 
-import Layout from '@/components/layout/Layout'
-import { BuildPage } from '@/components/screens/build/BuildPage'
+import Layout from '@/components/layouts/home-layout'
+import { BuildPage } from '@/components/pages/build'
 
 export const metadata: Metadata = {
   title: 'Документы',
   description: ''
 }
 
-const DocumentsPage = () => {
+const Page = () => {
   return (
     <Layout>
       <div
@@ -25,4 +25,4 @@ const DocumentsPage = () => {
   )
 }
 
-export default DocumentsPage
+export default Page

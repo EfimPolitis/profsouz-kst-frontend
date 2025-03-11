@@ -1,0 +1,20 @@
+.download_page {
+  width: 100%;
+  height: calc(100% - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .download_block {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 100px;
+
+    h2 {
+      text-align: center;
+    }
+  }
+}
