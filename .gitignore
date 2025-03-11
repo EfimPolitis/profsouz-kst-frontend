@@ -6,7 +6,7 @@
 /.VSCodeCounter
 .pnp.js
 .yarn/install-state.gz
-.todo.txt
+/todo.txt
 
 # testing
 /coverage

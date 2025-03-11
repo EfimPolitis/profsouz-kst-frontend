@@ -22,17 +22,17 @@ export async function middleware(request: NextRequest, response: NextResponse) {
     !url.includes('/users/edit')
   const isAdminPage = url.includes('/admin')
 
-  // if (!refreshToken) {
-  //   request.cookies.delete(EnumTokens.ACCESS_TOKEN)
+  if (!refreshToken && !isAuthPage) {
+    request.cookies.delete(EnumTokens.ACCESS_TOKEN)
 
-  //   return redirectToHome(isAdminPage, request)
-  // }
-
-  if (refreshToken) {
-    Cookies.set(EnumTokens.REFRESH_TOKEN, refreshToken, {
-      domain: 'localhost'
-    })
+    return redirectToHome(isAdminPage, request)
   }
+
+  // if (refreshToken) {
+  //   Cookies.set(EnumTokens.REFRESH_TOKEN, refreshToken, {
+  //     domain: 'localhost'
+  //   })
+  // }
 
   if (!accessToken && refreshToken) {
     try {

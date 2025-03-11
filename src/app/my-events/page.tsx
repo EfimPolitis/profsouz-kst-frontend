@@ -10,7 +10,7 @@ import { Pagination } from '@/components/ui/pagination/Pagination'
 import { useReservationEventsByUserId } from '@/hooks/reservation/useReservationEventsByUserId'
 import { useProfile } from '@/hooks/user/useProfile'
 
-import styles from './styles.module.scss'
+import styles from '@/scss/my-events/my-events.module.scss'
 
 const MyEventsPage = () => {
   const [page, setPage] = useState(0)

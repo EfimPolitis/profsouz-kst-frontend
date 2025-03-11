@@ -8,7 +8,7 @@ import EventPageSkeleton from '@/components/pages/event-page/EventPageSkeleton'
 import { useGetEventById } from '@/hooks/event/useGetEventById'
 import { useProfile } from '@/hooks/user/useProfile'
 
-import styles from './EventPage.module.scss'
+import styles from '@/scss/events/event-id.module.scss'
 
 const Page = () => {
   const { eventId } = useParams() as { eventId: string }

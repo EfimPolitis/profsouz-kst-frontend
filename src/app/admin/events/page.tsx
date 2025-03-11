@@ -19,7 +19,7 @@ import { DASHBOARD_PAGES } from '@/config/page-url.config'
 import { useGetEvents } from '@/hooks/event/useGetEvents'
 import { useDebounce } from '@/hooks/useDebounce'
 
-import styles from './Events.module.scss'
+import styles from '@/scss/admin/events/events.module.scss'
 
 const ManageEvent = () => {
   const [type, setType] = useState<EType>(EType.asc)

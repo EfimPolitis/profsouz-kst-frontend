@@ -12,14 +12,11 @@
 
   .menu_icon {
     display: none;
+    cursor: pointer;
 
     svg {
       width: 40px;
       height: 40px;
-    }
-
-    @media (max-width: 1600px) {
-      display: block;
     }
   }
 
@@ -67,10 +64,6 @@
         }
       }
     }
-
-    @media (max-width: 1600px) {
-      display: none;
-    }
   }
 
   .profile {
@@ -95,5 +88,27 @@
     display: flex;
     align-items: center;
     gap: 10px;
+  }
+}
+
+@media (max-width: 1600px) {
+  .header {
+    padding: 0px 50px;
+    justify-content: flex-start;
+    gap: 40px;
+    position: relative;
+
+    .menu_icon {
+      display: block;
+    }
+
+    .menu {
+      display: none;
+    }
+
+    .profile {
+      position: absolute;
+      right: 50px;
+    }
   }
 }

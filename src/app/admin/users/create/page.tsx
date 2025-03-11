@@ -1,7 +1,7 @@
 import { AuthForm } from '@/components/screens/form/auth-form/AuthForm'
 import { UndoBtn } from '@/components/ui/buttons/undo/UndoBtn'
 
-import styles from './CreateUser.module.scss'
+import styles from '@/scss/admin/users/create-user.module.scss'
 
 const CreateUser = () => {
   return (

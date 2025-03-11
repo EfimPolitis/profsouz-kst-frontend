@@ -4,10 +4,6 @@ export const eventSortList = [
     value: 'alphabetic'
   },
   {
-    label: 'По дате проведения',
-    value: 'date'
-  },
-  {
     label: 'По количеству билетов',
     value: 'tickets'
   }
@@ -38,6 +34,10 @@ export const reservationSortList = [
     value: 'alphabetic'
   },
   {
+    label: 'По кол-ву билетов',
+    value: 'tickets'
+  },
+  {
     label: 'По дате создания',
     value: 'createdAt'
   },
@@ -51,6 +51,14 @@ export const applicationSortList = [
   {
     label: 'По алфавиту',
     value: 'alphabetic'
+  },
+  {
+    label: 'По статусу',
+    value: 'status'
+  },
+  {
+    label: 'По кол-ву билетов',
+    value: 'tickets'
   },
   {
     label: 'По дате создания',

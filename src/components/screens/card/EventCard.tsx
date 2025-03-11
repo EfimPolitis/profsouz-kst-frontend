@@ -52,7 +52,9 @@ export const EventCard: FC<IEventCard> = ({
         style={{ borderRadius: '10px 10px 0px 0px' }}
       />
       <div className={styles.info_block}>
-        <p className={styles.title}>{title}</p>
+        <p className={styles.title}>
+          {title.length > 28 ? title.slice(0, 27) + '...' : title}
+        </p>
         <p className={styles.date}>
           Дата проведения: {eventDate.split('T').join(' ')}
         </p>

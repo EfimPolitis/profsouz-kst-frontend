@@ -1,6 +1,6 @@
 .slider_container {
   position: relative;
-  width: 1200px;
+  max-width: 1200px;
   margin: auto;
   overflow: hidden;
   border-radius: 20px;
@@ -13,7 +13,6 @@
     justify-content: center;
     gap: 20px;
     background-color: #e3ecf3;
-    // background-color: #fff;
     padding: 60px 0px 60px 0px;
 
     .image {
@@ -33,14 +32,14 @@
       flex-direction: column;
       gap: 20px;
 
-      .full_name {
-      }
+      // .full_name {
+      // }
 
-      .position {
-      }
+      // .position {
+      // }
 
-      .description {
-      }
+      // .description {
+      // }
     }
   }
 
@@ -73,5 +72,50 @@
     color: white;
     padding: 5px 10px;
     border-radius: 3px;
+  }
+}
+
+@media screen and (max-width: 1260px) {
+  .slider_container {
+    max-width: 1000px;
+
+    .slide {
+      width: 800px;
+      flex-direction: column;
+      height: 1200px;
+
+      .image {
+        width: 800px;
+        height: 1800px;
+        background-position: top;
+      }
+
+      .info_block {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1020px) {
+  .slider_container {
+    max-width: 650px;
+
+    .slide {
+      width: 500px;
+      flex-direction: column;
+      height: 1200px;
+
+      .image {
+        width: 500px;
+        height: 1600px;
+        background-position: top;
+      }
+
+      .info_block {
+        width: 500px;
+        font-size: 20px;
+      }
+    }
   }
 }

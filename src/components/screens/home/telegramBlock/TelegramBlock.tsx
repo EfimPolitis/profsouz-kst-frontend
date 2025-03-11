@@ -17,11 +17,7 @@ export const TelegramBlock = () => {
             Your Browser Does Not Support iframes!
           </iframe>
         </div>
-        <h2>
-          Больше новостей в нашем
-          <br />
-          Telegram канале
-        </h2>
+        <h2>Больше новостей в нашем telegram канале</h2>
         <div className={styles.arrow}>
           <Image
             src='./icons/arrow.svg'

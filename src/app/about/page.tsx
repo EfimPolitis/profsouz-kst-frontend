@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 import Layout from '../../components/layout/Layout'
 
-import styles from './About.module.scss'
+import styles from '@/scss/about/about.module.scss'
 
 const About = () => {
   return (

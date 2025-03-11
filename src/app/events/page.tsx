@@ -16,7 +16,7 @@ import { EType } from '@/types/sort.types'
 import { useGetEvents } from '@/hooks/event/useGetEvents'
 import { useDebounce } from '@/hooks/useDebounce'
 
-import styles from './Events.module.scss'
+import styles from '@/scss/events/events.module.scss'
 
 const EventsPage = () => {
   const [type, setType] = useState<EType>(EType.asc)

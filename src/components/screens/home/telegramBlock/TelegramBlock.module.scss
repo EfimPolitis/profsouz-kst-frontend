@@ -5,12 +5,19 @@
   padding: 40px 0px;
 
   .container {
-    width: 1200px;
+    max-width: 1200px;
     display: flex;
     align-items: center;
     justify-content: space-around;
     gap: 1rem;
     position: relative;
+
+    .tg_container {
+      iframe {
+        max-width: 1200px;
+        border-radius: 10px;
+      }
+    }
 
     .arrow {
       position: absolute;
@@ -22,7 +29,46 @@
 
     h2 {
       line-height: normal;
-      font-size: 28px;
+    }
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .container {
+    flex-direction: column-reverse;
+    gap: 20px;
+
+    .arrow {
+      display: none;
+    }
+
+    h2 {
+      font-size: 24px;
+    }
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .container {
+    iframe {
+      width: 600px;
+    }
+
+    h2 {
+      font-size: 22px;
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .container {
+    iframe {
+      width: 500px;
+      height: 680px;
+    }
+
+    h2 {
+      font-size: 20px;
     }
   }
 }

@@ -2,7 +2,7 @@
   background-color: #f2f8fd;
   display: flex;
   justify-content: center;
-  padding: 40px 0px;
+  padding: 40px 20px;
 
   .container {
     max-width: 1200px;
@@ -124,7 +124,11 @@
   width: 20px;
   height: 20px;
 }
-@media screen and (max-width: 1135px) {
+@media screen and (max-width: 1250px) {
+  .news {
+    padding: 40px 20px;
+    justify-content: flex-start;
+  }
 }
 @media screen and (max-width: 720px) {
   .news_arrowscontainer .slick_arrow {

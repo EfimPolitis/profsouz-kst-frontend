@@ -1,6 +1,7 @@
 import {
   BookCopy,
   CalendarRange,
+  LogOut,
   MessageSquareWarning,
   Newspaper,
   ScrollText,
@@ -51,6 +52,12 @@ export const AdminSubmenu = [
     link: DASHBOARD_PAGES.MANAGE_CATEGORY,
     name: 'Категории',
     icon: BookCopy,
+    type: ''
+  },
+  {
+    link: DASHBOARD_PAGES.HOME,
+    name: 'Главная',
+    icon: LogOut,
     type: ''
   }
   // {

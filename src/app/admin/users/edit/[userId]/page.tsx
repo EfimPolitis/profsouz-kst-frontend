@@ -5,7 +5,7 @@ import { UndoBtn } from '@/components/ui/buttons/undo/UndoBtn'
 
 import { NO_INDEX_PAGE } from '@/constants/seo.constants'
 
-import styles from './EditUser.module.scss'
+import styles from '@/scss/admin/users/edit-user.module.scss'
 
 export const metadata: Metadata = {
   title: 'Редактирование пользователя',
