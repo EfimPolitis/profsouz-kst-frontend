@@ -8,7 +8,7 @@ import { URL_PAGES } from '@/config/url.config'
 
 import { useGetNews } from '@/hooks/news/useGetNews'
 
-import styles from './NewsBlock.module.scss'
+import styles from './index.module.scss'
 
 export const NewsBlock = () => {
   const { data, isFetching } = useGetNews()

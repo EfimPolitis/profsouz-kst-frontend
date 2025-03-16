@@ -5,8 +5,6 @@ class PAGES {
   //*root*
   HOME = this.root
   NEWS = `${this.root}news`
-  GALLERY = `${this.root}gallery`
-  DOCUMENTS = `${this.root}documents`
   ABOUT = `${this.root}about`
   AUTH = `${this.root}auth`
   PROFILE = `${this.root}profile`

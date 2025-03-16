@@ -1,14 +1,11 @@
-import { Metadata } from 'next'
+import { Suspense } from 'react'
 
 import { EventsPage } from '@/components/pages'
 
-import { NO_INDEX_PAGE } from '@/constants/seo.constants'
-
-// export const metadata: Metadata = {
-//   title: 'Админ панель | Мероприятия',
-//   ...NO_INDEX_PAGE
-// }
-
-const Page = () => <EventsPage />
+const Page = () => (
+  <Suspense fallback={<div>Загрузка...</div>}>
+    <EventsPage />
+  </Suspense>
+)
 
 export default Page

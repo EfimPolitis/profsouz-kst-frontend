@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
 
@@ -24,9 +25,19 @@ export const useLogout = () => {
       queryClient.invalidateQueries({ queryKey: [TanStackQueryKey.profile] })
       queryClient.getQueryCache().clear()
     },
-    onError(error) {
+    onError: (error: unknown) => {
       toast.dismiss()
-      toast.error(error.message)
+
+      let message = 'Произошла неизвестная ошибка'
+
+      if (error instanceof AxiosError) {
+        const serverMessage = error.response?.data?.message
+        if (typeof serverMessage === 'string') {
+          message = serverMessage
+        }
+      }
+
+      toast.error(message)
     }
   })
 

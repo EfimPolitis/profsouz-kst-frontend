@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import styles from './TelegramBlock.module.scss'
+import styles from './index.module.scss'
 
 export const TelegramBlock = () => {
   return (
@@ -12,7 +12,7 @@ export const TelegramBlock = () => {
             frameBorder='0'
             width='800px'
             height='500px'
-            src='https://prof-kst-souz.ru/wptelegram/widget/view/@profsouzKST/'
+            src='https://t.me/profsouzKST'
           >
             Your Browser Does Not Support iframes!
           </iframe>

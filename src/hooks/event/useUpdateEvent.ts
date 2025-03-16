@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
 
@@ -37,9 +38,19 @@ export const useUpdateEvent = () => {
       queryClient.invalidateQueries({ queryKey: [TanStackQueryKey.getEvents] })
       push(URL_PAGES.MANAGE_EVENTS)
     },
-    onError: () => {
+    onError: (error: unknown) => {
       toast.dismiss()
-      toast.error('Произошла ошибка')
+
+      let message = 'Произошла неизвестная ошибка'
+
+      if (error instanceof AxiosError) {
+        const serverMessage = error.response?.data?.message
+        if (typeof serverMessage === 'string') {
+          message = serverMessage
+        }
+      }
+
+      toast.error(message)
     }
   })
 

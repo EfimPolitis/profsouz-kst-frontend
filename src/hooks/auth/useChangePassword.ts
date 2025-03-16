@@ -30,14 +30,19 @@ export const useChangePassword = (
       reset()
       push(URL_PAGES.PROFILE)
     },
-    onError: (error: AxiosError) => {
+    onError: (error: unknown) => {
       toast.dismiss()
-      toast.error(
-        error.status
-          ? changePasswordErrorList.get(error.status)
-          : 'Произошла ошибка'
-      )
-      console.log(error.status, changePasswordErrorList.get(error.status))
+
+      let message = 'Произошла неизвестная ошибка'
+
+      if (error instanceof AxiosError) {
+        const serverMessage = error.response?.data?.message
+        if (typeof serverMessage === 'string') {
+          message = serverMessage
+        }
+      }
+
+      toast.error(message)
     }
   })
 

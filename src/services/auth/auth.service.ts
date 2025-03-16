@@ -52,7 +52,7 @@ export const authService = {
     return response
   },
 
-  async requestResetPassword(email: string) {
+  async requestEmail(email: string) {
     const response = await axiosClassic.post('/auth/email/request-reset', {
       email
     })

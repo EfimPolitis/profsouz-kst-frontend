@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { AxiosError } from 'axios'
 import toast from 'react-hot-toast'
 
 import { TanStackQueryKey } from '@/constants/query-key.constants'
@@ -20,9 +21,19 @@ export const useDeleteNews = () => {
         queryKey: [TanStackQueryKey.getNews]
       })
     },
-    onError: () => {
+    onError: (error: unknown) => {
       toast.dismiss()
-      toast.error('Произошла ошибка')
+
+      let message = 'Произошла неизвестная ошибка'
+
+      if (error instanceof AxiosError) {
+        const serverMessage = error.response?.data?.message
+        if (typeof serverMessage === 'string') {
+          message = serverMessage
+        }
+      }
+
+      toast.error(message)
     }
   })
 

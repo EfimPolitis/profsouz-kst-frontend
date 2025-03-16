@@ -1,5 +1,3 @@
-'use client'
-
 import { ResetPasswordForm } from '@/components/frames'
 import { UndoBtn } from '@/components/ui'
 

@@ -9,7 +9,7 @@ import { URL_PAGES } from '@/config/url.config'
 
 import { authService } from '@/services/auth/auth.service'
 
-export const useConfirmPassword = () => {
+export const useResetPassword = () => {
   const { push } = useRouter()
   const { mutate, isPending, isSuccess, isError } = useMutation({
     mutationKey: [TanStackQueryKey.requestResetPassword],
@@ -26,10 +26,19 @@ export const useConfirmPassword = () => {
       toast.success('Пароль был успешно изменён')
       push(URL_PAGES.AUTH)
     },
-    onError: (error: AxiosError) => {
+    onError: (error: unknown) => {
       toast.dismiss()
-      toast.error('Произошла ошибка, попробуйте позже')
-      console.log(error)
+
+      let message = 'Произошла неизвестная ошибка'
+
+      if (error instanceof AxiosError) {
+        const serverMessage = error.response?.data?.message
+        if (typeof serverMessage === 'string') {
+          message = serverMessage
+        }
+      }
+
+      toast.error(message)
     }
   })
 

@@ -1,7 +1,8 @@
 import cn from 'clsx'
 import Image from 'next/image'
+import Link from 'next/link'
 
-import styles from './RecruitmentBlock.module.scss'
+import styles from './index.module.scss'
 
 export const RecruitmentBlock = () => {
   return (
@@ -35,7 +36,11 @@ export const RecruitmentBlock = () => {
               src='/docs.png'
               alt='docs-img'
             />
-            <button className={cn(styles.docs_btn)}>образцы документов</button>
+            <Link href={'/about'}>
+              <button className={cn(styles.docs_btn)}>
+                образцы документов
+              </button>
+            </Link>
           </div>
         </div>
       </div>

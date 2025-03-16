@@ -1,6 +1,6 @@
 import cn from 'clsx'
 
-import styles from './InfoBlock.module.scss'
+import styles from './index.module.scss'
 
 export const InfoBlock = () => {
   return (

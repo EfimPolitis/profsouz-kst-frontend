@@ -7,7 +7,7 @@ import toast from 'react-hot-toast'
 
 import { Button, Field } from '@/components/ui'
 
-import { useRequestResetPassword } from '@/hooks/auth/useRequestResetPassword'
+import { useRequestEmail } from '@/hooks/auth/useRequestEmail'
 
 import styles from './index.module.scss'
 
@@ -17,7 +17,7 @@ export const RequestResetForm = () => {
     defaultValues: { email: '' }
   })
 
-  const { mutate } = useRequestResetPassword()
+  const { mutate } = useRequestEmail()
 
   const onSubmit = (data: { email: string }) => {
     mutate(data.email)

@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import styles from './WhatsappBlock.module.scss'
+import styles from './index.module.scss'
 
 export const WhatsappBlock = () => {
   return (

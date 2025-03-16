@@ -1,11 +1,12 @@
 'use client'
 
 import cn from 'clsx'
+import { m } from 'framer-motion'
 import { useState } from 'react'
 
 import { statistic } from '@/constants/statistic.constants'
 
-import styles from './StatisticBlock.module.scss'
+import styles from './index.module.scss'
 
 export const StatisticBlock = () => {
   const [active, setActive] = useState(0)
@@ -13,16 +14,22 @@ export const StatisticBlock = () => {
   return (
     <section className={styles.statistic}>
       <div className={styles.container}>
-        <h1 className={styles.title}>C нами уже</h1>
         <div className={styles.box}>
           <div className={styles.content}>
+            <h1 className={styles.title}>C нами уже</h1>
             <h1 className={styles.num}>
               <span>52</span>%
             </h1>
             <h2>работников нашей организации</h2>
           </div>
           <div className={styles.stata}>
-            <div className={styles.shkala}></div>
+            <m.div
+              initial={{ opacity: 0, y: 0, width: 0 }}
+              whileInView={{ opacity: 1, y: 0, width: '52%' }}
+              transition={{ duration: 2, ease: 'easeOut' }}
+              viewport={{ once: true, amount: 0.3 }}
+              className={styles.shkala}
+            ></m.div>
           </div>
         </div>
       </div>

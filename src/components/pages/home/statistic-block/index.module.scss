@@ -27,7 +27,8 @@
       .content {
         display: flex;
         align-items: center;
-        justify-content: space-around;
+        justify-content: center;
+        gap: 20px;
 
         .num {
           color: #fc6f1a;
@@ -48,8 +49,6 @@
         .shkala {
           background-color: #fc6f1a;
           border-radius: 40px;
-          animation: ease-in-out 2s grow-shkala 1;
-          width: 52%;
         }
       }
     }
@@ -154,15 +153,6 @@
         display: block;
       }
     }
-  }
-}
-
-@keyframes grow-shkala {
-  from {
-    width: 0;
-  }
-  to {
-    width: 52%;
   }
 }
 

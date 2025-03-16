@@ -1,3 +1,4 @@
+import { Accordion } from './accordion'
 import { Button } from './buttons/button'
 import { UndoBtn } from './buttons/undo'
 import { DateInput } from './fields/date-input'
@@ -27,5 +28,6 @@ export {
   InputSelect,
   Pagination,
   ImageSlider,
-  EmployeeSlider
+  EmployeeSlider,
+  Accordion
 }

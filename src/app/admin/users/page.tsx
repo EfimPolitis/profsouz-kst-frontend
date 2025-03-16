@@ -1,16 +1,11 @@
-'use client'
-
-import { Metadata } from 'next'
+import { Suspense } from 'react'
 
 import { UsersPage } from '@/components/pages'
 
-import { NO_INDEX_PAGE } from '@/constants/seo.constants'
-
-// export const metadata: Metadata = {
-//   title: 'Админ Панель | Пользователи',
-//   ...NO_INDEX_PAGE
-// }
-
-const Page = () => <UsersPage />
+const Page = () => (
+  <Suspense fallback={<div>Загрузка...</div>}>
+    <UsersPage />
+  </Suspense>
+)
 
 export default Page

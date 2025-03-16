@@ -9,7 +9,7 @@ import { Button, Field } from '@/components/ui'
 
 import { IResetPasswordForm } from '@/types/auth.types'
 
-import { useConfirmPassword } from '@/hooks/auth/useConfirmPassword'
+import { useResetPassword } from '@/hooks/auth/useResetPassword'
 
 import styles from './index.module.scss'
 import { resetPasswordFormRulles } from './rules'
@@ -27,7 +27,7 @@ export const ResetPasswordForm = () => {
     defaultValues: initialValues
   })
 
-  const { mutate } = useConfirmPassword()
+  const { mutate } = useResetPassword()
 
   const onSubmit = (data: IResetPasswordForm) => {
     if (data.newPassword !== data.confirmPassword) {

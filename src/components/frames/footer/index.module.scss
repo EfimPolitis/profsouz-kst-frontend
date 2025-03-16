@@ -2,74 +2,64 @@
   background-color: rgb(var(--secodary-color));
 
   .container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: auto;
 
-    .wrapper_col2 {
+    .wrap {
       display: flex;
       align-items: flex-start;
       gap: 20px;
       padding: 20px;
 
-      .footer_col1 {
+      .collumn_right {
         margin-top: 10px;
         width: 100%;
         display: flex;
         flex-direction: column;
         gap: 12px;
 
-        .socialmedia_list {
+        .rows_block {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+
+          .row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(var(--text-color), 0.6);
+
+            span {
+              color: rgb(var(--text-color));
+            }
+          }
+        }
+
+        .socialmedia {
           display: flex;
           align-items: center;
+          gap: 10px;
 
-          li {
-            margin-top: 20px;
-            padding: 0 10px;
-            font-size: 0.85rem;
+          .telegram {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: center;
+            gap: 10px;
 
-            .icon_box {
+            svg {
+              width: 40px;
+              height: 40px;
+              padding: 5px;
               display: flex;
               align-items: center;
               justify-content: center;
-              text-align: center;
-              width: 45px;
-              height: 45px;
-              margin: 0 10px;
               border-radius: 50%;
-              background: linear-gradient(
-                to bottom right,
-                rgb(237, 246, 255),
-                rgb(241, 249, 255)
-              );
-
-              &:hover {
-                background: #003f81;
-              }
-
-              &:hover #youtube,
-              &:hover #vk,
-              &:hover #ok,
-              &:hover #telegram {
-                fill: rgb(242, 248, 253);
-                transition: all 0.5s;
-              }
-
-              #youtube,
-              #vk,
-              #ok,
-              #telegram {
-                fill: #003f81;
-                transition: all 0.5s;
-              }
+              background-color: rgb(var(--text-color));
             }
           }
         }
       }
-      .footer_col2 {
+
+      .collumn_left {
         width: 100%;
         height: 100%;
 
@@ -85,7 +75,7 @@
 @media screen and (max-width: 1135px) {
 }
 @media screen and (max-width: 720px) {
-  .wrapper_col2 {
+  .wrap {
     flex-direction: column;
   }
 }

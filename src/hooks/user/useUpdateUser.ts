@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
 
@@ -39,9 +40,19 @@ export const useUpdateUser = () => {
       queryClient.invalidateQueries({ queryKey: [TanStackQueryKey.getUsers] })
       push(URL_PAGES.MANAGE_USERS)
     },
-    onError: () => {
+    onError: (error: unknown) => {
       toast.dismiss()
-      toast.error('При обновлении пользователя произошла ошибка')
+
+      let message = 'Произошла неизвестная ошибка'
+
+      if (error instanceof AxiosError) {
+        const serverMessage = error.response?.data?.message
+        if (typeof serverMessage === 'string') {
+          message = serverMessage
+        }
+      }
+
+      toast.error(message)
     }
   })
 

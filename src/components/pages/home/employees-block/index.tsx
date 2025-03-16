@@ -2,7 +2,7 @@ import { EmployeeSlider } from '@/components/ui'
 
 import { employees } from '@/constants/empoyee.constants'
 
-import styles from './EmployeesBlock.module.scss'
+import styles from './index.module.scss'
 
 export const EmployeesBlock = () => {
   return (

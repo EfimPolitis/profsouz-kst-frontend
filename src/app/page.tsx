@@ -17,9 +17,9 @@ export default function Home() {
         <FirstScreen />
         <InfoBlock />
         <StatisticBlock />
-        <EmployeesBlock />
         <NewsBlock />
-        <TelegramBlock />
+        <EmployeesBlock />
+        {/* <TelegramBlock /> */}
         <RecruitmentBlock />
         <WhatsappBlock />
       </main>

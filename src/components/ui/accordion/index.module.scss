@@ -1,0 +1,49 @@
+.accordion {
+  width: 100%;
+  margin: 0 auto;
+  width: 100%;
+  border-radius: 10px;
+  background-color: rgb(var(--secondary-color));
+  color: rgb(var(--text-color));
+  box-shadow: 0 0 5px 2px rgba(var(--text-color), 0.4);
+}
+
+.header {
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  color: rgb(var(--text-color));
+  background-color: rgb(var(--secondary-color));
+  transition: all ease-in-out 0.2s;
+
+  div {
+    color: rgb(var(--text-color));
+  }
+
+  &:hover {
+    background-color: rgb(var(--secondary-color-hover));
+  }
+}
+
+.title {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.contentWrapper {
+  padding: 10px 20px 20px 20px;
+  overflow: hidden;
+  color: rgba(var(--text-color, 0.8));
+  line-height: 2rem;
+}
+
+.content {
+  padding: 0.5rem;
+}

@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { AxiosError } from 'axios'
+import { AxiosError, AxiosResponse } from 'axios'
 import { useRouter } from 'next/navigation'
 import type { UseFormReset } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -7,7 +7,6 @@ import toast from 'react-hot-toast'
 import { TanStackQueryKey } from '@/constants/query-key.constants'
 
 import { IAuthFormData } from '@/types/auth.types'
-import { authErrorList } from '@/types/error.types'
 
 import { URL_PAGES } from '@/config/url.config'
 
@@ -38,11 +37,20 @@ export const useAuth = (isLogin: boolean, reset: UseFormReset<any>) => {
       push(isLogin ? URL_PAGES.HOME : URL_PAGES.MANAGE_USERS)
       refresh()
     },
-    onError: (error: AxiosError) => {
+    onError: (error: unknown) => {
+      console.log(error)
       toast.dismiss()
-      toast.error(
-        error.status ? authErrorList.get(error.status) : 'Произошла ошибка'
-      )
+
+      let message = 'Произошла неизвестная ошибка'
+
+      if (error instanceof AxiosError) {
+        const serverMessage = error.response?.data?.message
+        if (typeof serverMessage === 'string') {
+          message = serverMessage
+        }
+      }
+
+      toast.error(message)
     }
   })
 
