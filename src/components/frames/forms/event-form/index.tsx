@@ -175,7 +175,7 @@ export const EventForm = ({ isEditing }: IEventForm) => {
       />
       <div>
         <Field
-          placeholder={'Место ргистрации'}
+          placeholder={'Место регистрации'}
           style={{ width: '500px', paddingLeft: '20px' }}
           {...register('address', eventFormRules.address)}
         />

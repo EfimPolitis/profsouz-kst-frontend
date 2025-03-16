@@ -84,10 +84,9 @@ export const ChangePasswordForm = () => {
             changePasswordFormRulles.confirmPassword
           )}
         />
-
         <Button type='submit'>Сменить</Button>
       </form>
-      <Link href={URL_PAGES.RESET_PASSWORD}>Забыли пароль?</Link>
+      <Link href={URL_PAGES.REQUEST_EMAIL}>Забыли пароль?</Link>
     </div>
   )
 }

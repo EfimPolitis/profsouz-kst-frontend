@@ -26,7 +26,7 @@ export const EventPageId = () => {
   const { data: user } = useProfile()
 
   const event = data?.data
-  const userName = user?.userName
+  const userId = user?.userId
 
   const {
     mutate: mutateApplication,
@@ -47,7 +47,7 @@ export const EventPageId = () => {
   const handleConfirm = () => {
     const count = useBookingStore.getState().count
 
-    if (!userName) {
+    if (!userId) {
       return toast.error('Не удалост получить id пользователя')
     }
 
@@ -64,7 +64,7 @@ export const EventPageId = () => {
         'Вы не можете забронировать мест больше чем есть в наличии!'
       )
 
-    const responseData = { eventId, userName, places: count }
+    const responseData = { eventId, userId, places: count }
 
     mutateApplication(responseData)
 
