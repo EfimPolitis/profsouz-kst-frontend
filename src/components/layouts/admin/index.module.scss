@@ -5,6 +5,11 @@
 
   .page_layout {
     display: grid;
-    grid-template-rows: 60px 1fr;
+    grid-template-rows: 80px 1fr;
+
+    .page {
+      height: calc(100svh - 80px);
+      overflow-y: scroll;
+    }
   }
 }

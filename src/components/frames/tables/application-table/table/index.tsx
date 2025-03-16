@@ -1,8 +1,6 @@
-import { Loader } from '@/components/ui'
+import { useSearchParams } from 'next/navigation'
 
 import type { IApplication } from '@/types/application.types'
-
-import { useFiltersStore } from '@/store/store'
 
 import { TableRow } from '../row'
 
@@ -10,14 +8,11 @@ import styles from './index.module.scss'
 
 interface IApplicationTable {
   applications: IApplication[] | undefined
-  isLoading: boolean
 }
 
-export const ApplicationTable = ({
-  applications,
-  isLoading
-}: IApplicationTable) => {
-  const countPage = useFiltersStore.getState().queryParams.page
+export const ApplicationTable = ({ applications }: IApplicationTable) => {
+  const searchParams = useSearchParams()
+  const countPage = Number(searchParams.get('page'))
 
   return (
     <div className={styles.table_container}>
@@ -32,7 +27,7 @@ export const ApplicationTable = ({
           </tr>
         </thead>
         <tbody>
-          {isLoading ||
+          {!!applications?.length &&
             applications?.map((application, count) => (
               <TableRow
                 application={application}
@@ -42,15 +37,6 @@ export const ApplicationTable = ({
             ))}
         </tbody>
       </table>
-      <div className={styles.info}>
-        {isLoading ? (
-          <Loader size={30} />
-        ) : applications?.length ? (
-          ''
-        ) : (
-          <h2 className=''>Заявки на мероприятия не были найдены</h2>
-        )}
-      </div>
     </div>
   )
 }

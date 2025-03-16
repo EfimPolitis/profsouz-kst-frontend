@@ -15,7 +15,7 @@ export const InputSelect = ({
   data,
   Icon,
   top,
-  updateQueryParam,
+  updateQueryParams,
   queryKey,
   style,
   ...rest
@@ -62,8 +62,8 @@ export const InputSelect = ({
             {data?.map(item => (
               <li
                 onClick={() => {
-                  if (updateQueryParam && queryKey)
-                    updateQueryParam({ key: queryKey, value: item.key })
+                  if (updateQueryParams && queryKey)
+                    updateQueryParams(queryKey, item.key)
                   if (setState) setState(item.key)
                   setValue(item.label)
                   setIsShow(!isShow)

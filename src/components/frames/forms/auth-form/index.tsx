@@ -1,6 +1,8 @@
 'use client'
 
-import { AtSign, Lock, User, UserCog } from 'lucide-react'
+import cn from 'clsx'
+import { AtSign, Lock, LogOut, User, UserCog } from 'lucide-react'
+import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
@@ -18,23 +20,34 @@ import { InputSelect } from '@/components/ui/fields/input-select'
 import { roles, variantsRoles } from '@/constants/roles.constants'
 
 import type { IAuthFormData } from '@/types/auth.types'
-import { errorList } from '@/types/error.types'
 import { ERole } from '@/types/user.types'
 
-import { useAuth } from '@/hooks/user/useAuth'
+import { URL_PAGES } from '@/config/url.config'
+
+import { useAuth } from '@/hooks/auth/useAuth'
+import { useLogout } from '@/hooks/auth/useLogout'
 import { useGetUserById } from '@/hooks/user/useGetUserById'
+import { useProfile } from '@/hooks/user/useProfile'
 import { useUpdateUser } from '@/hooks/user/useUpdateUser'
 
 import styles from './index.module.scss'
-import { formRules } from './rules'
+import { authFormRules } from './rules'
 
 interface AuthFormProps {
-  isLogin?: boolean
-  isEditing?: boolean
+  type: 'login' | 'edit' | 'profile' | 'register'
 }
 
-const AuthForm = ({ isLogin, isEditing }: AuthFormProps) => {
-  const { userId } = useParams() as { userId: string }
+const titleList = {
+  login: 'Вход в систему',
+  profile: 'Профиль',
+  register: 'Форма создания пользователя',
+  edit: 'Форма редактирования пользователя'
+}
+
+export const AuthForm = ({ type }: AuthFormProps) => {
+  const { userId } = useParams() as { userId: string | undefined }
+  const { data: profile } = useProfile()
+  const { mutate: logout } = useLogout()
 
   const initialValues = useMemo(
     () => ({
@@ -52,20 +65,22 @@ const AuthForm = ({ isLogin, isEditing }: AuthFormProps) => {
   const { data } = useGetUserById(userId)
 
   useEffect(() => {
-    if (isEditing && data?.data) {
-      const user = data?.data
-
-      setValues({
-        userName: user.userName,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        middleName: user.middleName,
-        email: user.email,
-        password: '',
-        role: user.role
-      })
+    const user =
+      type === 'edit' ? data?.data : type === 'profile' ? profile : null
+    if (user) {
+      if (type === 'edit' || type === 'profile') {
+        setValues({
+          userName: user.userName,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          middleName: user.middleName || '',
+          email: user.email,
+          password: '',
+          role: user.role
+        })
+      }
     }
-  }, [isEditing && data?.data])
+  }, [type, data?.data, profile])
 
   const [values, setValues] = useState(initialValues)
   const { register, handleSubmit, reset, control } = useForm<IAuthFormData>({
@@ -74,38 +89,32 @@ const AuthForm = ({ isLogin, isEditing }: AuthFormProps) => {
     values
   })
 
-  const { authUser, isPendingAuth } = useAuth(!!isLogin, reset)
-
+  const { authUser, isPendingAuth } = useAuth(type === 'login', reset)
   const { updateUser, isPendingUpdate } = useUpdateUser()
 
   const isPending = isPendingAuth || isPendingUpdate
 
   const onSubmit: SubmitHandler<IAuthFormData> = useCallback(
     data => {
-      isEditing ? updateUser({ data, userId }) : authUser(data)
+      type === 'edit' || type === 'profile'
+        ? updateUser({ data, userId: userId || profile?.userId })
+        : authUser(data)
     },
-    [isEditing, userId, updateUser, authUser]
+    [type, userId, updateUser, authUser]
   )
 
   const onError = (errors: FieldErrors<IAuthFormData>) => {
-    const errorsKeys = Object.keys(errors)
+    const errorsKeys = Object.keys(errors) as Array<keyof IAuthFormData>
     errorsKeys.forEach(error => {
-      //@ts-ignore
       toast.error(`${errors[error]?.message}`)
-      //@ts-ignore
-      toast.error(`${errorList[error?.code]}`)
     })
   }
 
+  const title = titleList[type]
+
   return (
     <div className={styles.auth_block}>
-      {isLogin && <p>Вход в систему</p>}
-
-      {!isLogin && (
-        <h2 style={{ textAlign: 'center' }}>
-          Форма {isEditing ? 'редактирования' : 'создания'} пользователя
-        </h2>
-      )}
+      <p style={{ textAlign: 'center' }}>{title}</p>
       <form
         onSubmit={handleSubmit(onSubmit, onError)}
         className={styles.form}
@@ -113,60 +122,94 @@ const AuthForm = ({ isLogin, isEditing }: AuthFormProps) => {
         <Field
           placeholder='Логин'
           Icon={User}
-          {...register('userName', formRules.userName)}
+          autoComplete='username'
+          {...register('userName', authFormRules.userName)}
         />
-        {isLogin || (
+        {type !== 'login' && (
           <>
             <Field
               placeholder='Фамилия'
               Icon={User}
-              {...register('lastName', formRules.lastName)}
+              {...register('lastName', authFormRules.lastName)}
             />
             <Field
               placeholder='Имя'
               Icon={User}
-              {...register('firstName', formRules.firstName)}
+              {...register('firstName', authFormRules.firstName)}
             />
             <Field
               placeholder='Отчество'
               Icon={User}
-              {...register('middleName', formRules.middleName)}
+              {...register('middleName', authFormRules.middleName)}
             />
             <Field
               placeholder='Email'
               Icon={AtSign}
-              {...register('email', formRules.email)}
+              {...register('email', authFormRules.email)}
             />
-            <Controller
-              control={control}
-              name='role'
-              render={({ field: { onChange, value } }) => (
-                <InputSelect
-                  setState={onChange}
-                  initialValue={roles[ERole.USER]}
-                  Icon={UserCog}
-                  data={variantsRoles}
-                />
-              )}
-            />
+            {type !== 'profile' && (
+              <Controller
+                control={control}
+                name='role'
+                render={({ field: { onChange, value } }) => (
+                  <InputSelect
+                    setState={onChange}
+                    initialValue={roles[values.role]}
+                    Icon={UserCog}
+                    data={variantsRoles}
+                  />
+                )}
+              />
+            )}
           </>
         )}
-        <Field
-          placeholder='Пароль'
-          isPassword
-          Icon={Lock}
-          type='password'
-          {...register('password', isEditing ? {} : formRules.password)}
-        />
+        {type !== 'profile' && (
+          <Field
+            placeholder='Пароль'
+            isPassword
+            Icon={Lock}
+            type='password'
+            autoComplete='current-password'
+            {...register(
+              'password',
+              type === 'edit' ? {} : authFormRules.password
+            )}
+          />
+        )}
+        {type === 'profile' && (
+          <div className={styles.btn_block}>
+            <button
+              className={cn(styles.logout, styles.btn)}
+              onClick={() => logout()}
+            >
+              Выйти <LogOut className={styles.logout_icon} />
+            </button>
+            <Link
+              href={URL_PAGES.CHANGE_PASSWORD}
+              className={cn(styles.btn)}
+            >
+              Сменить пароль
+              <Lock />
+            </Link>
+          </div>
+        )}
+        {type === 'login' && (
+          <div>
+            <Link href={URL_PAGES.REQUEST_EMAIL}>Забыли пароль?</Link>
+          </div>
+        )}
         <Button
-          text={isLogin ? 'Войти' : isEditing ? 'Редактировать' : 'Создать'}
           type='submit'
           isLoading={isPending}
           disabled={isPending}
-        />
+        >
+          {type === 'login'
+            ? 'Войти'
+            : type === 'edit' || type === 'profile'
+              ? 'Редактировать'
+              : 'Создать'}
+        </Button>
       </form>
     </div>
   )
 }
-
-export default AuthForm

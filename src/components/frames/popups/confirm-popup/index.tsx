@@ -1,8 +1,9 @@
 import { m } from 'framer-motion'
 import React from 'react'
 
-import styles from './index.module.scss'
 import { Button } from '@/components/ui'
+
+import styles from './index.module.scss'
 
 interface ConfirmPopupProps {
   onCancel: () => void
@@ -33,15 +34,17 @@ export const ConfirmPopup: React.FC<ConfirmPopupProps> = ({
         <h2 className={styles.title}>{message}</h2>
         <div className={styles.buttonContainer}>
           <Button
-            text='Подтвердить'
             onClick={onConfirm}
             style={{ height: '50px', fontSize: '18px' }}
-          />
+          >
+            <p>Подтвердить</p>
+          </Button>
           <Button
-            text='Отмена'
             onClick={onCancel}
             style={{ height: '50px', fontSize: '18px' }}
-          />
+          >
+            <p>Отмена</p>
+          </Button>
         </div>
       </m.div>
     </m.div>

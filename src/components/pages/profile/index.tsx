@@ -1,0 +1,17 @@
+import { AuthForm } from '@/components/frames'
+import { UndoBtn } from '@/components/ui'
+
+import styles from './index.module.scss'
+
+const ProfilePage = () => {
+  return (
+    <div className={styles.page}>
+      <div className={styles.wrap}>
+        <UndoBtn size={30} />
+        <AuthForm type='profile' />
+      </div>
+    </div>
+  )
+}
+
+export default ProfilePage

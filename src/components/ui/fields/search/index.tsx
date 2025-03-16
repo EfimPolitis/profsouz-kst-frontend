@@ -1,36 +1,29 @@
 'use client'
 
 import { SearchIcon, X } from 'lucide-react'
-import { type InputHTMLAttributes, useEffect, useRef, useState } from 'react'
-
-import type { IQueryParam } from '@/types/query.types'
+import { type InputHTMLAttributes, useEffect, useRef } from 'react'
 
 import { useDebounce } from '@/hooks/useDebounce'
+import { useFilters } from '@/hooks/useFilters'
 
 import styles from './index.module.scss'
 
 interface ISearch {
   placeholder: string
-  queryParams: IQueryParam
-  updateQueryParam: (data: { key: keyof IQueryParam; value: string }) => void
-  isFilterReset?: boolean
 }
 
 export type TypeSearchProps = InputHTMLAttributes<HTMLInputElement> & ISearch
 
-export const Search = ({
-  placeholder,
-  updateQueryParam,
-  queryParams,
-  isFilterReset,
-  ...rest
-}: TypeSearchProps) => {
+export const Search = ({ placeholder, ...rest }: TypeSearchProps) => {
+  const { updateQueryParams, isFilterReset, queryParams } = useFilters()
+  console.log(queryParams.search)
+
   const inputRef = useRef<HTMLInputElement>(null)
 
   const [debounceSearch, search, setSearch] = useDebounce('', 500)
 
   useEffect(() => {
-    updateQueryParam({ key: 'search', value: search })
+    updateQueryParams('search', search)
   }, [debounceSearch])
 
   useEffect(() => {

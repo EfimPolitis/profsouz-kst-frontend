@@ -6,18 +6,21 @@ import { useEffect, useState } from 'react'
 
 import type { IQueryParam } from '@/types/query.types'
 
+import { useFilters } from '@/hooks/useFilters'
+
 import styles from './index.module.scss'
 
 interface IPagination {
   countPage: number
-  updateQueryParam: (data: { key: keyof IQueryParam; value: string }) => void
 }
 
-export const Pagination = ({ countPage, updateQueryParam }: IPagination) => {
+export const Pagination = ({ countPage }: IPagination) => {
+  const { updateQueryParams } = useFilters()
+
   const [page, setPage] = useState(0)
 
   useEffect(() => {
-    updateQueryParam({ key: 'page', value: (page + 1).toString() })
+    updateQueryParams('page', (page + 1).toString())
   }, [page])
 
   const handlePageClick = (i: number) => {

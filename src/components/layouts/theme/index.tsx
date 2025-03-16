@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { Toaster } from 'react-hot-toast'
 
-import { ThemeToggler } from '@/components/ui/theme-toggle'
+import { ThemeToggler } from '@/components/ui/buttons/theme-toggle'
 
 import {
   StorageKey,
@@ -34,8 +34,10 @@ export const ThemeLayout = (props: { children: React.ReactNode }) => {
         toastOptions={{
           style: {
             backgroundColor: theme === 'dark' ? '#303030' : '#ffffff',
-            color: theme === 'dark' ? '#d7d7d7' : '000'
-          }
+            color: theme === 'dark' ? '#d7d7d7' : '000',
+            textAlign: 'center'
+          },
+          duration: 5000
         }}
       />
     </ThemeContext.Provider>

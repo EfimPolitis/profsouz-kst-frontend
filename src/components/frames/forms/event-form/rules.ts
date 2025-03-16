@@ -4,7 +4,7 @@ import { regularUrl } from '@/constants/regulars'
 
 import type { IEventFormData } from '@/types/event.types'
 
-type TFormRules = {
+type TEventFormRules = {
   title: RegisterOptions<IEventFormData, 'title'>
   description: RegisterOptions<IEventFormData, 'description'>
   organizer: RegisterOptions<IEventFormData, 'organizer'>
@@ -12,11 +12,12 @@ type TFormRules = {
   categoriesId: RegisterOptions<IEventFormData, 'categoriesId'>
   date: RegisterOptions<IEventFormData, 'date'>
   link: RegisterOptions<IEventFormData, 'link'>
+  address: RegisterOptions<IEventFormData, 'address'>
   places: RegisterOptions<IEventFormData, 'places'>
   status: RegisterOptions<IEventFormData, 'status'>
 }
 
-export const formRules: TFormRules = {
+export const eventFormRules: TEventFormRules = {
   title: {
     required: {
       value: true,
@@ -48,6 +49,12 @@ export const formRules: TFormRules = {
     required: {
       value: true,
       message: '"Дата проведения" - обязательное поле'
+    }
+  },
+  address: {
+    required: {
+      value: true,
+      message: '"Адрес проведения" - обязательное поле'
     }
   },
   link: {

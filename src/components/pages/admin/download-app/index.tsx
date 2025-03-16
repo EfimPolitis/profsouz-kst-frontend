@@ -26,10 +26,9 @@ const DownloadAppPage = () => {
       <div className={styles.download_block}>
         <Download size={180} />
         <h2>Скачать настольную версию админ панели Профсоюза КСТ</h2>
-        <Button
-          text='Скачать'
-          onClick={handleDownloadApp}
-        />
+        <Button onClick={handleDownloadApp}>
+          <p>Скачать</p>
+        </Button>
       </div>
     </div>
   )

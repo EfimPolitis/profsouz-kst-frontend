@@ -22,6 +22,7 @@ export interface IEvent {
   link: string
   status: EStatus
   places: number
+  address: string
   createdAt: string
   updatedAt: string
 }
@@ -52,6 +53,7 @@ export interface IEventFormData {
   organizer: string
   date: string
   link?: string
+  address?: string
   places?: number
   status: EStatus
 }

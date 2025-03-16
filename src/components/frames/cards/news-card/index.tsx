@@ -2,7 +2,7 @@
 
 import { ArrowRight, Edit2, Eye, Trash2 } from 'lucide-react'
 import Link from 'next/link'
-import { type FC, useEffect, useState } from 'react'
+import { type FC, useState } from 'react'
 
 import { ImageSlider } from '@/components/ui/sliders/image-slider'
 
@@ -17,7 +17,7 @@ import { ConfirmPopup } from '../../popups/confirm-popup'
 import styles from './index.module.scss'
 
 export const NewsCard: FC<INewsCard> = ({ data }) => {
-  const { title, newsId, images, description, views, createdAt } = data
+  const { title, newsId, images, content, views, createdAt } = data
   const { data: user } = useProfile()
 
   const { mutateNews } = useDeleteNews()
@@ -67,7 +67,7 @@ export const NewsCard: FC<INewsCard> = ({ data }) => {
         <ImageSlider
           images={images}
           height={240}
-          style={{ borderRadius: '10px 10px 0px 0px' }}
+          style={{ borderRadius: '10px' }}
         />
         <div className={styles.info_block}>
           <p className={styles.date}>
@@ -82,13 +82,12 @@ export const NewsCard: FC<INewsCard> = ({ data }) => {
           </p>
           <p className={styles.title}>{title}</p>
           <p className={styles.description}>
-            {description.length > 150
-              ? description.slice(0, 150) + '...'
-              : description}
+            {content.length > 150 ? content.slice(0, 150) + '...' : content}
           </p>
           <Link
-            href={`/admin/news/${newsId}`}
+            href={`/news/${newsId}`}
             className={styles.details}
+            onClick={() => mutate(newsId)}
           >
             Подробнее
             <ArrowRight

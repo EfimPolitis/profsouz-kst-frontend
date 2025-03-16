@@ -21,9 +21,9 @@ export const applicationService = {
     return response
   },
 
-  async getByUserId(userId: string) {
+  async getByUserName(userName: string) {
     const response = await axiosWithAuth.get<IResponseEventsByUserId>(
-      `/application/${userId}`
+      `/application/${userName}`
     )
     return response
   },

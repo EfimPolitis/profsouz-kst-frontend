@@ -2,29 +2,25 @@
 
 import cn from 'clsx'
 import { FileText, Filter } from 'lucide-react'
+import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 import { FilterComponent, Sort } from '@/components/frames'
 import { ApplicationTable } from '@/components/frames/tables/application-table/table'
-import { Pagination, Search } from '@/components/ui'
+import { Button, Loader, Pagination, Search } from '@/components/ui'
 
 import { applicationSortList } from '@/constants/sort.constants'
 
-import { useFiltersStore } from '@/store/store'
-
 import { useGetApplications } from '@/hooks/application/useGetApplications'
+import { useFilters } from '@/hooks/useFilters'
 
 import styles from './index.module.scss'
 import { applicationService } from '@/services/application.service'
 
 const ApplicationsPage = () => {
-  const {
-    queryParams,
-    isFilterUpdated,
-    isFilterReset,
-    updateQueryParam,
-    reset
-  } = useFiltersStore()
+  const searchParams = useSearchParams()
+
+  const { queryParams, isFilterUpdated, reset } = useFilters()
 
   const { data, isFetching, refetch } = useGetApplications(
     queryParams,
@@ -37,10 +33,10 @@ const ApplicationsPage = () => {
 
   useEffect(() => {
     refetch()
-  }, [queryParams])
+  }, [searchParams])
 
   const applications = data?.data?.items
-  const countPage = data?.data?.countPage
+  const countPage = data?.data?.countPage || 0
 
   const [isOpenFilter, setIsOpenFilter] = useState(false)
 
@@ -52,18 +48,8 @@ const ApplicationsPage = () => {
     <div className={styles.page}>
       <div className={styles.wrap}>
         <div className={styles.top}>
-          <Search
-            placeholder={'Поиск...'}
-            queryParams={queryParams}
-            updateQueryParam={updateQueryParam}
-            isFilterReset={isFilterReset}
-          />
-          <Sort
-            data={applicationSortList}
-            queryParams={queryParams}
-            updateQueryParam={updateQueryParam}
-            isFilterReset={isFilterReset}
-          />
+          <Search placeholder={'Поиск...'} />
+          <Sort data={applicationSortList} />
           <button
             className={cn(styles.filter, {
               [styles.active]: isOpenFilter
@@ -84,19 +70,25 @@ const ApplicationsPage = () => {
         <FilterComponent
           isOpen={isOpenFilter}
           type='application'
-          updateQueryParam={updateQueryParam}
           handleResetFilter={handleResetFilter}
-          isFilterReset={isFilterReset}
         />
-        <ApplicationTable
-          applications={applications}
-          isLoading={isFetching}
-        />
+        <ApplicationTable applications={applications} />
+        {isFetching ? (
+          <div className={styles.not_found}>
+            <Loader size={50} />
+          </div>
+        ) : (
+          !!applications?.length || (
+            <div className={styles.not_found}>
+              <h2>Заявки на мероприятия не были найдены</h2>
+              <Button onClick={() => refetch}>
+                <p>Обновить</p>
+              </Button>
+            </div>
+          )
+        )}
       </div>
-      <Pagination
-        countPage={countPage || 0}
-        updateQueryParam={updateQueryParam}
-      />
+      <Pagination countPage={countPage || 0} />
     </div>
   )
 }

@@ -38,11 +38,16 @@
     }
   }
 
-  .info {
+  .not_found {
+    width: 400px;
+    min-height: 550px;
+    margin: auto;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    position: relative;
-    top: 20px;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
   }
 }
 

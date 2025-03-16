@@ -43,16 +43,16 @@ export const ImageSlider = ({ images, height, style }: IImageSlider) => {
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {images?.map((image, index) => (
-          <div
+          <img
             key={image.id}
             className={cn(styles.slide, {
               [styles.active]: index === currentIndex
             })}
+            src={`${image.url}`}
             style={{
-              height: `${height}px`,
-              backgroundImage: `url("${image.url}")`
+              height: `${height}px`
             }}
-          ></div>
+          ></img>
         ))}
       </div>
       {images.length > 1 && (

@@ -2,14 +2,14 @@ import type { RegisterOptions } from 'react-hook-form'
 
 import type { INewsFormData } from '@/types/news.types'
 
-type TFormRules = {
+type TNewsFormRules = {
   title: RegisterOptions<INewsFormData, 'title'>
   description: RegisterOptions<INewsFormData, 'description'>
   imagesId: RegisterOptions<INewsFormData, 'imagesId'>
   content: RegisterOptions<INewsFormData, 'content'>
 }
 
-export const formRules: TFormRules = {
+export const newsFormRules: TNewsFormRules = {
   title: {
     required: {
       value: true,

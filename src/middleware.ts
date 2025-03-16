@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { URL_PAGES } from './config/url.config'
 import { API_URL } from './constants/api.constants'
 import { EnumTokens } from './services/auth/auth.service'
+import { ERole } from './types/user.types'
 
 export async function middleware(request: NextRequest, response: NextResponse) {
   const { url, cookies } = request
@@ -16,10 +17,6 @@ export async function middleware(request: NextRequest, response: NextResponse) {
   const isMyEventsPage = url.includes('/my-events')
 
   const isUserPage = isEventsPage || isMyEventsPage
-  const isModerPage =
-    url.includes('/admin') &&
-    !url.includes('/users/create') &&
-    !url.includes('/users/edit')
   const isAdminPage = url.includes('/admin')
 
   if (!refreshToken && !isAuthPage) {
@@ -27,12 +24,6 @@ export async function middleware(request: NextRequest, response: NextResponse) {
 
     return redirectToHome(isAdminPage, request)
   }
-
-  // if (refreshToken) {
-  //   Cookies.set(EnumTokens.REFRESH_TOKEN, refreshToken, {
-  //     domain: 'localhost'
-  //   })
-  // }
 
   if (!accessToken && refreshToken) {
     try {
@@ -59,20 +50,27 @@ export async function middleware(request: NextRequest, response: NextResponse) {
 
   try {
     if (refreshToken) {
-      const { role } = await fetch(`${API_URL}/auth/access-token`, {
+      const { role } = (await fetch(`${API_URL}/auth/access-token`, {
         headers: {
           'Content-Type': 'application/json',
           authorization: `Bearer ${accessToken}`
         }
       })
         .then(res => res.json())
-        .then(data => data)
+        .then(data => data)) as { role: ERole }
 
-      if (role === 'ADMIN') return NextResponse.next()
+      if (
+        url.slice(-6) === '/admin' &&
+        (role === ERole.ADMIN || role === ERole.MODER)
+      )
+        return NextResponse.redirect(
+          new URL(URL_PAGES.MANAGE_EVENTS, request.url)
+        )
 
-      if (role === 'MODER' && isModerPage) return NextResponse.next()
+      if (role === ERole.ADMIN || role === ERole.MODER)
+        return NextResponse.next()
 
-      if (role === 'USER' && !isAdminPage) return NextResponse.next()
+      if (role === ERole.USER && !isAdminPage) return NextResponse.next()
     }
 
     if (isAdminPage || isUserPage) {
@@ -87,7 +85,13 @@ export async function middleware(request: NextRequest, response: NextResponse) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*', '/events/:path*', '/my-events/:path*', '/auth']
+  matcher: [
+    '/admin',
+    '/admin/:path*',
+    '/events/:path*',
+    '/my-events/:path*',
+    '/auth'
+  ]
 }
 
 const redirectToHome = (isAdminPage: boolean, request: NextRequest) => {

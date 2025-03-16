@@ -6,11 +6,10 @@ import styles from './index.module.scss'
 const CreateUserPage = () => {
   return (
     <div className={styles.page}>
-      <UndoBtn
-        size={30}
-        style={{ position: 'absolute', top: '10px', left: '10px' }}
-      />
-      <AuthForm />
+      <div className={styles.wrap}>
+        <UndoBtn size={30} />
+        <AuthForm type='register' />
+      </div>
     </div>
   )
 }

@@ -20,20 +20,28 @@ export const useUpdateUser = () => {
     error
   } = useMutation({
     mutationKey: [TanStackQueryKey.updateUser],
-    mutationFn: ({ data, userId }: { data: IAuthFormData; userId: string }) =>
-      userService.update(data, userId),
+    mutationFn: ({
+      data,
+      userId
+    }: {
+      data: IAuthFormData
+      userId: string | undefined
+    }) => {
+      if (!userId) throw new Error('Invalid userId')
+      else return userService.update(data, userId)
+    },
     onMutate: () => {
       toast.loading('Обработка...')
     },
     onSuccess: () => {
       toast.dismiss()
-      toast.success('Пользователь обнавлён успешно')
+      toast.success('Пользователь обновлён успешно')
       queryClient.invalidateQueries({ queryKey: [TanStackQueryKey.getUsers] })
       push(URL_PAGES.MANAGE_USERS)
     },
     onError: () => {
       toast.dismiss()
-      toast.error('При обнавлении пользователя произошла ошибка')
+      toast.error('При обновлении пользователя произошла ошибка')
     }
   })
 

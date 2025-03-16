@@ -2,6 +2,9 @@ export const TanStackQueryKey = {
   //auth
   auth: 'auth',
   logout: 'logout',
+  changePassword: 'changePassword',
+  requestResetPassword: 'requestResetPassword',
+  confirmPassword: 'confirmPassword',
 
   //user
   profile: 'profile',
@@ -13,7 +16,7 @@ export const TanStackQueryKey = {
 
   //application
   getApplications: 'getApplications',
-  getApplicationsByUserId: 'getApplicationsByUserId',
+  getApplicationsByUserName: 'getApplicationsByUserName',
   createApplication: 'createApplication',
 
   //event

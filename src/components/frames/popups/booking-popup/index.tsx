@@ -36,10 +36,11 @@ export const BookingPopup: React.FC<BookingPopupProps> = ({
         <h2 className={styles.title}>Сколько мест хотите забронировать?</h2>
         <div className={styles.cardContainer}>
           <Button
-            text='-'
             onClick={decrement}
             style={{ fontSize: '30px' }}
-          />
+          >
+            <p>-</p>
+          </Button>
           <Field
             type='number'
             value={count}
@@ -52,22 +53,25 @@ export const BookingPopup: React.FC<BookingPopupProps> = ({
             }}
           />
           <Button
-            text='+'
             onClick={increment}
             style={{ fontSize: '30px' }}
-          />
+          >
+            <p>+</p>
+          </Button>
         </div>
         <div className={styles.buttonContainer}>
           <Button
-            text='Подтвердить'
             onClick={() => onConfirm()}
             style={{ height: '50px', fontSize: '18px' }}
-          />
+          >
+            <p>Подтвердить</p>
+          </Button>
           <Button
-            text='Отмена'
             onClick={onClose}
             style={{ height: '50px', fontSize: '18px' }}
-          />
+          >
+            <p>Отмена</p>
+          </Button>
         </div>
       </m.div>
     </m.div>

@@ -13,7 +13,7 @@ export interface IFieldProps {
   Icon?: LucideIcon
   setState?: Dispatch<SetStateAction<string>>
   initialValue?: string
-  updateQueryParam?: (data: { key: keyof IQueryParam; value: string }) => void
+  updateQueryParams?: (key: keyof IQueryParam, value: string) => void
   queryKey?: keyof IQueryParam
   top?: number
 }

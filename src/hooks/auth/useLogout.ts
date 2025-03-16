@@ -22,6 +22,7 @@ export const useLogout = () => {
       toast.dismiss()
       push(URL_PAGES.HOME)
       queryClient.invalidateQueries({ queryKey: [TanStackQueryKey.profile] })
+      queryClient.getQueryCache().clear()
     },
     onError(error) {
       toast.dismiss()

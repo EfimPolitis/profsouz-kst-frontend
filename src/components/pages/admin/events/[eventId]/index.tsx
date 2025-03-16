@@ -6,10 +6,8 @@ import toast from 'react-hot-toast'
 
 import { BookingPopup } from '@/components/frames'
 import { RegisterBlock } from '@/components/frames/event-register-block'
-import { UndoBtn } from '@/components/ui'
+import { Button, UndoBtn } from '@/components/ui'
 import { ImageSlider } from '@/components/ui/sliders/image-slider'
-
-import { URL_PAGES } from '@/config/url.config'
 
 import { useBookingStore } from '@/store/store'
 
@@ -24,11 +22,11 @@ import EventPageSkeleton from './index.skeleton'
 export const EventPageId = () => {
   const { eventId } = useParams() as { eventId: string }
 
-  const { data, refetch } = useGetEventById(eventId)
+  const { data, refetch, isLoading } = useGetEventById(eventId)
   const { data: user } = useProfile()
 
   const event = data?.data
-  const userId = user?.userId
+  const userName = user?.userName
 
   const {
     mutate: mutateApplication,
@@ -49,7 +47,7 @@ export const EventPageId = () => {
   const handleConfirm = () => {
     const count = useBookingStore.getState().count
 
-    if (!userId) {
+    if (!userName) {
       return toast.error('Не удалост получить id пользователя')
     }
 
@@ -66,7 +64,7 @@ export const EventPageId = () => {
         'Вы не можете забронировать мест больше чем есть в наличии!'
       )
 
-    const responseData = { eventId, userId, places: count }
+    const responseData = { eventId, userName, places: count }
 
     mutateApplication(responseData)
 
@@ -79,40 +77,43 @@ export const EventPageId = () => {
 
   return (
     <div className={styles.page}>
+      <UndoBtn
+        size={30}
+        style={{
+          position: 'absolute',
+          top: '50px',
+          left: '520px',
+          zIndex: '1'
+        }}
+      />
       {isShow && (
         <BookingPopup
           onConfirm={handleConfirm}
           onClose={() => setIsShow(false)}
         />
       )}
-      {!isPending ? (
+      {!isLoading ? (
         <div className={styles.content}>
           {event ? (
             <>
-              <UndoBtn
-                size={30}
-                style={{
-                  position: 'absolute',
-                  top: '0px',
-                  left: '-60px',
-                  zIndex: '1'
-                }}
-              />
               <ImageSlider
-                height={500}
+                height={800}
                 images={event?.images}
-                style={{ borderRadius: '10px 10px 0px 0px' }}
+                style={{
+                  borderRadius: '10px 10px 10px 10px'
+                }}
               />
               <RegisterBlock
                 date={event.date}
                 event={event}
-                userId={userId}
                 setIsShow={setIsShow}
                 isError={isError}
                 isPending={isPending}
                 isSuccess={isSuccess}
               />
               <div className={styles.info_block}>
+                <h1>{event.title}</h1>
+                <hr />
                 <div className={styles.categories}>
                   {event.categories.map(category => (
                     <div
@@ -123,18 +124,50 @@ export const EventPageId = () => {
                     </div>
                   ))}
                 </div>
-                {event.places ? (
-                  <h3>Колличество оставшихся мест: {event.places}</h3>
-                ) : (
-                  ''
+                {event.places && (
+                  <div className={styles.row}>
+                    <h3>
+                      Колличество оставшихся мест: <span>{event.places}</span>
+                    </h3>
+                  </div>
                 )}
-                <h2>{event.title}</h2>
+                {event.address && (
+                  <div className={styles.row}>
+                    <h3>
+                      Место регистрации: <span>{event.address}</span>
+                    </h3>
+                  </div>
+                )}
+                {event.organizer && (
+                  <div className={styles.row}>
+                    <h3>
+                      Организатор: <span>{event.organizer}</span>
+                    </h3>
+                  </div>
+                )}
+                <div className={styles.row}>
+                  <h2>Описание</h2>
+                </div>
                 <div className={styles.description}>
                   {event?.description
                     .split('\n')
                     ?.map((label, index) => <p key={index}>{label}</p>)}
                 </div>
-                <p>Организатор: {event.organizer}</p>
+                <Button
+                  onClick={() => setIsShow(true)}
+                  className={styles.button}
+                  isPending={isPending}
+                  isError={isError}
+                  isSuccess={isSuccess}
+                  disabled={event.places === 0}
+                  style={{ width: '280px', fontSize: '20px' }}
+                >
+                  <p>
+                    {event.places === 0
+                      ? 'Больше нет мест на мероприятие'
+                      : 'Хочу учавствовать'}
+                  </p>
+                </Button>
               </div>
             </>
           ) : (

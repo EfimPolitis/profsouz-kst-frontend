@@ -32,7 +32,7 @@ import { useGetEventById } from '@/hooks/event/useGetEventById'
 import { useUpdateEvent } from '@/hooks/event/useUpdateEvent'
 
 import styles from './index.module.scss'
-import { formRules } from './rules'
+import { eventFormRules } from './rules'
 
 interface IEventForm {
   isEditing?: boolean
@@ -50,7 +50,7 @@ const variants = [
 ]
 
 export const EventForm = ({ isEditing }: IEventForm) => {
-  const { eventId } = useParams() as { eventId: string }
+  const { eventId } = useParams() as { eventId: string | undefined }
 
   const initialValues = useMemo(
     () => ({
@@ -76,20 +76,18 @@ export const EventForm = ({ isEditing }: IEventForm) => {
       const categoriesId = event.categories.map(category => category.id)
       const imagesId = event.images.map(image => image.id)
 
-      const date = new Date(event.date)
-      date.setHours(date.getHours() + 3)
-
       setImages(event.images)
       setValues({
         title: event.title,
         description: event.description,
         organizer: event.organizer,
         imagesId,
-        date: date.toISOString().slice(0, 16),
+        date: event.date.slice(0, 16),
         categoriesId,
         link: event.link,
-        places: event.places,
-        status: event.status
+        places: event.places || 0,
+        status: event.status,
+        address: event.address
       })
     }
   }, [isEditing, data?.data])
@@ -112,6 +110,7 @@ export const EventForm = ({ isEditing }: IEventForm) => {
   const onSubmit: SubmitHandler<IEventFormData> = useCallback(
     data => {
       data.places = Number(data.places)
+      data.date = data.date + 'Z'
 
       isEditing ? eventId && updateEvent({ data, eventId }) : createEvent(data)
     },
@@ -119,9 +118,11 @@ export const EventForm = ({ isEditing }: IEventForm) => {
   )
 
   const onError = useCallback((errors: FieldErrors<IEventFormData>) => {
-    const errorsKeys = Object.keys(errors).reverse()
+    const errorsKeys = Object.keys(errors).reverse() as Array<
+      keyof IEventFormData
+    >
+
     errorsKeys.forEach(error => {
-      //@ts-ignore
       toast.error(`${errors[error]?.message}`)
     })
   }, [])
@@ -135,22 +136,22 @@ export const EventForm = ({ isEditing }: IEventForm) => {
       <Field
         placeholder='Заголовок'
         style={{ width: '450px', paddingLeft: '20px' }}
-        {...register('title', formRules.title)}
+        {...register('title', eventFormRules.title)}
       />
       <TextArea
         style={{ maxWidth: '800px', minHeight: '400px' }}
         placeholder='Описание'
-        {...register('description', formRules.description)}
+        {...register('description', eventFormRules.description)}
       />
       <Field
         placeholder='Организатор'
         style={{ width: '450px', paddingLeft: '20px' }}
-        {...register('organizer', formRules.organizer)}
+        {...register('organizer', eventFormRules.organizer)}
       />
       <Controller
         control={control}
         name='imagesId'
-        rules={formRules.imagesId}
+        rules={eventFormRules.imagesId}
         render={({ field: { value: imagesId, onChange: setImagesId } }) => (
           <Uploader
             imagesId={imagesId}
@@ -163,7 +164,7 @@ export const EventForm = ({ isEditing }: IEventForm) => {
       <Controller
         control={control}
         name='categoriesId'
-        rules={formRules.categoriesId}
+        rules={eventFormRules.categoriesId}
         render={({ field: { value, onChange } }) => (
           <SelectCategories
             onChange={onChange}
@@ -173,32 +174,67 @@ export const EventForm = ({ isEditing }: IEventForm) => {
         )}
       />
       <div>
+        <Field
+          placeholder={'Место ргистрации'}
+          style={{ width: '500px', paddingLeft: '20px' }}
+          {...register('address', eventFormRules.address)}
+        />
+      </div>
+      <div>
         <DateInput
-          min={new Date().toISOString()}
-          {...register('date', formRules.date)}
+          min={new Date().toISOString().slice(0, 16)}
+          {...register('date', eventFormRules.date)}
         />
       </div>
       <div>
         <Field
           placeholder={'Введите ссылку на мероприятие'}
           style={{ width: '500px', paddingLeft: '20px' }}
-          {...register('link', formRules.link)}
+          {...register('link', eventFormRules.link)}
         />
       </div>
       <div>
         <h3>Количество мест</h3>
-        <Field
-          style={{ width: '120px', textAlign: 'center', padding: '5px' }}
-          type={'number'}
-          {...register('places', formRules.places)}
+        <br />
+        <Controller
+          control={control}
+          name='places'
+          rules={eventFormRules.places}
+          render={({ field: { value, onChange } }) => (
+            <div className={styles.places_block}>
+              <Button
+                onClick={() => onChange(value ? value - 1 : 0)}
+                className={styles.btn}
+                type='button'
+              >
+                <p>-</p>
+              </Button>
+              <Field
+                style={{ width: '140px', textAlign: 'center', padding: '5px' }}
+                type={'number'}
+                value={value}
+                onChange={e => onChange(Number(e.target.value))}
+              />
+              <Button
+                onClick={() =>
+                  onChange(value === undefined ? undefined : value + 1)
+                }
+                className={styles.btn}
+                type='button'
+              >
+                <p>+</p>
+              </Button>
+            </div>
+          )}
         />
       </div>
       <div>
         <h3>Тип меропрития</h3>
+        <br />
         <Controller
           control={control}
           name='status'
-          rules={formRules.status}
+          rules={eventFormRules.status}
           render={({ field: { value, onChange } }) => (
             <InputRadio
               variants={variants}
@@ -209,12 +245,13 @@ export const EventForm = ({ isEditing }: IEventForm) => {
         />
       </div>
       <Button
-        text={isEditing ? 'Сохранить изменения' : 'Создать'}
         isPending={isPending}
         isSuccess={isSuccess}
         style={{ width: '400px' }}
         type='submit'
-      />
+      >
+        <p>{isEditing ? 'Сохранить изменения' : 'Создать'}</p>
+      </Button>
     </form>
   )
 }

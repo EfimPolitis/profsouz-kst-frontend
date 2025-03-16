@@ -1,18 +1,14 @@
 .page {
-  height: calc(100svh);
   padding: 40px 80px;
   background-color: rgb(var(--secondary-color));
   position: relative;
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   justify-content: center;
-  overflow-y: scroll;
 
   .content {
     width: 1200px;
     background-color: rgb(var(--secondary-color));
-    border-radius: 10px;
-    box-shadow: 1px 1px 10px rgba(var(--text-color), 0.4);
     position: relative;
 
     .info_block {
@@ -31,16 +27,25 @@
         gap: 10px;
       }
 
+      .row {
+        color: rgba(var(--text-color), 0.6);
+        line-height: 40px;
+
+        span {
+          color: rgb(var(--text-color));
+        }
+      }
+
       .description {
-        width: 100%;
-        text-indent: 10px;
+        word-wrap: break-word;
+        line-height: 36px;
+        word-spacing: 5px;
         position: relative;
         display: flex;
         flex-direction: column;
         gap: 10px;
-        overflow: hidden;
-        word-wrap: break-all;
-        overflow-wrap: break-all;
+        font-weight: 500;
+        color: rgb(var(--text-color));
       }
     }
   }

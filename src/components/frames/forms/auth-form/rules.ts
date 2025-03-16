@@ -4,7 +4,7 @@ import { regularEmail } from '@/constants/regulars'
 
 import type { IAuthFormData } from '@/types/auth.types'
 
-type TFormRules = {
+type TAuthFormRules = {
   userName: RegisterOptions<IAuthFormData, 'userName'>
   firstName: RegisterOptions<IAuthFormData, 'firstName'>
   lastName: RegisterOptions<IAuthFormData, 'lastName'>
@@ -13,7 +13,7 @@ type TFormRules = {
   password: RegisterOptions<IAuthFormData, 'password'>
 }
 
-export const formRules: TFormRules = {
+export const authFormRules: TAuthFormRules = {
   userName: {
     required: {
       value: true,

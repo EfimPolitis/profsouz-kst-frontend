@@ -1,74 +1,67 @@
 'use client'
 
 import cn from 'clsx'
-import { CalendarRange, Layout, LogOut, SquareGanttChart } from 'lucide-react'
+import { LogOut } from 'lucide-react'
 import Link from 'next/link'
-import { Dispatch, RefObject, SetStateAction, forwardRef } from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 
-import { URL_PAGES } from '@/config/url.config'
+import { ERole } from '@/types/user.types'
 
-import { useLogout } from '@/hooks/user/useLogout'
+import { useLogout } from '@/hooks/auth/useLogout'
 
 import styles from './index.module.scss'
+import { MENU_DATA } from './menu.data'
 
 interface IMenu {
-  setIsShow: Dispatch<SetStateAction<boolean>>
   role: string | undefined
-  ref: RefObject<HTMLDivElement> | undefined
 }
 
-export const Menu = forwardRef<HTMLDivElement, IMenu>(
-  ({ setIsShow, role }, ref) => {
-    const { mutate } = useLogout()
-    const handleLogout = () => mutate()
-
-    return (
-      <div
-        className={cn(styles.menu)}
-        ref={ref}
-        onClick={() => setIsShow(false)}
-      >
-        <ul>
-          {(role === 'ADMIN' || role === 'MODER') && (
-            <li>
-              <Link href={URL_PAGES.MANAGE_EVENTS}>
-                Админ панель
-                <Layout />
-              </Link>
-            </li>
-          )}
-          <li>
-            <Link href={URL_PAGES.NEWS}>
-              Новости
-              <CalendarRange />
-            </Link>
-          </li>
-          <li>
-            <Link href={URL_PAGES.EVENTS}>
-              Мероприятия
-              <CalendarRange />
-            </Link>
-          </li>
-          <li>
-            <Link href={URL_PAGES.MY_EVENTS}>
-              Мои мероприятия
-              <SquareGanttChart />
-            </Link>
-          </li>
-          <li
-            className={styles.logout}
-            onClick={event => {
-              // event.stopPropagation() // Останавливаем всплытие
-              handleLogout()
-            }}
-          >
-            Выйти
-            <LogOut />
-          </li>
-        </ul>
-      </div>
-    )
+export const Menu = ({ role: userRole }: IMenu) => {
+  const { mutate } = useLogout()
+  const handleLogout = () => {
+    mutate()
   }
-)
+
+  return (
+    <div className={cn(styles.menu)}>
+      <ul>
+        {MENU_DATA.map(({ link, title, icon: Icon, role }) => {
+          if (
+            (role === ERole.MODER && userRole === ERole.MODER) ||
+            userRole === ERole.ADMIN
+          ) {
+            return (
+              <li key={link}>
+                <Link href={link}>
+                  {title}
+                  <Icon />
+                </Link>
+              </li>
+            )
+          } else if (!role) {
+            return (
+              <li key={link}>
+                <Link href={link}>
+                  {title}
+                  <Icon />
+                </Link>
+              </li>
+            )
+          }
+        })}
+        <li
+          className={styles.logout}
+          onClick={event => {
+            event.stopPropagation()
+            handleLogout()
+          }}
+        >
+          Выйти
+          <LogOut />
+        </li>
+      </ul>
+    </div>
+  )
+}
 
 Menu.displayName = 'menu'

@@ -2,12 +2,19 @@ import {
   BookCopy,
   CalendarRange,
   Download,
+  LucideIcon,
   Newspaper,
   SquareGanttChart,
   Users
 } from 'lucide-react'
 
 import { URL_PAGES } from '@/config/url.config'
+
+interface ISidebarData {
+  name: string
+  icon: LucideIcon
+  link: string
+}
 
 export const SidebarData = [
   {

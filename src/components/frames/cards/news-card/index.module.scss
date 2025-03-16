@@ -1,6 +1,6 @@
 .card {
   width: 400px;
-  height: 450px;
+  height: 480px;
   border-radius: 15px;
   box-shadow: 0px 0px 5px 0px rgba(var(--text-color), 0.2);
   position: relative;
@@ -89,19 +89,15 @@
     }
   }
 
-  img {
-    border-radius: 15px;
-  }
-
   .info_block {
-    margin-top: 5px;
+    margin-top: 10px;
     padding: 0px 20px;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 10px;
     color: rgb(var(--text-color));
     font-weight: 600;
-    font-size: 14px;
+    font-size: 18px;
 
     .date {
       color: rgba(var(--text-color), 0.6);
@@ -112,7 +108,7 @@
     }
 
     .title {
-      font-size: 16px;
+      font-size: 20px;
     }
 
     .description {
@@ -121,8 +117,8 @@
 
     .details {
       position: absolute;
-      font-size: 16px;
-      bottom: 10px;
+      font-size: 18px;
+      bottom: 15px;
       display: flex;
       align-items: center;
       gap: 5px;
@@ -140,7 +136,7 @@
     }
 
     a {
-      color: #005ab8;
+      color: rgb(var(--primary-color));
     }
 
     .btn {

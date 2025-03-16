@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 
 import { Button, DateInput, InputSelect } from '@/components/ui'
 
-import type { IQueryParam } from '@/types/query.types'
+import { useFilters } from '@/hooks/useFilters'
 
 import { FILTER_DATA } from './filter.data'
 import styles from './index.module.scss'
@@ -15,17 +15,15 @@ interface IFilters {
   isOpen: boolean
   type: 'event' | 'user' | 'application' | 'news'
   handleResetFilter: () => void
-  updateQueryParam: (data: { key: keyof IQueryParam; value: string }) => void
-  isFilterReset: boolean
 }
 
 export const FilterComponent = ({
   isOpen,
   type,
-  handleResetFilter,
-  updateQueryParam,
-  isFilterReset
+  handleResetFilter
 }: IFilters) => {
+  const { updateQueryParams, isFilterReset } = useFilters()
+
   const [resetKey, setResetKey] = useState(0)
 
   useEffect(() => {
@@ -68,10 +66,7 @@ export const FilterComponent = ({
                         type={input?.options?.type}
                         style={input?.options?.style}
                         onChange={event =>
-                          updateQueryParam({
-                            key: input.queryKey,
-                            value: event.target.value
-                          })
+                          updateQueryParams(input.queryKey, event.target.value)
                         }
                       />
                     </>
@@ -81,7 +76,7 @@ export const FilterComponent = ({
                       key={resetKey}
                       data={input?.options?.data}
                       initialValue={input?.options?.data?.[0]?.label}
-                      updateQueryParam={updateQueryParam}
+                      updateQueryParams={updateQueryParams}
                       queryKey={input?.queryKey}
                       style={input?.options?.style}
                       top={55}
@@ -93,10 +88,11 @@ export const FilterComponent = ({
           ))}
         </div>
         <Button
-          text='Сбросить фильтры'
           onClick={handleResetFilter}
           className={styles.resetBtn}
-        />
+        >
+          <p>Сбросить фильтры</p>
+        </Button>
       </m.div>
     </div>
   )

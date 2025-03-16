@@ -28,7 +28,7 @@ export const useUpdateNews = () => {
     },
     onSuccess: () => {
       toast.dismiss()
-      toast.success('Новость успешно обнавленна')
+      toast.success('Новость успешно обновленна')
       queryClient.invalidateQueries({ queryKey: [TanStackQueryKey.getNews] })
       push(URL_PAGES.MANAGE_NEWS)
     },

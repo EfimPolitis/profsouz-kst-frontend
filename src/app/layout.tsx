@@ -50,6 +50,15 @@ export const metadata: Metadata = {
   }
 }
 
+const setInitialTheme = `
+(function() {
+  try {
+    var theme = localStorage.getItem('color-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', theme);
+  } catch (_) {}
+})();
+`
+
 export default function RootLayout({
   children
 }: Readonly<{
@@ -57,6 +66,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='ru'>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: setInitialTheme }} />
+      </head>
       <body className={zen.className}>
         <Providers>{children}</Providers>
       </body>

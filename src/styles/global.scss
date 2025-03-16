@@ -61,7 +61,7 @@ ul {
 a {
   color: inherit;
   text-decoration: none;
-  color: var(--text-color);
+  color: rgb(var(--text-color));
 }
 
 ::-webkit-scrollbar {
@@ -71,7 +71,7 @@ a {
 
 ::-webkit-scrollbar-thumb {
   width: 8px;
-  border: 1px solid rgb(var(--secondary-color-hover));
+  border: 2px solid rgb(var(--secondary-color));
   border-radius: 5px;
   background-color: rgb(var(--secondary-color-hover));
 }
@@ -81,8 +81,12 @@ input:-webkit-autofill {
   -webkit-text-fill-color: rgb(var(--text-color));
 }
 
-input[type='number'] {
-  appearance: textfield;
+input[type='number'],
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 input[type='text'] {

@@ -16,7 +16,8 @@ import { ConfirmPopup } from '../../popups/confirm-popup'
 import styles from './index.module.scss'
 
 export const EventCard: FC<IEventCard> = ({ data, takePlaces }) => {
-  const { title, places, categories, date, eventId, images, status } = data
+  const { title, places, categories, date, eventId, images, status, address } =
+    data
   const { data: userData } = useProfile()
 
   const user = userData
@@ -40,7 +41,7 @@ export const EventCard: FC<IEventCard> = ({ data, takePlaces }) => {
       <div className={styles.card}>
         <Link
           className={styles.card_link}
-          href={`/admin/events/${eventId}`}
+          href={`/events/${eventId}`}
         />
         {user?.role === 'ADMIN' || user?.role === 'MODER' ? (
           <>
@@ -69,7 +70,7 @@ export const EventCard: FC<IEventCard> = ({ data, takePlaces }) => {
         <ImageSlider
           images={images}
           height={240}
-          style={{ borderRadius: '10px 10px 0px 0px' }}
+          style={{ borderRadius: '10px' }}
         />
         <div className={styles.info_block}>
           <p
@@ -92,7 +93,7 @@ export const EventCard: FC<IEventCard> = ({ data, takePlaces }) => {
               )
             })}
           </div>
-          <p className={styles.date}>
+          <p className={styles.row}>
             Дата проведения:{' '}
             <span>
               {new Date(date).toLocaleDateString('ru-RU', {
@@ -102,24 +103,30 @@ export const EventCard: FC<IEventCard> = ({ data, takePlaces }) => {
               })}
             </span>
           </p>
-          <p className={styles.date}>
+          <p className={styles.row}>
             Время проведения:{' '}
             <span>
               {new Date(date).toLocaleTimeString('ru-RU', {
                 hour: 'numeric',
-                minute: 'numeric'
+                minute: 'numeric',
+                timeZone: 'UTC'
               })}
             </span>
           </p>
           {takePlaces && (
-            <p className={styles.places}>
+            <p className={styles.row}>
               Мест взято <span>{takePlaces}</span>
             </p>
           )}
-          <p className={styles.places}>
+          <p className={styles.row}>
             Мест осталось: <span>{places}</span>
           </p>
-
+          <p className={styles.row}>
+            Место регистрации:{' '}
+            <span style={{ lineHeight: '25px' }}>
+              {address.length > 60 ? address.slice(0, 59) + '...' : address}
+            </span>
+          </p>
           <Link
             href={`/events/${eventId}`}
             className={styles.details}

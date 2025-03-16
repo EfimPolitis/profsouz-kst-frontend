@@ -8,7 +8,7 @@ const AdminLayout = (props: { children: React.ReactNode }) => {
       <Sidebar />
       <div className={styles.page_layout}>
         <Profile />
-        {props.children}
+        <div className={styles.page}>{props.children}</div>
       </div>
     </div>
   )

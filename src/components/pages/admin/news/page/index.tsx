@@ -11,27 +11,19 @@ import {
   NewsCardSkeleton,
   Sort
 } from '@/components/frames'
-import { Pagination, Search } from '@/components/ui'
+import { Button, Pagination, Search } from '@/components/ui'
 
 import { newsSortList } from '@/constants/sort.constants'
 
 import { URL_PAGES } from '@/config/url.config'
 
-import { useFiltersStore } from '@/store/store'
-
 import { useGetNews } from '@/hooks/news/useGetNews'
+import { useFilters } from '@/hooks/useFilters'
 
 import styles from './index.module.scss'
 
 const NewsPage = () => {
-  const {
-    queryParams,
-    isFilterUpdated,
-    isFilterReset,
-    updateQueryParam,
-    reset
-  } = useFiltersStore()
-
+  const { queryParams, isFilterUpdated, reset } = useFilters()
   const { data, isFetching, refetch } = useGetNews(queryParams, isFilterUpdated)
 
   useEffect(() => {
@@ -55,18 +47,8 @@ const NewsPage = () => {
     <div className={styles.page}>
       <div className={styles.wrap}>
         <div className={styles.top}>
-          <Search
-            placeholder='Поиск...'
-            queryParams={queryParams}
-            updateQueryParam={updateQueryParam}
-            isFilterReset={isFilterReset}
-          />
-          <Sort
-            data={newsSortList}
-            queryParams={queryParams}
-            updateQueryParam={updateQueryParam}
-            isFilterReset={isFilterReset}
-          />
+          <Search placeholder='Поиск...' />
+          <Sort data={newsSortList} />
           <button
             className={cn(styles.filter, {
               [styles.active]: isOpenFilter
@@ -87,9 +69,7 @@ const NewsPage = () => {
         <FilterComponent
           isOpen={isOpenFilter}
           type='news'
-          updateQueryParam={updateQueryParam}
           handleResetFilter={handleResetFilter}
-          isFilterReset={isFilterReset}
         />
         <div className={styles.news_block}>
           {isFetching
@@ -102,20 +82,16 @@ const NewsPage = () => {
                 />
               ))}
         </div>
-
-        {!isFetching && !news?.length && (
-          <h3
-            className={styles.not_found}
-            style={{ position: 'relative', top: '0px' }}
-          >
-            Новости не были найденны
-          </h3>
+        {isFetching || !!news?.length || (
+          <div className={styles.not_found}>
+            <h2>Новости не были найдены</h2>
+            <Button onClick={() => refetch()}>
+              <p>Обновить</p>
+            </Button>
+          </div>
         )}
       </div>
-      <Pagination
-        countPage={countPage || 0}
-        updateQueryParam={updateQueryParam}
-      />
+      <Pagination countPage={countPage || 0} />
     </div>
   )
 }

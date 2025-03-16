@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { LazyMotion, domAnimation } from 'framer-motion'
 import { PropsWithChildren, useState } from 'react'
 
+import { ReactScan } from '@/components/layouts/react-scan'
 import { ThemeLayout } from '@/components/layouts/theme'
 
 export const Providers = ({ children }: PropsWithChildren) => {
@@ -23,6 +24,7 @@ export const Providers = ({ children }: PropsWithChildren) => {
       <QueryClientProvider client={client}>
         <ThemeLayout>
           {children}
+          {/* <ReactScan /> */}
           <ReactQueryDevtools initialIsOpen={false} />
         </ThemeLayout>
       </QueryClientProvider>

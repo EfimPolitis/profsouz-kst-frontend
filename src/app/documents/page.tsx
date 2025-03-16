@@ -4,8 +4,7 @@ import Layout from '@/components/layouts/home-layout'
 import { BuildPage } from '@/components/pages/build'
 
 export const metadata: Metadata = {
-  title: 'Документы',
-  description: ''
+  title: 'Документы'
 }
 
 const Page = () => {

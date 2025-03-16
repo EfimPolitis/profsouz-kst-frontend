@@ -1,4 +1,8 @@
-import type { IAuthFormData, IAuthResponse } from '@/types/auth.types'
+import type {
+  IAuthFormData,
+  IAuthResponse,
+  IChangePasswordFormData
+} from '@/types/auth.types'
 
 import { axiosClassic, axiosWithAuth } from '@/api/interseptors'
 
@@ -35,6 +39,34 @@ export const authService = {
     const response = await axiosClassic.post<boolean>('/auth/logout')
 
     if (response.data) removeFromStorage()
+
+    return response
+  },
+
+  async changePassword(data: IChangePasswordFormData) {
+    const response = await axiosWithAuth.post('/auth/change-password', {
+      currentPassword: data.currentPassword,
+      newPassword: data.newPassword
+    })
+
+    return response
+  },
+
+  async requestResetPassword(email: string) {
+    const response = await axiosClassic.post('/auth/email/request-reset', {
+      email
+    })
+
+    return response
+  },
+
+  async resetPassword(token: string, newPassword: string) {
+    const response = await axiosClassic.post(
+      `/auth/email/reset-password/${token}`,
+      {
+        newPassword
+      }
+    )
 
     return response
   }

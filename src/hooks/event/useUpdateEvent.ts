@@ -33,7 +33,7 @@ export const useUpdateEvent = () => {
     },
     onSuccess: () => {
       toast.dismiss()
-      toast.success('Мероприятие успешно обнавленно')
+      toast.success('Мероприятие успешно обновленно')
       queryClient.invalidateQueries({ queryKey: [TanStackQueryKey.getEvents] })
       push(URL_PAGES.MANAGE_EVENTS)
     },

@@ -15,7 +15,7 @@ export interface IResponeApplications {
 }
 
 export interface IApplicationData {
-  userId: string
+  userName: string
   eventId: string
   places: number
 }

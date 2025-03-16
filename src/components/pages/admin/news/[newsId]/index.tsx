@@ -32,17 +32,33 @@ export const NewsPageId = () => {
                   zIndex: '1'
                 }}
               />
-              <ImageSlider
-                height={500}
-                images={news?.images}
-                style={{ borderRadius: '10px 10px 0px 0px' }}
-              />
               <div className={styles.info_block}>
                 <div className={styles.views}>
                   <Eye />
                   <span>{news.views}</span>
                 </div>
-                <h2>{news.title}</h2>
+                <h1>{news.title}</h1>
+                <hr />
+                <div className={styles.row}>
+                  <h3>
+                    Опубликованно:{' '}
+                    <span>
+                      {new Date(news.createdAt).toLocaleDateString('ru-RU', {
+                        day: 'numeric',
+                        month: 'short',
+                        year: 'numeric'
+                      })}
+                    </span>
+                  </h3>
+                </div>
+                <ImageSlider
+                  height={600}
+                  images={news?.images}
+                  style={{ borderRadius: '10px 10px 10px 10px' }}
+                />
+                <div className={styles.row}>
+                  <h2>Описание</h2>
+                </div>
                 <div className={styles.description}>
                   {news?.content
                     .split('\n')
@@ -51,7 +67,7 @@ export const NewsPageId = () => {
               </div>
             </>
           ) : (
-            <p>Кажется что данной новости уже нет...</p>
+            <p>Данное мероприятие не было найденно</p>
           )}
         </div>
       ) : (

@@ -4,15 +4,14 @@ import { useEffect } from 'react'
 
 import { ListRowParent } from '@/components/frames'
 
-import { useFiltersStore } from '@/store/store'
-
 import { useGetCategories } from '@/hooks/category/useGetCategories'
+import { useFilters } from '@/hooks/useFilters'
 
 import styles from './index.module.scss'
 
 const CategoriesPage = () => {
-  const { updateQueryParam, queryParams, isFilterUpdated, reset } =
-    useFiltersStore()
+  const { queryParams, isFilterUpdated, reset, updateQueryParams } =
+    useFilters()
 
   const { categories, setCategories, isLoading, refetch } = useGetCategories(
     queryParams,
@@ -32,9 +31,9 @@ const CategoriesPage = () => {
       <ListRowParent
         categories={categories}
         setCategories={setCategories}
-        queryParams={queryParams}
-        updateQueryParam={updateQueryParam}
+        updateQueryParams={updateQueryParams}
         isLoading={isLoading}
+        refetch={refetch}
       />
     </div>
   )

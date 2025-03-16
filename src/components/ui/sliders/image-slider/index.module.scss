@@ -1,20 +1,21 @@
 .slider_container {
   position: relative;
-  width: 100%;
   margin: auto;
   overflow: hidden;
   transition: all linear 0.2s;
+  width: 100%;
+  border-radius: 10px;
 
   .slider {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    // ;
   }
 
   .slide {
     min-width: 100%;
     background-size: cover;
-    background-position: center;
+    background-position-y: top;
+    background-position-x: center;
   }
 
   .slide.active {
@@ -27,7 +28,6 @@
     top: 50%;
     transform: translateY(-50%);
     background: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
     color: #fff;
     border: none;
     padding: 10px;

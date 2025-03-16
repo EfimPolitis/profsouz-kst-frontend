@@ -1,0 +1,14 @@
+.confirm_password_block {
+  margin-bottom: 100px;
+  width: 420px;
+  background-color: rgb(var(--secondary-color-hover));
+  border-radius: 10px;
+  padding: 20px;
+
+  form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}

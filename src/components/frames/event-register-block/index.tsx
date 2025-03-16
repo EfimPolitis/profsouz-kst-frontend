@@ -7,7 +7,6 @@ import styles from './index.module.scss'
 interface IRegisterBlock {
   date: string
   event: IEvent
-  userId: string | undefined
   setIsShow: React.Dispatch<React.SetStateAction<boolean>>
   isPending: boolean
   isSuccess: boolean
@@ -28,12 +27,10 @@ export const RegisterBlock = ({
     <div className={styles.event_card}>
       <div className={styles.top}>
         <div className={styles.event_date}>
-          <div className={styles.date_day}>{new Date(date).getDate()}</div>
-          <div className={styles.date_month}>
-            {new Date(date).toLocaleDateString('ru-RU', {
-              month: 'long'
-            })}
-          </div>
+          {new Date(date).toLocaleDateString('ru-RU', {
+            day: 'numeric',
+            month: 'long'
+          })}
         </div>
         <div className={styles.event_details}>
           <div className={styles.event_day}>
@@ -53,7 +50,8 @@ export const RegisterBlock = ({
           <div className={styles.event_time}>
             {new Date(date).toLocaleTimeString('ru-RU', {
               hour: 'numeric',
-              minute: 'numeric'
+              minute: 'numeric',
+              timeZone: 'UTC'
             })}{' '}
             МСК
           </div>
@@ -61,9 +59,6 @@ export const RegisterBlock = ({
       </div>
       <div className={styles.line}></div>
       <Button
-        text={
-          places === 0 ? 'Больше нет мест на мероприятие' : 'Хочу учавствовать'
-        }
         onClick={() => setIsShow(true)}
         className={styles.button}
         isPending={isPending}
@@ -71,7 +66,13 @@ export const RegisterBlock = ({
         isSuccess={isSuccess}
         disabled={places === 0}
         style={{ width: '200px', fontSize: '20px' }}
-      />
+      >
+        <p>
+          {places === 0
+            ? 'Больше нет мест на мероприятие'
+            : 'Хочу учавствовать'}
+        </p>
+      </Button>
     </div>
   )
 }

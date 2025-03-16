@@ -9,6 +9,10 @@ class PAGES {
   DOCUMENTS = `${this.root}documents`
   ABOUT = `${this.root}about`
   AUTH = `${this.root}auth`
+  PROFILE = `${this.root}profile`
+  CHANGE_PASSWORD = `${this.root}change-password`
+  REQUEST_EMAIL = `${this.root}request-email`
+  RESET_PASSWORD = `${this.root}reset-password`
 
   //events
   EVENTS = `${this.root}events`

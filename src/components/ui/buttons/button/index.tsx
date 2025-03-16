@@ -1,17 +1,18 @@
 import cn from 'clsx'
 import { Check, X } from 'lucide-react'
 
-import styles from './index.module.scss'
-import type { IButton } from './index.types'
 import { Loader } from '@/components/ui'
 
+import styles from './index.module.scss'
+import type { IButton } from './index.types'
+
 export const Button = ({
+  children,
   isPending,
   isSuccess,
   isLoading,
   isError,
   type,
-  text,
   className,
   disabled,
   onClick,
@@ -41,7 +42,7 @@ export const Button = ({
           <X />
         </p>
       ) : (
-        text
+        <>{children}</>
       )}
     </button>
   )

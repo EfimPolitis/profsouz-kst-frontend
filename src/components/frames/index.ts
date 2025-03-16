@@ -4,9 +4,12 @@ import { NewsCard } from './cards/news-card'
 import { NewsCardSkeleton } from './cards/news-card/index.skeleton'
 import { FilterComponent } from './filter'
 import { Footer } from './footer'
-import AuthForm from './forms/auth-form'
+import { AuthForm } from './forms/auth-form'
+import { ChangePasswordForm } from './forms/change-password-form'
 import { EventForm } from './forms/event-form'
 import { NewsForm } from './forms/news-form'
+import { RequestResetForm } from './forms/request-reset-form'
+import { ResetPasswordForm } from './forms/reset-password-form'
 import { Header } from './header'
 import { ListRowParent } from './list-view/list-row-parent'
 import { BookingPopup } from './popups/booking-popup'
@@ -17,6 +20,9 @@ import { Sort } from './sort'
 
 export {
   AuthForm,
+  ChangePasswordForm,
+  RequestResetForm,
+  ResetPasswordForm,
   EventForm,
   NewsForm,
   Sidebar,

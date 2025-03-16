@@ -8,7 +8,7 @@ export interface IUser {
   userId: string
   firstName: string
   lastName: string
-  middleName: string
+  middleName: string | undefined
   userName: string
   email: string
   password: string
@@ -27,6 +27,7 @@ export interface IProfileResponse {
   userName: string
   firstName: string
   lastName: string
-  middleName?: string
+  middleName: string | undefined
+  email: string
   role: ERole
 }

@@ -11,27 +11,20 @@ import {
   FilterComponent,
   Sort
 } from '@/components/frames'
-import { Pagination, Search } from '@/components/ui'
+import { Button, Pagination, Search } from '@/components/ui'
 
 import { eventSortList } from '@/constants/sort.constants'
 
 import { URL_PAGES } from '@/config/url.config'
 
-import { useFiltersStore } from '@/store/store'
-
 import { useGetEvents } from '@/hooks/event/useGetEvents'
+import { useFilters } from '@/hooks/useFilters'
 
 import styles from './index.module.scss'
 import { eventService } from '@/services/events.service'
 
 const EventsPage = () => {
-  const {
-    queryParams,
-    isFilterUpdated,
-    isFilterReset,
-    updateQueryParam,
-    reset
-  } = useFiltersStore()
+  const { queryParams, isFilterUpdated, reset } = useFilters()
 
   const { data, isFetching, refetch } = useGetEvents(
     queryParams,
@@ -59,18 +52,8 @@ const EventsPage = () => {
     <div className={styles.page}>
       <div className={styles.wrap}>
         <div className={styles.top}>
-          <Search
-            placeholder='Поиск...'
-            queryParams={queryParams}
-            updateQueryParam={updateQueryParam}
-            isFilterReset={isFilterReset}
-          />
-          <Sort
-            data={eventSortList}
-            queryParams={queryParams}
-            updateQueryParam={updateQueryParam}
-            isFilterReset={isFilterReset}
-          />
+          <Search placeholder='Поиск...' />
+          <Sort data={eventSortList} />
           <button
             className={cn(styles.filter, {
               [styles.active]: isOpenFilter
@@ -98,9 +81,7 @@ const EventsPage = () => {
         <FilterComponent
           isOpen={isOpenFilter}
           type='event'
-          updateQueryParam={updateQueryParam}
           handleResetFilter={handleResetFilter}
-          isFilterReset={isFilterReset}
         />
         <div className={styles.events_block}>
           {isFetching
@@ -113,19 +94,16 @@ const EventsPage = () => {
                 />
               ))}
         </div>
-        {!isFetching && !events?.length && (
-          <h3
-            className={styles.not_found}
-            style={{ position: 'relative', top: '0px' }}
-          >
-            Мероприятия не были найденны
-          </h3>
+        {isFetching || !!events?.length || (
+          <div className={styles.not_found}>
+            <h2>Мероприятия не были найдены</h2>
+            <Button onClick={() => refetch()}>
+              <p>Обновить</p>
+            </Button>
+          </div>
         )}
       </div>
-      <Pagination
-        countPage={countPage || 0}
-        updateQueryParam={updateQueryParam}
-      />
+      <Pagination countPage={countPage || 0} />
     </div>
   )
 }

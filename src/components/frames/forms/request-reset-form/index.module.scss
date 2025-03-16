@@ -1,0 +1,28 @@
+.request_reset_block {
+  margin-bottom: 100px;
+  width: 420px;
+  min-height: 200px;
+  background-color: rgb(var(--secondary-color-hover));
+  border-radius: 10px;
+  padding: 20px;
+
+  .message {
+    width: 380px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    h2 {
+      text-align: center;
+      line-height: 40px;
+    }
+  }
+
+  form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}

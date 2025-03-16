@@ -7,27 +7,20 @@ import { useEffect, useState } from 'react'
 
 import { FilterComponent, Sort } from '@/components/frames'
 import { UserTable } from '@/components/frames/tables/user-table/table'
-import { Pagination, Search } from '@/components/ui'
+import { Button, Loader, Pagination, Search } from '@/components/ui'
 
 import { userSortList } from '@/constants/sort.constants'
 
 import { URL_PAGES } from '@/config/url.config'
 
-import { useFiltersStore } from '@/store/store'
-
+import { useFilters } from '@/hooks/useFilters'
 import { useGetUsers } from '@/hooks/user/useGetUsers'
 
 import styles from './index.module.scss'
 import { userService } from '@/services/user.service'
 
 const UsersPage = () => {
-  const {
-    queryParams,
-    isFilterUpdated,
-    isFilterReset,
-    updateQueryParam,
-    reset
-  } = useFiltersStore()
+  const { queryParams, isFilterUpdated, reset } = useFilters()
   const { data, isFetching, refetch } = useGetUsers(
     queryParams,
     isFilterUpdated
@@ -54,18 +47,8 @@ const UsersPage = () => {
     <div className={styles.page}>
       <div className={styles.wrap}>
         <div className={styles.top}>
-          <Search
-            placeholder={'Поиск...'}
-            updateQueryParam={updateQueryParam}
-            queryParams={queryParams}
-            isFilterReset={isFilterReset}
-          />
-          <Sort
-            data={userSortList}
-            queryParams={queryParams}
-            updateQueryParam={updateQueryParam}
-            isFilterReset={isFilterReset}
-          />
+          <Search placeholder={'Поиск...'} />
+          <Sort data={userSortList} />
           <button
             className={cn(styles.filter, {
               [styles.active]: isOpenFilter
@@ -93,19 +76,25 @@ const UsersPage = () => {
         <FilterComponent
           isOpen={isOpenFilter}
           type='user'
-          updateQueryParam={updateQueryParam}
           handleResetFilter={handleResetFilter}
-          isFilterReset={isFilterReset}
         />
-        <UserTable
-          users={users}
-          isLoading={isFetching}
-        />
+        <UserTable users={users} />
+        {isFetching ? (
+          <div className={styles.not_found}>
+            <Loader size={50} />
+          </div>
+        ) : (
+          !!users?.length || (
+            <div className={styles.not_found}>
+              <h2>Пользователи не были найдены</h2>
+              <Button onClick={() => refetch()}>
+                <p>Обновить</p>
+              </Button>
+            </div>
+          )
+        )}
       </div>
-      <Pagination
-        countPage={countPage || 0}
-        updateQueryParam={updateQueryParam}
-      />
+      <Pagination countPage={countPage || 0} />
     </div>
   )
 }

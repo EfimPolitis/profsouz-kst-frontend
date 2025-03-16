@@ -1,7 +1,7 @@
 .header {
   height: 80px;
   width: 100%;
-  padding: 0px 150px;
+  padding: 0px 10%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -47,6 +47,10 @@
         transition: all linear 0.4s;
       }
 
+      .active {
+        color: rgb(var(--primary-color));
+      }
+
       &:hover {
         &::before {
           opacity: 1;
@@ -59,6 +63,7 @@
   .containerProfile {
     display: flex;
     gap: 20px;
+    user-select: none;
 
     .profile {
       display: flex;

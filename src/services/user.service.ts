@@ -31,14 +31,14 @@ export const userService = {
     return response.data
   },
 
-  async update(data: IAuthFormData, id: string) {
-    const response = await axiosWithAuth.patch(`/users/${id}`, data)
+  async update(data: IAuthFormData, userId: string) {
+    const response = await axiosWithAuth.patch(`/users/${userId}`, data)
 
     return response
   },
 
-  async delete(id: string) {
-    const response = await axiosWithAuth.delete(`/users/${id}`)
+  async delete(userId: string) {
+    const response = await axiosWithAuth.delete(`/users/${userId}`)
 
     return response
   },
