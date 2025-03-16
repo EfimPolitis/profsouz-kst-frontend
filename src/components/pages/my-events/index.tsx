@@ -10,9 +10,9 @@ import styles from './index.module.scss'
 
 const MyEventsPage = () => {
   const { data: user } = useProfile()
-  const userName = user?.userName
+  const userId = user?.userId
 
-  const { data, isFetching, refetch } = useGetApplicationsByUserId(userName)
+  const { data, isFetching, refetch } = useGetApplicationsByUserId(userId)
   const items = data?.data.items
 
   return (

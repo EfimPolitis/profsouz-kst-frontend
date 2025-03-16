@@ -72,7 +72,7 @@ const EventsPage = () => {
           </Link>
           <button
             className={styles.getReport}
-            title='Скачать отчёт'
+            title='Скачать отчёт по мероприятияммммм'
             onClick={() => eventService.getReport()}
           >
             <FileText size={30} />

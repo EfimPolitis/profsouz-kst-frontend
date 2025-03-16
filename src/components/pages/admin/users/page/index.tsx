@@ -67,7 +67,7 @@ const UsersPage = () => {
           </Link>
           <button
             className={styles.getReport}
-            title='Скачать отчёт'
+            title='Скачать отчёт по пользователям'
             onClick={() => userService.getReport()}
           >
             <FileText size={30} />

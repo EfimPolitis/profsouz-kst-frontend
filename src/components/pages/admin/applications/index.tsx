@@ -61,7 +61,7 @@ const ApplicationsPage = () => {
           </button>
           <button
             className={styles.getReport}
-            title='Скачать отчёт'
+            title='Скачать отчёт по заявокам'
             onClick={() => applicationService.getReport()}
           >
             <FileText size={30} />
