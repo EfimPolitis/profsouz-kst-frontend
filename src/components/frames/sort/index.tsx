@@ -2,7 +2,6 @@
 
 import cn from 'clsx'
 import { ArrowDownUp, ChevronDown, ChevronUp } from 'lucide-react'
-import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 import type {
@@ -26,15 +25,14 @@ enum EnumOrder {
 
 export const Sort = ({ data }: ISort) => {
   const { isShow, setIsShow, ref } = useOutside(false)
-  const { updateQueryParams, isFilterReset } = useFilters()
-  const searchParams = useSearchParams()
+  const { updateQueryParams, isFilterReset, queryParams } = useFilters()
 
   const [order, setOrder] = useState<EnumOrder>(EnumOrder.DESC)
   const [sort, setSort] = useState<
     EUserSort | EEventSort | ENewsSort | EApplicationSort
   >()
   const [current, setCurrent] = useState<ISortItem | undefined>(
-    data.find(value => value.keys[order] === searchParams?.get('sort'))
+    data.find(value => value.keys[order] === queryParams?.sort)
   )
 
   useEffect(() => {

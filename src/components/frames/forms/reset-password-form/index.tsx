@@ -1,7 +1,6 @@
 'use client'
 
 import { Lock } from 'lucide-react'
-import { useSearchParams } from 'next/navigation'
 import { FieldErrors, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
@@ -10,13 +9,14 @@ import { Button, Field } from '@/components/ui'
 import { IResetPasswordForm } from '@/types/auth.types'
 
 import { useResetPassword } from '@/hooks/auth/useResetPassword'
+import { useFilters } from '@/hooks/useFilters'
 
 import styles from './index.module.scss'
 import { resetPasswordFormRulles } from './rules'
 
 export const ResetPasswordForm = () => {
-  const searchParams = useSearchParams()
-  const token = searchParams.get('token')
+  const { queryParams } = useFilters()
+  const token = queryParams.token
 
   const initialValues = {
     newPassword: '',

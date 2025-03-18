@@ -38,7 +38,9 @@ export const FilterComponent = ({
         className={cn(styles.menu, {
           [styles.hidden]: !isOpen
         })}
-        animate={{ height: isOpen ? 'min-content' : 0 }}
+        animate={{
+          height: isOpen ? 'min-content' : 0
+        }}
         transition={{
           type: 'tween'
         }}
@@ -52,7 +54,7 @@ export const FilterComponent = ({
                 [styles.type_section]: type === 'select'
               })}
             >
-              <h5>{title}</h5>
+              <h4>{title}</h4>
               {inputs_block.map(input => (
                 <div
                   className={styles.input_block}

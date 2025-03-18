@@ -26,9 +26,9 @@ interface ITableField {
 
 export const UserTableRow = ({ user, count }: ITableField) => {
   const { push } = useRouter()
-  const { data } = useProfile()
+  const { profile } = useProfile()
 
-  const userId = data?.userId
+  const userId = profile?.userId
 
   const { deleteUser, isPending } = useDeleteUser()
   const [isShow, setIsShow] = useState<boolean>(false)

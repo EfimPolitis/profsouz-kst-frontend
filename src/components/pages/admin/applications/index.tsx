@@ -2,7 +2,6 @@
 
 import cn from 'clsx'
 import { FileText, Filter } from 'lucide-react'
-import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 import { FilterComponent, Sort } from '@/components/frames'
@@ -18,8 +17,6 @@ import styles from './index.module.scss'
 import { applicationService } from '@/services/application.service'
 
 const ApplicationsPage = () => {
-  const searchParams = useSearchParams()
-
   const { queryParams, isFilterUpdated, reset } = useFilters()
 
   const { data, isFetching, refetch } = useGetApplications(
@@ -33,7 +30,7 @@ const ApplicationsPage = () => {
 
   useEffect(() => {
     refetch()
-  }, [searchParams])
+  }, [queryParams])
 
   const applications = data?.data?.items
   const countPage = data?.data?.countPage || 0
@@ -78,10 +75,10 @@ const ApplicationsPage = () => {
             <Loader size={50} />
           </div>
         ) : (
-          !!applications?.length || (
+          !applications?.length && (
             <div className={styles.not_found}>
               <h2>Заявки на мероприятия не были найдены</h2>
-              <Button onClick={() => refetch}>
+              <Button onClick={() => refetch()}>
                 <p>Обновить</p>
               </Button>
             </div>

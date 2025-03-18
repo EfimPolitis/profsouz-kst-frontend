@@ -6,8 +6,6 @@ import { Loader } from '@/components/ui'
 
 import { roles } from '@/constants/roles.constants'
 
-import { ERole } from '@/types/user.types'
-
 import { useOutside } from '@/hooks/useOutside'
 import { useProfile } from '@/hooks/user/useProfile'
 
@@ -15,7 +13,7 @@ import styles from './index.module.scss'
 
 export const Profile = () => {
   const { isShow, setIsShow, ref } = useOutside(false)
-  const { data: user, isLoading } = useProfile()
+  const { profile, isLoading } = useProfile()
 
   const handleToggle = (event: React.MouseEvent) => {
     event.stopPropagation()
@@ -35,20 +33,22 @@ export const Profile = () => {
           </div>
         ) : (
           <>
-            {user && (
+            {profile && (
               <>
                 <div className={styles.info}>
                   <span className={styles.fullname}>
-                    {user?.lastName} {user?.firstName}
+                    {profile?.lastName} {profile?.firstName}
                   </span>
-                  <span className={styles.role}>{roles[`${user?.role}`]}</span>
+                  <span className={styles.role}>
+                    {roles[`${profile?.role}`]}
+                  </span>
                 </div>
                 <div className={styles.avatar}>
-                  {user?.firstName?.charAt(0).toUpperCase()}
+                  {profile?.firstName?.charAt(0).toUpperCase()}
                 </div>
               </>
             )}
-            {isShow && <Menu role={user?.role} />}
+            {isShow && <Menu role={profile?.role} />}
           </>
         )}
       </div>

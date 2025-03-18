@@ -25,7 +25,7 @@ export const Header = () => {
   const pathname = usePathname()
 
   const { isShow, setIsShow, ref } = useOutside(false)
-  const { data: user, isLoading, isFetching } = useProfile()
+  const { profile, isLoading, isFetching } = useProfile()
 
   const [accessToken, setAccessToken] = useState<string | null>(null)
 
@@ -42,9 +42,6 @@ export const Header = () => {
   return (
     <>
       <header className={styles.header}>
-        <div className={styles.menu_icon}>
-          <MenuIcon />
-        </div>
         <div>
           <Link
             href={URL_PAGES.HOME}
@@ -100,6 +97,13 @@ export const Header = () => {
         </nav>
         <div className={styles.containerProfile}>
           <ThemeToggler />
+          <div
+            className={styles.menu_icon}
+            onClick={handleToggle}
+            ref={ref}
+          >
+            <MenuIcon />
+          </div>
           {isLoading ? (
             <div className={styles.profile}>
               <div className={styles.profile_icon}>
@@ -113,21 +117,21 @@ export const Header = () => {
               ref={ref}
             >
               <p>
-                {user?.lastName.replace(
-                  user?.lastName[0],
-                  user?.lastName[0].toUpperCase()
+                {profile?.lastName.replace(
+                  profile?.lastName[0],
+                  profile?.lastName[0].toUpperCase()
                 )}
               </p>
               <p>
-                {user?.firstName.replace(
-                  user?.firstName[0],
-                  user?.firstName[0].toUpperCase()
+                {profile?.firstName.replace(
+                  profile?.firstName[0],
+                  profile?.firstName[0].toUpperCase()
                 )}
               </p>
               <div className={styles.profile_icon}>
-                {user?.firstName.charAt(0).toLocaleUpperCase()}
+                {profile?.firstName.charAt(0).toLocaleUpperCase()}
               </div>
-              {isShow && <Menu role={user?.role} />}
+              {isShow && <Menu role={profile?.role} />}
             </div>
           ) : (
             <Link

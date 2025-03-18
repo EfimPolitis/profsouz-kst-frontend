@@ -1,6 +1,6 @@
-import { useSearchParams } from 'next/navigation'
-
 import type { IApplication } from '@/types/application.types'
+
+import { useFilters } from '@/hooks/useFilters'
 
 import { TableRow } from '../row'
 
@@ -11,8 +11,8 @@ interface IApplicationTable {
 }
 
 export const ApplicationTable = ({ applications }: IApplicationTable) => {
-  const searchParams = useSearchParams()
-  const countPage = Number(searchParams.get('page'))
+  const { queryParams } = useFilters()
+  const countPage = Number(queryParams?.page)
 
   return (
     <div className={styles.table_container}>

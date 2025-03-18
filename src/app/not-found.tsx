@@ -1,11 +1,6 @@
-import { Metadata } from 'next'
 import Link from 'next/link'
 
 import styles from '@/styles/not-found.module.scss'
-
-export const metadata: Metadata = {
-  title: 'Не найдено'
-}
 
 const NotFound = () => {
   return (

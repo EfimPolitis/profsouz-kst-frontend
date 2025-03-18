@@ -12,6 +12,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "types": ["cypress"],
     "plugins": [
       {
         "name": "next"
@@ -35,7 +36,10 @@
     ".next/types/**/*.ts",
     "src/components/frames/card/EventCardSkeleton.jsx",
     "server.mts",
-    "server.js"
+    "server.js",
+    "cyrpess/e2e/booking.spec.ts",
+    "cyrpess/e2e/login.spec.ts",
+    "cyrpess/tsconfig.json"
   ],
   "exclude": ["node_modules"]
 }

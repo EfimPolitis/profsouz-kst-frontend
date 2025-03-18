@@ -60,7 +60,7 @@ export const ListRowParent = ({
                   <Loader size={50} />
                 </div>
               ) : (
-                !!categories?.length || (
+                !categories?.length && (
                   <div className={styles.not_found}>
                     <h3>Категории не были найдены</h3>
                     <Button

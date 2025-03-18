@@ -4,8 +4,6 @@ import clsx from 'clsx'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
-import type { IQueryParam } from '@/types/query.types'
-
 import { useFilters } from '@/hooks/useFilters'
 
 import styles from './index.module.scss'
@@ -62,16 +60,20 @@ export const Pagination = ({ countPage }: IPagination) => {
       if (page > 3) {
         pages.push(
           <li
-            key='dots-start'
-            className={styles.item}
-          >
-            ...
-          </li>
+            key='space-start'
+            className={styles.space}
+          ></li>
         )
       }
 
-      let start = Math.max(1, page - 2)
-      let end = Math.min(countPage - 2, page + 2)
+      let start =
+        document.body.clientWidth > 800
+          ? Math.max(1, page - 2)
+          : Math.max(1, page - 1)
+      let end =
+        document.body.clientWidth > 800
+          ? Math.min(countPage - 2, page + 2)
+          : Math.min(countPage - 2, page + 1)
 
       for (let i = start; i <= end; i++) {
         pages.push(
@@ -92,11 +94,9 @@ export const Pagination = ({ countPage }: IPagination) => {
       if (page < countPage - 4) {
         pages.push(
           <li
-            key='dots-end'
-            className={styles.item}
-          >
-            ...
-          </li>
+            key='space-end'
+            className={styles.space}
+          ></li>
         )
       }
 

@@ -22,16 +22,8 @@ export const NewsPageId = () => {
       {!isPending ? (
         <div className={styles.content}>
           {news ? (
-            <>
-              <UndoBtn
-                size={30}
-                style={{
-                  position: 'absolute',
-                  top: '0px',
-                  left: '-60px',
-                  zIndex: '1'
-                }}
-              />
+            <div className={styles.wrap}>
+              <UndoBtn size={30} />
               <div className={styles.info_block}>
                 <div className={styles.views}>
                   <Eye />
@@ -65,7 +57,7 @@ export const NewsPageId = () => {
                     ?.map((label, index) => <p key={index}>{label}</p>)}
                 </div>
               </div>
-            </>
+            </div>
           ) : (
             <p>Данное мероприятие не было найденно</p>
           )}

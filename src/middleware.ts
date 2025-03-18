@@ -13,16 +13,21 @@ export async function middleware(request: NextRequest, response: NextResponse) {
   let accessToken = cookies.get(EnumTokens.ACCESS_TOKEN)?.value
 
   const isAuthPage = url.includes('/auth')
+  const isResetPasswordPage = url.includes('/reset-password')
   const isEventsPage = url.includes('/events')
   const isMyEventsPage = url.includes('/my-events')
 
   const isUserPage = isEventsPage || isMyEventsPage
   const isAdminPage = url.includes('/admin')
 
-  if (!refreshToken && !isAuthPage) {
+  if (!refreshToken && !isAuthPage && !isResetPasswordPage) {
     request.cookies.delete(EnumTokens.ACCESS_TOKEN)
 
     return redirectToHome(isAdminPage, request)
+  }
+
+  if (isResetPasswordPage && !url.includes('?token=')) {
+    return NextResponse.rewrite(new URL('404', request.url))
   }
 
   if (!accessToken && refreshToken) {
@@ -90,7 +95,8 @@ export const config = {
     '/admin/:path*',
     '/events/:path*',
     '/my-events/:path*',
-    '/auth'
+    '/auth',
+    '/reset-password'
   ]
 }
 

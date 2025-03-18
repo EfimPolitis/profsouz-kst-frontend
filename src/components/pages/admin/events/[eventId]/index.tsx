@@ -23,10 +23,10 @@ export const EventPageId = () => {
   const { eventId } = useParams() as { eventId: string }
 
   const { data, refetch, isLoading } = useGetEventById(eventId)
-  const { data: user } = useProfile()
+  const { profile } = useProfile()
 
   const event = data?.data
-  const userId = user?.userId
+  const userId = profile?.userId
 
   const {
     mutate: mutateApplication,
@@ -77,15 +77,7 @@ export const EventPageId = () => {
 
   return (
     <div className={styles.page}>
-      <UndoBtn
-        size={30}
-        style={{
-          position: 'absolute',
-          top: '50px',
-          left: '520px',
-          zIndex: '1'
-        }}
-      />
+      <UndoBtn size={30} />
       {isShow && (
         <BookingPopup
           onConfirm={handleConfirm}

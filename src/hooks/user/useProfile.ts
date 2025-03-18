@@ -11,5 +11,5 @@ export const useProfile = () => {
     retry: 1
   })
 
-  return { data, isLoading, isError, isFetching, refetch }
+  return { profile: data, isLoading, isError, isFetching, refetch }
 }

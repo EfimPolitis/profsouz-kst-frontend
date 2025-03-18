@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 const Page = () => (
-  <Suspense fallback={<div>Загрузка...</div>}>
+  <Suspense>
     <Header />
     <ResetPasswordPage />
   </Suspense>

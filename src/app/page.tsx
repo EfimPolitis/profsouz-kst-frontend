@@ -21,7 +21,7 @@ export default function Home() {
         <EmployeesBlock />
         {/* <TelegramBlock /> */}
         <RecruitmentBlock />
-        <WhatsappBlock />
+        {/* <WhatsappBlock /> */}
       </main>
     </Layout>
   )

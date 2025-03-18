@@ -46,7 +46,7 @@ const titleList = {
 
 export const AuthForm = ({ type }: AuthFormProps) => {
   const { userId } = useParams() as { userId: string | undefined }
-  const { data: profile } = useProfile()
+  const { profile } = useProfile()
   const { mutate: logout } = useLogout()
 
   const initialValues = useMemo(

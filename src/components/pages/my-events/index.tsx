@@ -9,8 +9,8 @@ import { useProfile } from '@/hooks/user/useProfile'
 import styles from './index.module.scss'
 
 const MyEventsPage = () => {
-  const { data: user } = useProfile()
-  const userId = user?.userId
+  const { profile } = useProfile()
+  const userId = profile?.userId
 
   const { data, isFetching, refetch } = useGetApplicationsByUserId(userId)
   const items = data?.data.items

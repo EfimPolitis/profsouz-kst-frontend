@@ -22,12 +22,7 @@ export const useFilters = () => {
   } = useFiltersStore()
 
   useEffect(() => {
-    console.log('Pathname изменился:', pathname)
-    console.log('search Params изменились:', searchParams.toString())
-    console.log('query param:', queryParams)
-
     searchParams.forEach((value, key) => {
-      console.log(key, value)
       if (queryParams[key as keyof IQueryParam] !== value) {
         updateQueryParam({
           key: key as keyof IQueryParam,

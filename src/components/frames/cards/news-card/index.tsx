@@ -18,7 +18,7 @@ import styles from './index.module.scss'
 
 export const NewsCard: FC<INewsCard> = ({ data }) => {
   const { title, newsId, images, content, views, createdAt } = data
-  const { data: user } = useProfile()
+  const { profile } = useProfile()
 
   const { mutateNews } = useDeleteNews()
   const { mutate } = useIncrementView()
@@ -47,7 +47,7 @@ export const NewsCard: FC<INewsCard> = ({ data }) => {
           <Eye />
           <span>{views > 1000 ? (views / 1000).toFixed(1) + 'k' : views}</span>
         </p>
-        {user?.role === 'ADMIN' || user?.role === 'MODER' ? (
+        {profile?.role === 'ADMIN' || profile?.role === 'MODER' ? (
           <div className={styles.menu}>
             <Link
               href={`/admin/news/edit/${newsId}`}

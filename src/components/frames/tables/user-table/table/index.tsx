@@ -1,8 +1,8 @@
 'use client'
 
-import { useSearchParams } from 'next/navigation'
-
 import type { IUser } from '@/types/user.types'
+
+import { useFilters } from '@/hooks/useFilters'
 
 import { UserTableRow } from '../row'
 
@@ -13,8 +13,8 @@ interface IUserTable {
 }
 
 export const UserTable = ({ users }: IUserTable) => {
-  const searchParams = useSearchParams()
-  const countPage = Number(searchParams.get('page'))
+  const { queryParams } = useFilters()
+  const countPage = Number(queryParams?.page)
 
   return (
     <div className={styles.table_container}>

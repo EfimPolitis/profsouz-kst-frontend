@@ -1,4 +1,5 @@
 .page {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,22 +9,31 @@
   padding-bottom: 100px;
 
   .wrap {
-    width: fit-content;
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     flex-direction: column;
     margin-bottom: 40px;
 
     .top {
-      width: 100%;
       display: flex;
       gap: 30px;
-      align-items: flex-start;
-      justify-content: flex-start;
       margin-bottom: 20px;
       font-size: 16px;
       flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: center;
+
+      .sort {
+        display: flex;
+        gap: 30px;
+      }
+
+      .tools {
+        display: flex;
+        gap: 30px;
+      }
 
       .create_event {
         width: 35px;
@@ -80,7 +90,7 @@
     }
 
     .events_block {
-      width: auto;
+      width: min-content;
       margin-top: 10px;
       padding: 10px;
       display: grid;
@@ -104,7 +114,10 @@
 
 @media (max-width: 3840px) {
   .wrap {
-    // width: 1800px;
+    .top {
+      align-items: flex-start;
+      flex-direction: row;
+    }
 
     .events_block {
       grid-template-rows: min-content min-content min-content min-content;
@@ -114,9 +127,12 @@
   }
 }
 
-@media (max-width: 1920px) {
+@media (max-width: 2000px) {
   .wrap {
-    // width: 1300px;
+    .top {
+      align-items: flex-start;
+      flex-direction: row;
+    }
 
     .events_block {
       grid-template-rows: min-content min-content min-content;
@@ -128,7 +144,10 @@
 
 @media (max-width: 1600px) {
   .wrap {
-    width: auto;
+    .top {
+      align-items: flex-start;
+      flex-direction: row;
+    }
 
     .events_block {
       grid-template-rows: min-content min-content;
@@ -138,9 +157,31 @@
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
   .wrap {
-    width: auto;
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .top {
+        flex-direction: column;
+        align-items: center;
+
+        .search {
+          width: 100%;
+        }
+
+        .sort {
+          width: 100%;
+        }
+
+        .tools {
+          width: 100%;
+          justify-content: flex-start;
+        }
+      }
+    }
 
     .events_block {
       grid-template-rows: min-content;

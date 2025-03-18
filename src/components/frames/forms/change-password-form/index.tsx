@@ -18,7 +18,7 @@ import styles from './index.module.scss'
 import { changePasswordFormRulles } from './rules'
 
 export const ChangePasswordForm = () => {
-  const { data: user } = useProfile()
+  const { profile } = useProfile()
   const { register, handleSubmit, reset } = useForm<IChangePasswordFormData>()
   const { changePassword } = useChangePassword(reset)
 
@@ -50,7 +50,7 @@ export const ChangePasswordForm = () => {
           type='text'
           name='username'
           autoComplete='username'
-          value={user?.userName}
+          value={profile?.userName}
           readOnly
           hidden
         />

@@ -49,6 +49,7 @@ export interface IQueryParam {
   created_at_end?: string
   updated_at_start?: string
   updated_at_end?: string
+  token?: string
 }
 
 export interface ISortItem {

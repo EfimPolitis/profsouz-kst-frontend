@@ -12,12 +12,10 @@
 
   .menu_icon {
     display: none;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
-
-    svg {
-      width: 40px;
-      height: 40px;
-    }
+    padding: 8px;
   }
 
   .logo {
@@ -94,26 +92,32 @@
 @media (max-width: 1600px) {
   .header {
     padding: 0px 50px;
-    justify-content: flex-start;
+    justify-content: space-around;
     gap: 40px;
     position: relative;
-
-    .menu_icon {
-      display: block;
-    }
 
     .menu {
       display: none;
     }
 
+    .menu_icon {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
     .profile {
-      position: absolute;
-      right: 50px;
+      display: none;
     }
 
     .login {
-      position: absolute;
-      right: 50px;
+      display: none;
+    }
+
+    .menu_icon {
+      display: block;
     }
   }
 }

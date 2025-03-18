@@ -18,9 +18,7 @@ import styles from './index.module.scss'
 export const EventCard: FC<IEventCard> = ({ data, takePlaces }) => {
   const { title, places, categories, date, eventId, images, status, address } =
     data
-  const { data: userData } = useProfile()
-
-  const user = userData
+  const { profile } = useProfile()
 
   const { mutate: mutateEvent } = useDeleteEvent()
 
@@ -43,7 +41,7 @@ export const EventCard: FC<IEventCard> = ({ data, takePlaces }) => {
           className={styles.card_link}
           href={`/events/${eventId}`}
         />
-        {user?.role === 'ADMIN' || user?.role === 'MODER' ? (
+        {profile?.role === 'ADMIN' || profile?.role === 'MODER' ? (
           <>
             {status === EStatus.INTERNAL && (
               <div className={styles.privateMark}>
