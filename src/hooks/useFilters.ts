@@ -30,8 +30,6 @@ export const useFilters = () => {
         })
       }
     })
-
-    console.log('query param:', queryParams)
   }, [pathname, searchParams])
 
   const updateQueryParams = (key: keyof IQueryParam, value: string) => {

@@ -7,7 +7,6 @@ import toast from 'react-hot-toast'
 import { TanStackQueryKey } from '@/constants/query-key.constants'
 
 import { IChangePasswordFormData } from '@/types/auth.types'
-import { changePasswordErrorList } from '@/types/error.types'
 
 import { URL_PAGES } from '@/config/url.config'
 

@@ -12,7 +12,7 @@ import { authService } from '@/services/auth/auth.service'
 export const useResetPassword = () => {
   const { push } = useRouter()
   const { mutate, isPending, isSuccess, isError } = useMutation({
-    mutationKey: [TanStackQueryKey.requestResetPassword],
+    mutationKey: [TanStackQueryKey.resetPassword],
     mutationFn: ({
       token,
       newPassword

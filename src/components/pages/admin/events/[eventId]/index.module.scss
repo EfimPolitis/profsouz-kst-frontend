@@ -25,6 +25,12 @@
       gap: 20px;
       white-space: normal;
 
+      h1 {
+        h1 {
+          word-wrap: break-word;
+        }
+      }
+
       .categories {
         display: flex;
         gap: 10px;

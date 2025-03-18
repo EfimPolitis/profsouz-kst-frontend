@@ -3,8 +3,8 @@ export const TanStackQueryKey = {
   auth: 'auth',
   logout: 'logout',
   changePassword: 'changePassword',
-  requestResetPassword: 'requestResetPassword',
-  confirmPassword: 'confirmPassword',
+  resetPassword: 'resetPassword',
+  requestEmail: 'requestEmail',
 
   //user
   profile: 'profile',

@@ -2,12 +2,13 @@
 
 import { Lock } from 'lucide-react'
 import Link from 'next/link'
+import { useState } from 'react'
 import { FieldErrors, SubmitHandler, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
 import { Button, Field } from '@/components/ui'
 
-import { IChangePasswordFormData } from '@/types/auth.types'
+import type { IChangePasswordFormData } from '@/types/auth.types'
 
 import { URL_PAGES } from '@/config/url.config'
 
@@ -21,6 +22,8 @@ export const ChangePasswordForm = () => {
   const { profile } = useProfile()
   const { register, handleSubmit, reset } = useForm<IChangePasswordFormData>()
   const { changePassword } = useChangePassword(reset)
+
+  const [isPasswordField, setIsPasswordField] = useState(true)
 
   const onSubmit: SubmitHandler<IChangePasswordFormData> = data => {
     if (data.newPassword !== data.confirmPassword)
@@ -68,25 +71,27 @@ export const ChangePasswordForm = () => {
         <Field
           placeholder='Новый пароль'
           Icon={Lock}
-          type='password'
+          type={isPasswordField ? 'password' : 'text'}
           isPassword
+          onClickBtn={() => setIsPasswordField(!isPasswordField)}
           autoComplete='new-password'
           {...register('newPassword', changePasswordFormRulles.newPassword)}
         />
         <Field
           placeholder='Подтвердите новый пароль'
           Icon={Lock}
-          type='password'
+          type={isPasswordField ? 'password' : 'text'}
           isPassword
+          onClickBtn={() => setIsPasswordField(!isPasswordField)}
           autoComplete='new-password'
           {...register(
             'confirmPassword',
             changePasswordFormRulles.confirmPassword
           )}
         />
+        <Link href={URL_PAGES.REQUEST_EMAIL}>Забыли пароль?</Link>
         <Button type='submit'>Сменить</Button>
       </form>
-      <Link href={URL_PAGES.REQUEST_EMAIL}>Забыли пароль?</Link>
     </div>
   )
 }

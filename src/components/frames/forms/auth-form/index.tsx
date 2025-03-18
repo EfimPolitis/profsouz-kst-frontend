@@ -151,7 +151,7 @@ export const AuthForm = ({ type }: AuthFormProps) => {
               <Controller
                 control={control}
                 name='role'
-                render={({ field: { onChange, value } }) => (
+                render={({ field: { onChange } }) => (
                   <InputSelect
                     setState={onChange}
                     initialValue={roles[values.role]}

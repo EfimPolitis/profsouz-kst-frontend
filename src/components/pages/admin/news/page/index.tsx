@@ -39,7 +39,7 @@ const NewsPage = () => {
   }, [queryParams])
 
   const news = data?.data?.items
-  const countPage = data?.data?.countPage
+  const countPage = data?.data?.countPage || 0
 
   const [isOpenFilter, setIsOpenFilter] = useState(false)
 
@@ -106,7 +106,7 @@ const NewsPage = () => {
           )}
         </div>
       </div>
-      <Pagination countPage={countPage || 0} />
+      <Pagination countPage={countPage > 1 ? countPage : 0} />
     </div>
   )
 }

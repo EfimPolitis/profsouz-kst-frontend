@@ -85,7 +85,7 @@ const ApplicationsPage = () => {
           )
         )}
       </div>
-      <Pagination countPage={countPage || 0} />
+      <Pagination countPage={countPage > 1 ? countPage : 0} />
     </div>
   )
 }

@@ -81,7 +81,7 @@ export const NewsCard: FC<INewsCard> = ({ data }) => {
             </span>
           </p>
           <p className={styles.title}>
-            {title.length > 60 ? title.slice(0, 59) + '...' : title}
+            {title.length > 40 ? title.slice(0, 39) + '...' : title}
           </p>
           <p className={styles.description}>
             {content.length > 140 ? content.slice(0, 139) + '...' : content}

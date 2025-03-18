@@ -7,6 +7,7 @@ export interface IFieldProps {
   error?: FieldError
   isPassword?: boolean
   Icon?: LucideIcon
+  onClickBtn?: () => void
 }
 
 export type TypeInputProps = InputHTMLAttributes<HTMLInputElement> & IFieldProps

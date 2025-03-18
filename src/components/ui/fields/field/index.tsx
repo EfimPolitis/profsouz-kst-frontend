@@ -8,7 +8,18 @@ import styles from './index.module.scss'
 import type { TypeInputProps } from './index.types'
 
 export const Field = forwardRef<HTMLInputElement, TypeInputProps>(
-  ({ type: initialType, isPassword, style, className, Icon, ...rest }, ref) => {
+  (
+    {
+      type: initialType,
+      isPassword,
+      style,
+      className,
+      Icon,
+      onClickBtn,
+      ...rest
+    },
+    ref
+  ) => {
     const [type, setType] = useState<HTMLInputTypeAttribute | undefined>(
       initialType || 'text'
     )
@@ -29,7 +40,11 @@ export const Field = forwardRef<HTMLInputElement, TypeInputProps>(
         {isPassword && (
           <div
             className={styles.eyeIcon}
-            onClick={() => setType(type === 'password' ? 'text' : 'password')}
+            onClick={() =>
+              onClickBtn
+                ? onClickBtn()
+                : setType(type === 'password' ? 'text' : 'password')
+            }
           >
             {type === 'password' ? <Eye /> : <EyeOff />}
           </div>
